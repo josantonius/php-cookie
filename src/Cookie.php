@@ -15,7 +15,7 @@
 
 namespace Josantonius\Cookie;
 
-use Josantonius\Cookie\Exception\CookieException;
+# use Josantonius\Cookie\Exception\CookieException;
 
 /**
  * Cookie handler.

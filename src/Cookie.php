@@ -26,13 +26,17 @@ class Cookie {
 
     /**
      * Prefix for cookies.
-     * 
+     *
+     * @since 1.0.0
+     *
      * @var string
      */
     private static $_prefix = 'jst_';
 
     /**
      * Set cookie.
+     *
+     * @since 1.0.0
      *
      * @param string $key   → name the data to save
      * @param string $value → the data to save
@@ -45,6 +49,8 @@ class Cookie {
 
     /**
      * Extract item from cookie then delete from the cookie and return the item.
+     *
+     * @since 1.0.0
      *
      * @param string $key → item to extract
      *
@@ -65,6 +71,8 @@ class Cookie {
     /**
      * Get item from cookie.
      *
+     * @since 1.0.0
+     *
      * @param string $key → item to look for in cookie
      *
      * @return string|null → returns the key value, or null if key doesn't exists
@@ -74,9 +82,10 @@ class Cookie {
         return $_COOKIE[self::$_prefix . $key] ?? null;
     }
 
-
     /**
      * Return cookies array.
+     *
+     * @since 1.0.0
      *
      * @return array|null → of cookie indexes
      */
@@ -86,9 +95,10 @@ class Cookie {
 
     }
 
-
     /**
      * Empties and destroys the cookies.
+     *
+     * @since 1.0.0
      *
      * @param string $key → cookie name to destroy. Not set to delete all
      */

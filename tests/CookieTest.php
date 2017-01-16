@@ -26,6 +26,8 @@ class CookieTest {
 
     /**
      * Set cookie.
+     *
+     * @since 1.0.0
      */
     public static function testSetCookie() {
 
@@ -34,6 +36,8 @@ class CookieTest {
 
     /**
      * Extract item from cookie then delete from the cookie and return the item.
+     *
+     * @since 1.0.0
      *
      * @return mixed|null → return item or null when key does not exists
      */
@@ -45,6 +49,8 @@ class CookieTest {
     /**
      * Get item from cookie.
      *
+     * @since 1.0.0
+     *
      * @return mixed|null → returns the key value, or null if key doesn't exists
      */
     public static function testGetCookie($key) {
@@ -52,9 +58,10 @@ class CookieTest {
         return Cookie::get('CookieName');
     }
 
-
     /**
      * Return cookies array.
+     *
+     * @since 1.0.0
      *
      * @return array|null → of cookie indexes
      */
@@ -63,9 +70,10 @@ class CookieTest {
         return Cookie::display();
     }
 
-
     /**
      * Destroy one cookie.
+     *
+     * @since 1.0.0
      */
     public static function testDestroyOneCookie() {
 
@@ -74,6 +82,8 @@ class CookieTest {
 
     /**
      * Destroy all cookies.
+     *
+     * @since 1.0.0
      */
     public static function testDestroyAllCookies() {
 

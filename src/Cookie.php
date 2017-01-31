@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * PHP library for handling cookies.
  * 
@@ -8,9 +8,9 @@
  * @author     Josantonius - info@josantonius.com
  * @copyright  Copyright (c) 2016 JST PHP Framework
  * @license    https://opensource.org/licenses/MIT - The MIT License (MIT)
- * @version    1.0.0
+ * @version    1.1.0
  * @link       https://github.com/Josantonius/PHP-Cookie
- * @since      File available since 1.0.0 - Update: 2016-12-19
+ * @since      File available since 1.0.0 - Update: 2017-01-30
  */
 
 namespace Josantonius\Cookie;
@@ -42,7 +42,7 @@ class Cookie {
      * @param string $value → the data to save
      * @param string $time  → expiration time in days
      */
-    public static function set(string $key, string $value, string $time = 365) {
+    public static function set($key, $value, $time = 365) {
 
         setcookie(self::$_prefix.$key, $value, time() + (86400 * $time), "/");
     }
@@ -56,7 +56,7 @@ class Cookie {
      *
      * @return string|null → return item or null when key does not exists
      */
-    public static function pull(string $key) {
+    public static function pull($key) {
 
         if (isset($_COOKIE[self::$_prefix . $key])) {
 
@@ -77,9 +77,11 @@ class Cookie {
      *
      * @return string|null → returns the key value, or null if key doesn't exists
      */
-    public static function get(string $key) {
+    public static function get($key) {
 
-        return $_COOKIE[self::$_prefix . $key] ?? null;
+        $cookieName = self::$_prefix . $key];
+
+        return isset($_COOKIE[$cookieName]) ? $_COOKIE[$cookieName] : null;
     }
 
     /**

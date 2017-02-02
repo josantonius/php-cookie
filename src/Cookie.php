@@ -79,7 +79,7 @@ class Cookie {
      */
     public static function get($key) {
 
-        $cookieName = self::$_prefix . $key];
+        $cookieName = self::$_prefix . $key;
 
         return isset($_COOKIE[$cookieName]) ? $_COOKIE[$cookieName] : null;
     }

@@ -30,7 +30,7 @@ Para instalar PHP Cookie library, simplemente escribe:
 
     $ composer require Josantonius/Cookie
 
-El comando anterior solamente instalará los archivos necesarios, si prefieres descargar todo el código, incluyendo tests, puedes utilizar:
+El comando anterior sólo instalará los archivos necesarios, si prefieres descargar todo el código fuente (incluyendo tests, directorio vendor, excepciones no utilizadas, documentos...) puedes utilizar:
 
     $ composer require Josantonius/Cookie --prefer-source
 

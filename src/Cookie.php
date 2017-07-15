@@ -3,15 +3,13 @@
  * PHP library for handling cookies.
  * 
  * @author     Josantonius - hello@josantonius.com
- * @copyright  Copyright (c) 2016 JST PHP Framework
+ * @copyright  Copyright (c) 2016 - 2017
  * @license    https://opensource.org/licenses/MIT - The MIT License (MIT)
  * @link       https://github.com/Josantonius/PHP-Cookie
  * @since      1.0.0
  */
 
 namespace Josantonius\Cookie;
-
-# use Josantonius\Cookie\Exception\CookieException;
 
 /**
  * Cookie handler.
@@ -40,7 +38,7 @@ class Cookie {
      */
     public static function set($key, $value, $time = 365) {
 
-        setcookie(self::$_prefix.$key, $value, time() + (86400 * $time), "/");
+        setcookie(self::$_prefix.$key, $value, time() + (86400 * $time), '/');
     }
 
     /**
@@ -56,7 +54,7 @@ class Cookie {
 
         if (isset($_COOKIE[self::$_prefix . $key])) {
 
-            setcookie(self::$_prefix.$key, "", time() - 3600, "/");
+            setcookie(self::$_prefix.$key, '', time() - 3600, '/');
 
             return $_COOKIE[self::$_prefix . $key];
         }
@@ -89,7 +87,7 @@ class Cookie {
      */
     public static function display() {
 
-        return $_COOKIE ?? null;
+        return isset($_COOKIE) ? $_COOKIE : null;
 
     }
 
@@ -104,7 +102,7 @@ class Cookie {
 
         if (isset($_COOKIE[self::$_prefix . $key])) { 
 
-            setcookie(self::$_prefix . $key, "", time() - 3600, "/"); 
+            setcookie(self::$_prefix . $key, '', time() - 3600, '/'); 
 
             return;
         }
@@ -113,7 +111,7 @@ class Cookie {
 
             foreach ($_COOKIE as $key => $value) {
                     
-                setcookie($key, "", time() - 3600, "/");
+                setcookie($key, '', time() - 3600, '/');
             }
         }
     }

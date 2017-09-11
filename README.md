@@ -1,6 +1,6 @@
 # PHP Cookie library
 
-[![Latest Stable Version](https://poser.pugx.org/josantonius/cookie/v/stable)](https://packagist.org/packages/josantonius/cookie) [![Total Downloads](https://poser.pugx.org/josantonius/cookie/downloads)](https://packagist.org/packages/josantonius/cookie) [![Latest Unstable Version](https://poser.pugx.org/josantonius/cookie/v/unstable)](https://packagist.org/packages/josantonius/cookie) [![License](https://poser.pugx.org/josantonius/cookie/license)](https://packagist.org/packages/josantonius/cookie)
+[![Latest Stable Version](https://poser.pugx.org/josantonius/cookie/v/stable)](https://packagist.org/packages/josantonius/cookie) [![Total Downloads](https://poser.pugx.org/josantonius/cookie/downloads)](https://packagist.org/packages/josantonius/cookie) [![Latest Unstable Version](https://poser.pugx.org/josantonius/cookie/v/unstable)](https://packagist.org/packages/josantonius/cookie) [![License](https://poser.pugx.org/josantonius/cookie/license)](https://packagist.org/packages/josantonius/cookie) [![Travis](https://travis-ci.org/Josantonius/PHP-Cookie.svg)](https://github.com/Josantonius/PHP-Cookie)
 
 [Versión en español](README-ES.md)
 
@@ -96,27 +96,13 @@ Cookie::destroy('CookieName');
 
 ### Tests 
 
-To use the [test](tests) class, simply:
+To run [tests](tests/Cookie) simply:
 
-```php
-<?php
-$loader = require __DIR__ . '/vendor/autoload.php';
+    $ git clone https://github.com/Josantonius/PHP-Cookie.git
+    
+    $ cd PHP-Cookie
 
-$loader->addPsr4('Josantonius\\Cookie\\Tests\\', __DIR__ . '/vendor/josantonius/cookie/tests');
-
-use Josantonius\Cookie\Tests\CookieTest;
-
-```
-Available test methods in this library:
-
-```php
-CookieTest::testSetCookie();
-CookieTest::testPullCookie();
-CookieTest::testGetCookie();
-CookieTest::testDisplayCookies();
-CookieTest::testDestroyOneCookie();
-CookieTest::testDestroyAllCookies();
-```
+    $ phpunit
 
 ### Contribute
 1. Check for open issues or open a new issue to start a discussion around a bug or feature.

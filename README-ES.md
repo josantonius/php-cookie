@@ -1,6 +1,6 @@
 # PHP Cookie library
 
-[![Latest Stable Version](https://poser.pugx.org/josantonius/cookie/v/stable)](https://packagist.org/packages/josantonius/cookie) [![Total Downloads](https://poser.pugx.org/josantonius/cookie/downloads)](https://packagist.org/packages/josantonius/cookie) [![Latest Unstable Version](https://poser.pugx.org/josantonius/cookie/v/unstable)](https://packagist.org/packages/josantonius/cookie) [![License](https://poser.pugx.org/josantonius/cookie/license)](https://packagist.org/packages/josantonius/cookie)
+[![Latest Stable Version](https://poser.pugx.org/josantonius/cookie/v/stable)](https://packagist.org/packages/josantonius/cookie) [![Total Downloads](https://poser.pugx.org/josantonius/cookie/downloads)](https://packagist.org/packages/josantonius/cookie) [![Latest Unstable Version](https://poser.pugx.org/josantonius/cookie/v/unstable)](https://packagist.org/packages/josantonius/cookie) [![License](https://poser.pugx.org/josantonius/cookie/license)](https://packagist.org/packages/josantonius/cookie) [![Travis](https://travis-ci.org/Josantonius/PHP-Cookie.svg)](https://github.com/Josantonius/PHP-Cookie)
 
 [English version](README.md)
 
@@ -96,26 +96,13 @@ Cookie::destroy('CookieName');
 
 ### Tests 
 
-Para utilizar la clase de [pruebas](tests), simplemente:
+Para ejecutar las [pruebas](tests/Cookie) simplemente:
 
-```php
-<?php
-$loader = require __DIR__ . '/vendor/autoload.php';
+    $ git clone https://github.com/Josantonius/PHP-Cookie.git
+    
+    $ cd PHP-Cookie
 
-$loader->addPsr4('Josantonius\\Cookie\\Tests\\', __DIR__ . '/vendor/josantonius/cookie/tests');
-
-use Josantonius\Cookie\Tests\CookieTest;
-```
-Métodos de prueba disponibles en esta biblioteca:
-
-```php
-CookieTest::testSetCookie();
-CookieTest::testPullCookie();
-CookieTest::testGetCookie();
-CookieTest::testDisplayCookies();
-CookieTest::testDestroyOneCookie();
-CookieTest::testDestroyAllCookies();
-```
+    $ phpunit
 
 ### Contribuir
 1. Comprobar si hay incidencias abiertas o abrir una nueva para iniciar una discusión en torno a un fallo o función.

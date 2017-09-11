@@ -1,6 +1,6 @@
 {
     "name":        "josantonius/cookie",
-    "version":     "1.1.2",
+    "version":     "1.1.3",
     "type":        "library",
     "description": "PHP library for handling cookies.",
     "keywords": [
@@ -18,6 +18,8 @@
         }
     ],
     "support": {
+        "issues": "https://github.com/josantonius/php-cookie/issues",
+        "forum":  "http://stackoverflow.com/tags/josantonius/php-cookie",
         "source": "https://github.com/josantonius/php-cookie"
     },
     "config": {
@@ -27,19 +29,20 @@
     "require": {
         "php": "^5.6 || ^7.0"
     },
+    "require-dev": {
+        "phpunit/phpunit": "5.7.*"
+    },
     "autoload": {
         "psr-4": {
-            "Josantonius\\Cookie\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Josantonius\\Cookie\\Tests\\": "tests/"
+            "Josantonius\\Cookie\\": "src/Cookie/"
         }
     },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
+    },
+    "scripts": {
+        "test": "phpunit"
     }
 }

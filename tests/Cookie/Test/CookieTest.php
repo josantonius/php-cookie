@@ -52,6 +52,41 @@ final class CookieTest extends TestCase {
     }
 
     /**
+     * Return cookies array.
+     *
+     * @runInSeparateProcess
+     *
+     * @since 1.1.3
+     *
+     * @return void
+     */
+    public function testGetAllCookies() {
+        
+        $_COOKIE[Cookie::$_prefix . 'cookie_name_one'] = 'value';
+        $_COOKIE[Cookie::$_prefix . 'cookie_name_two'] = 'value';
+
+        $this->assertArrayHasKey(
+
+            Cookie::$_prefix . 'cookie_name_two',
+            Cookie::get()
+        );
+    }
+
+    /**
+     * Return cookies array non-existent.
+     *
+     * @runInSeparateProcess
+     *
+     * @since 1.1.3
+     *
+     * @return void
+     */
+    public function testGetAllCookiesNonExistents() {
+
+        $this->assertFalse(Cookie::get());
+    }
+
+    /**
      * Extract item from cookie then delete cookie and return the item.
      *
      * @runInSeparateProcess
@@ -68,7 +103,7 @@ final class CookieTest extends TestCase {
     }
 
     /**
-     * Extract item from cookie then delete cookie and return the item.
+     * Extract item from cookie non-existent.
      *
      * @runInSeparateProcess
      *
@@ -98,7 +133,7 @@ final class CookieTest extends TestCase {
     }
 
     /**
-     * Destroy one cookie.
+     * Destroy one cookie non-existent.
      *
      * @runInSeparateProcess
      *
@@ -129,7 +164,7 @@ final class CookieTest extends TestCase {
     }
 
     /**
-     * Destroy all cookies.
+     * Destroy all cookies non-existents.
      *
      * @runInSeparateProcess
      *

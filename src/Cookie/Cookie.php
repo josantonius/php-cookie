@@ -52,13 +52,16 @@ class Cookie {
      *
      * @param string $key → item to look for in cookie
      *
-     * @return string|null → returns key value, or null if key doesn't exists
+     * @return mixed|false → returns cookie value, cookies array or false
      */
-    public static function get($key) {
+    public static function get($key = '') {
 
-        $cookieName = self::$_prefix . $key;
+        if (isset($_COOKIE[self::$_prefix . $key])) {
 
-        return isset($_COOKIE[$cookieName]) ? $_COOKIE[$cookieName] : null;
+            return $_COOKIE[self::$_prefix . $key];
+        }
+
+        return isset($_COOKIE) && count($_COOKIE) ? $_COOKIE : false;
     }
 
     /**
@@ -111,18 +114,5 @@ class Cookie {
         }
 
         return false;
-    }
-
-    /**
-     * Return cookies array.
-     *
-     * @since 1.0.0
-     *
-     * @return array|null → of cookie indexes
-     */
-    public static function display() {
-
-        return isset($_COOKIE) ? $_COOKIE : null;
-
     }
 }

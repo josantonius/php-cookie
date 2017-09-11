@@ -14,6 +14,8 @@
 * Added `Cookie/_config.yml` file.
 * Added `Cookie/.travis.yml` file.
 
+* Deleted `Josantonius\Cookie\Cookie::display()` method.
+
 * Deleted `Josantonius\Cookie\Tests\CookieTest` class.
 * Deleted `Josantonius\Cookie\Tests\CookieTest::testSetCookie()` method.
 * Deleted `Josantonius\Cookie\Tests\CookieTest::testPullCookie()` method.
@@ -27,6 +29,8 @@
 * Added `Josantonius\Cookie\Test\CookieTest::testPullCookie()` method.
 * Added `Josantonius\Cookie\Test\CookieTest::testPullCookieNonExistent()` method.
 * Added `Josantonius\Cookie\Test\CookieTest::testGetCookie()` method.
+* Added `Josantonius\Cookie\Tests\CookieTest::testGetAllCookiesNonExistents()()` method.
+* Added `Josantonius\Cookie\Tests\CookieTest::testGetAllCookiesNonExistents()` method.
 * Added `Josantonius\Cookie\Test\CookieTest::testDisplayCookies()` method.
 * Added `Josantonius\Cookie\Test\CookieTest::testDestroyOneCookie()` method.
 * Added `Josantonius\Cookie\Test\CookieTest::testDestroyOneCookieNonExistent()` method.

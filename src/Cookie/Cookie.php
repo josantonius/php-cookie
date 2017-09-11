@@ -91,7 +91,7 @@ class Cookie {
      *
      * @return boolean
      */
-    public static function destroy(string $key = '') {
+    public static function destroy($key = '') {
 
         if (isset($_COOKIE[self::$_prefix . $key])) { 
 

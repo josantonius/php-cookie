@@ -46,7 +46,7 @@ final class CookieTest extends TestCase {
      */
     public function testGetCookie() {
 
-        $_COOKIE[Cookie::$_prefix . 'cookie_name'] = 'value';
+        $_COOKIE[Cookie::$prefix . 'cookie_name'] = 'value';
 
         $this->assertContains(Cookie::get('cookie_name'), 'value');
     }
@@ -62,12 +62,12 @@ final class CookieTest extends TestCase {
      */
     public function testGetAllCookies() {
         
-        $_COOKIE[Cookie::$_prefix . 'cookie_name_one'] = 'value';
-        $_COOKIE[Cookie::$_prefix . 'cookie_name_two'] = 'value';
+        $_COOKIE[Cookie::$prefix . 'cookie_name_one'] = 'value';
+        $_COOKIE[Cookie::$prefix . 'cookie_name_two'] = 'value';
 
         $this->assertArrayHasKey(
 
-            Cookie::$_prefix . 'cookie_name_two',
+            Cookie::$prefix . 'cookie_name_two',
             Cookie::get()
         );
     }
@@ -97,7 +97,7 @@ final class CookieTest extends TestCase {
      */
     public function testPullCookie() {
 
-        $_COOKIE[Cookie::$_prefix . 'cookie_name'] = 'value';
+        $_COOKIE[Cookie::$prefix . 'cookie_name'] = 'value';
 
         $this->assertContains(Cookie::pull('cookie_name'), 'value');
     }
@@ -127,7 +127,7 @@ final class CookieTest extends TestCase {
      */
     public function testDestroyOneCookie() {
 
-        $_COOKIE[Cookie::$_prefix . 'cookie_name'] = 'value';
+        $_COOKIE[Cookie::$prefix . 'cookie_name'] = 'value';
 
         $this->assertTrue(Cookie::destroy('cookie_name'));
     }
@@ -157,8 +157,8 @@ final class CookieTest extends TestCase {
      */
     public function testDestroyAllCookies() {
 
-        $_COOKIE[Cookie::$_prefix . 'cookie_name_one'] = 'value';
-        $_COOKIE[Cookie::$_prefix . 'cookie_name_two'] = 'value';
+        $_COOKIE[Cookie::$prefix . 'cookie_name_one'] = 'value';
+        $_COOKIE[Cookie::$prefix . 'cookie_name_two'] = 'value';
 
         $this->assertTrue(Cookie::destroy());
     }

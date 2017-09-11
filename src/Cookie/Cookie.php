@@ -25,7 +25,7 @@ class Cookie {
      *
      * @var string
      */
-    public static $_prefix = 'jst_';
+    public static $prefix = 'jst_';
 
     /**
      * Set cookie.
@@ -40,7 +40,7 @@ class Cookie {
      */
     public static function set($key, $value, $time = 365) {
 
-        $prefix = self::$_prefix . $key;
+        $prefix = self::$prefix . $key;
 
         return setcookie($prefix, $value, time() + (86400 * $time), '/');
     }
@@ -56,9 +56,9 @@ class Cookie {
      */
     public static function get($key = '') {
 
-        if (isset($_COOKIE[self::$_prefix . $key])) {
+        if (isset($_COOKIE[self::$prefix . $key])) {
 
-            return $_COOKIE[self::$_prefix . $key];
+            return $_COOKIE[self::$prefix . $key];
         }
 
         return isset($_COOKIE) && count($_COOKIE) ? $_COOKIE : false;
@@ -75,11 +75,11 @@ class Cookie {
      */
     public static function pull($key) {
 
-        if (isset($_COOKIE[self::$_prefix . $key])) {
+        if (isset($_COOKIE[self::$prefix . $key])) {
 
-            setcookie(self::$_prefix.$key, '', time() - 3600, '/');
+            setcookie(self::$prefix.$key, '', time() - 3600, '/');
 
-            return $_COOKIE[self::$_prefix . $key];
+            return $_COOKIE[self::$prefix . $key];
         }
 
         return false;
@@ -96,9 +96,9 @@ class Cookie {
      */
     public static function destroy($key = '') {
 
-        if (isset($_COOKIE[self::$_prefix . $key])) { 
+        if (isset($_COOKIE[self::$prefix . $key])) { 
 
-            setcookie(self::$_prefix . $key, '', time() - 3600, '/'); 
+            setcookie(self::$prefix . $key, '', time() - 3600, '/'); 
 
             return true;
         }

@@ -1,6 +1,6 @@
 # PHP Cookie library
 
-[![Latest Stable Version](https://poser.pugx.org/josantonius/cookie/v/stable)](https://packagist.org/packages/josantonius/cookie) [![Total Downloads](https://poser.pugx.org/josantonius/cookie/downloads)](https://packagist.org/packages/josantonius/cookie) [![Latest Unstable Version](https://poser.pugx.org/josantonius/cookie/v/unstable)](https://packagist.org/packages/josantonius/cookie) [![License](https://poser.pugx.org/josantonius/cookie/license)](https://packagist.org/packages/josantonius/cookie) [![Travis](https://travis-ci.org/Josantonius/PHP-Cookie.svg)](https://github.com/Josantonius/PHP-Cookie)
+[![Latest Stable Version](https://poser.pugx.org/josantonius/cookie/v/stable)](https://packagist.org/packages/josantonius/cookie) [![Total Downloads](https://poser.pugx.org/josantonius/cookie/downloads)](https://packagist.org/packages/josantonius/cookie) [![Latest Unstable Version](https://poser.pugx.org/josantonius/cookie/v/unstable)](https://packagist.org/packages/josantonius/cookie) [![License](https://poser.pugx.org/josantonius/cookie/license)](https://packagist.org/packages/josantonius/cookie) [![Travis](https://travis-ci.org/Josantonius/PHP-Cookie.svg)](https://travis-ci.org/Josantonius/PHP-Cookie)
 
 [English version](README.md)
 
@@ -86,7 +86,7 @@ Cookie::destroy('CookieName');
 
 ### Tests 
 
-Para ejecutar las [pruebas](tests/Cookie) simplemente:
+Para ejecutar las [pruebas](tests/cookie/test) simplemente:
 
     $ git clone https://github.com/Josantonius/PHP-Cookie.git
     

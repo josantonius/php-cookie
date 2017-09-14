@@ -86,7 +86,7 @@ Cookie::destroy('CookieName');
 
 ### Tests 
 
-Para ejecutar las [pruebas](tests/cookie/test) simplemente:
+Para ejecutar las [pruebas](tests/cookie/Test) simplemente:
 
     $ git clone https://github.com/Josantonius/PHP-Cookie.git
     

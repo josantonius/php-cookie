@@ -120,7 +120,7 @@ This project is licensed under **MIT license**. See the [LICENSE](LICENSE) file 
 
 ### Copyright
 
-2017 Josantonius, [josantonius.com](https://josantonius.com/)
+2016 - 2017 Josantonius, [josantonius.com](https://josantonius.com/)
 
 If you find it useful, let me know :wink:
 

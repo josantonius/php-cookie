@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 1.1.4 - 2017-10-25
+
+* Implemented `PSR-4 autoloader standard` from all library files.
+
+* Implemented `PSR-2 coding standard` from all library PHP files.
+
+* Implemented `PHPCS` to ensure that PHP code complies with `PSR2` code standards.
+
+* Implemented `Codacy` to automates code reviews and monitors code quality over time.
+
+* Implemented `Codecov` to coverage reports.
+
+* Added `Cookie/phpcs.ruleset.xml` file.
+
+* Deleted `Cookie/src/bootstrap.php` file.
+
+* Deleted `Cookie/tests/bootstrap.php` file.
+
+* Deleted `Cookie/vendor` folder.
+
+* Changed `Josantonius\Cookie\Test\CookieTest` class to  `Josantonius\Cookie\CookieTest` class .
+
 ## 1.1.3 - 2017-09-11
 
 * Unit tests supported by `PHPUnit` were added.

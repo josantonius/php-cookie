@@ -1,12 +1,12 @@
 <?php
 /**
  * PHP library for handling cookies.
- * 
- * @author     Josantonius - hello@josantonius.com
- * @copyright  Copyright (c) 2016 - 2017
- * @license    https://opensource.org/licenses/MIT - The MIT License (MIT)
- * @link       https://github.com/Josantonius/PHP-Cookie
- * @since      1.0.0
+ *
+ * @author    Josantonius <hello@josantonius.com>
+ * @copyright 2016 - 2017 (c) Josantonius - PHP-Assets
+ * @license   https://opensource.org/licenses/MIT - The MIT License (MIT)
+ * @link      https://github.com/Josantonius/PHP-Cookie
+ * @since     1.0.0
  */
 
 namespace Josantonius\Cookie;
@@ -16,8 +16,8 @@ namespace Josantonius\Cookie;
  *
  * @since 1.0.0
  */
-class Cookie { 
-
+class Cookie
+{
     /**
      * Prefix for cookies.
      *
@@ -38,8 +38,8 @@ class Cookie {
      *
      * @return boolean
      */
-    public static function set($key, $value, $time = 365) {
-
+    public static function set($key, $value, $time = 365)
+    {
         $prefix = self::$prefix . $key;
 
         return setcookie($prefix, $value, time() + (86400 * $time), '/');
@@ -54,14 +54,13 @@ class Cookie {
      *
      * @return mixed|false → returns cookie value, cookies array or false
      */
-    public static function get($key = '') {
-
+    public static function get($key = '')
+    {
         if (isset($_COOKIE[self::$prefix . $key])) {
-
             return $_COOKIE[self::$prefix . $key];
         }
-
-        return isset($_COOKIE) && count($_COOKIE) ? $_COOKIE : false;
+        
+        return (isset($_COOKIE) && count($_COOKIE)) ? $_COOKIE : false;
     }
 
     /**
@@ -73,12 +72,10 @@ class Cookie {
      *
      * @return string|false → return item or false when key does not exists
      */
-    public static function pull($key) {
-
+    public static function pull($key)
+    {
         if (isset($_COOKIE[self::$prefix . $key])) {
-
-            setcookie(self::$prefix.$key, '', time() - 3600, '/');
-
+            setcookie(self::$prefix . $key, '', time() - 3600, '/');
             return $_COOKIE[self::$prefix . $key];
         }
 
@@ -94,22 +91,17 @@ class Cookie {
      *
      * @return boolean
      */
-    public static function destroy($key = '') {
-
-        if (isset($_COOKIE[self::$prefix . $key])) { 
-
-            setcookie(self::$prefix . $key, '', time() - 3600, '/'); 
-
+    public static function destroy($key = '')
+    {
+        if (isset($_COOKIE[self::$prefix . $key])) {
+            setcookie(self::$prefix . $key, '', time() - 3600, '/');
             return true;
         }
 
         if (count($_COOKIE) > 0) {
-
             foreach ($_COOKIE as $key => $value) {
-                    
                 setcookie($key, '', time() - 3600, '/');
             }
-        
             return true;
         }
 

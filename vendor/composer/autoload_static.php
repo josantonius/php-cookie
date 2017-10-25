@@ -4,8 +4,12 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitc8f39d29c428cf45f3177b3ee5d17a08
+class ComposerStaticInit0ac92a99bbe8365d6c7d55a7f016a125
 {
+    public static $files = array (
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'p' => 
         array (
@@ -47,7 +51,8 @@ class ComposerStaticInitc8f39d29c428cf45f3177b3ee5d17a08
         ),
         'Josantonius\\Cookie\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src/Cookie',
+            0 => __DIR__ . '/../..' . '/src',
+            1 => __DIR__ . '/../..' . '/tests',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -540,10 +545,10 @@ class ComposerStaticInitc8f39d29c428cf45f3177b3ee5d17a08
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitc8f39d29c428cf45f3177b3ee5d17a08::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitc8f39d29c428cf45f3177b3ee5d17a08::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitc8f39d29c428cf45f3177b3ee5d17a08::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitc8f39d29c428cf45f3177b3ee5d17a08::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0ac92a99bbe8365d6c7d55a7f016a125::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0ac92a99bbe8365d6c7d55a7f016a125::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit0ac92a99bbe8365d6c7d55a7f016a125::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit0ac92a99bbe8365d6c7d55a7f016a125::$classMap;
 
         }, null, ClassLoader::class);
     }

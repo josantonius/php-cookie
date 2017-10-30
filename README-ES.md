@@ -22,15 +22,15 @@ Biblioteca PHP para el manejo de cookies.
 
 ---
 
-### Requisitos
+## Requisitos
 
-Esta clase es soportada por versiones de `PHP 5.6` o superiores y es compatible con versiones de `HHVM 3.0` o superiores.
+Esta clase es soportada por versiones de **PHP 5.6** o superiores y es compatible con versiones de **HHVM 3.0** o superiores.
 
-### Instalación 
+## Instalación 
 
 La mejor forma de instalar esta extensión es a través de [Composer](http://getcomposer.org/download/).
 
-Para instalar `PHP Cookie library`, simplemente escribe:
+Para instalar **PHP Cookie library**, simplemente escribe:
 
     $ composer require Josantonius/Cookie
 
@@ -48,11 +48,11 @@ O **instalarlo manualmente**:
 
     $ wget https://raw.githubusercontent.com/Josantonius/PHP-Cookie/master/src/Cookie.php
 
-### Métodos disponibles
+## Métodos disponibles
 
 Métodos disponibles en esta biblioteca:
 
-`Crear cookie:`
+### - Crear cookie:
 
 ```php
 Cookie::set($key, $value, $time);
@@ -66,7 +66,7 @@ Cookie::set($key, $value, $time);
 
 **# Return** (boolean)
 
-`Obtener valor de cookie:`
+### - Obtener valor de cookie:
 
 ```php
 Cookie::get($key);
@@ -78,7 +78,7 @@ Cookie::get($key);
 
 **# Return** (mixed|false) → devuelve el valor de la cookie, todas las cookies o falso
 
-`Extraer valor de cookie eliminarla:`
+### - Extraer valor de cookie eliminarla:
 
 ```php
 Cookie::pull($key);
@@ -90,7 +90,7 @@ Cookie::pull($key);
 
 **# Return** (string|false) → valor de la cookie o falso si no existe
 
-`Eliminar cookie:`
+### - Eliminar cookie:
 
 ```php
 Cookie::destroy($key);
@@ -102,7 +102,7 @@ Cookie::destroy($key);
 
 **# Return** (boolean)
 
-### Cómo empezar
+## Cómo empezar
 
 Para utilizar esta clase con `Composer`:
 
@@ -120,47 +120,47 @@ require_once __DIR__ . '/Cookie.php';
 use Josantonius\Cookie\Cookie;
 ```
 
-### Uso
+## Uso
 
 Ejemplo de uso para esta biblioteca:
 
-**Agregar cookie:**
+### - Agregar cookie:
 
 ```php
 Cookie::set('cookie_name', 'value', 365);
 ```
 
-**Obtener valor de cookie:**
+### - Obtener valor de cookie:
 
 ```php
 Cookie::get('cookie_name');
 ```
 
-**Obtener todas las cookies:**
+### - Obtener todas las cookies:
 
 ```php
 Cookie::get();
 ```
 
-**Extraer y eliminar cookie:**
+### - Extraer y eliminar cookie:
 
 ```php
 Cookie::pull('cookie_name');
 ```
 
-**Eliminar una cookie:**
+### - Eliminar una cookie:
 
 ```php
 Cookie::destroy('cookie_name');
 ```
 
-**Eliminar todas las cookies:**
+### - Eliminar todas las cookies:
 
 ```php
 Cookie::destroy();
 ```
 
-### Tests 
+## Tests 
 
 Para ejecutar las [pruebas](tests) necesitarás [Composer](http://getcomposer.org/download/) y seguir los siguientes pasos:
 
@@ -182,12 +182,12 @@ Ejecutar todas las pruebas anteriores:
 
     $ composer tests
 
-### ☑ Tareas pendientes
+## ☑ Tareas pendientes
 
 - [x] Completar tests
 - [x] Mejorar la documentación
 
-### Contribuir
+## Contribuir
 
 1. Comprobar si hay incidencias abiertas o abrir una nueva para iniciar una discusión en torno a un fallo o función.
 1. Bifurca la rama del repositorio en GitHub para iniciar la operación de ajuste.
@@ -197,15 +197,15 @@ Ejecutar todas las pruebas anteriores:
 
 Esto está pensado para proyectos grandes y de larga duración.
 
-### Repositorio
+## Repositorio
 
 Los archivos de este repositorio se crearon y subieron automáticamente con [Reposgit Creator](https://github.com/Josantonius/BASH-Reposgit).
 
-### Licencia
+## Licencia
 
 Este proyecto está licenciado bajo **licencia MIT**. Consulta el archivo [LICENSE](LICENSE) para más información.
 
-### Copyright
+## Copyright
 
 2016 - 2017 Josantonius, [josantonius.com](https://josantonius.com/)
 

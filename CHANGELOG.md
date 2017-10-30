@@ -20,7 +20,7 @@
 
 * Deleted `Cookie/vendor` folder.
 
-* Changed `Josantonius\Cookie\Test\CookieTest` class to  `Josantonius\Cookie\CookieTest` class .
+* Changed `Josantonius\Cookie\Test\CookieTest` class to  `Josantonius\Cookie\CookieTest` class.
 
 ## 1.1.3 - 2017-09-11
 

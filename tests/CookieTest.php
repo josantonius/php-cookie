@@ -20,6 +20,27 @@ use PHPUnit\Framework\TestCase;
 final class CookieTest extends TestCase
 {
     /**
+     * Cookie instance.
+     *
+     * @since 1.1.5
+     *
+     * @var object
+     */
+    protected $Cookie;
+
+    /**
+     * Set up.
+     *
+     * @since 1.1.5
+     */
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->Cookie = new Cookie;
+    }
+
+    /**
      * Set cookie.
      *
      * @runInSeparateProcess

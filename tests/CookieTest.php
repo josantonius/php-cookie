@@ -49,7 +49,7 @@ final class CookieTest extends TestCase
      */
     public function testSetCookie()
     {
-        $this->assertTrue(Cookie::set('cookie_name', 'value', 365));
+        $this->assertTrue($this->Cookie->set('cookie_name', 'value', 365));
     }
 
     /**
@@ -61,9 +61,9 @@ final class CookieTest extends TestCase
      */
     public function testGetCookie()
     {
-        $_COOKIE[Cookie::$prefix . 'cookie_name'] = 'value';
+        $_COOKIE[$this->Cookie::$prefix . 'cookie_name'] = 'value';
 
-        $this->assertContains(Cookie::get('cookie_name'), 'value');
+        $this->assertContains($this->Cookie->get('cookie_name'), 'value');
     }
 
     /**
@@ -75,12 +75,12 @@ final class CookieTest extends TestCase
      */
     public function testGetAllCookies()
     {
-        $_COOKIE[Cookie::$prefix . 'cookie_name_one'] = 'value';
-        $_COOKIE[Cookie::$prefix . 'cookie_name_two'] = 'value';
+        $_COOKIE[$this->Cookie::$prefix . 'cookie_name_one'] = 'value';
+        $_COOKIE[$this->Cookie::$prefix . 'cookie_name_two'] = 'value';
 
         $this->assertArrayHasKey(
-            Cookie::$prefix . 'cookie_name_two',
-            Cookie::get()
+            $this->Cookie::$prefix . 'cookie_name_two',
+            $this->Cookie->get()
         );
     }
 
@@ -93,7 +93,7 @@ final class CookieTest extends TestCase
      */
     public function testGetAllCookiesNonExistents()
     {
-        $this->assertFalse(Cookie::get());
+        $this->assertFalse($this->Cookie->get());
     }
 
     /**
@@ -105,9 +105,9 @@ final class CookieTest extends TestCase
      */
     public function testPullCookie()
     {
-        $_COOKIE[Cookie::$prefix . 'cookie_name'] = 'value';
+        $_COOKIE[$this->Cookie::$prefix . 'cookie_name'] = 'value';
 
-        $this->assertContains(Cookie::pull('cookie_name'), 'value');
+        $this->assertContains($this->Cookie->pull('cookie_name'), 'value');
     }
 
     /**
@@ -119,7 +119,7 @@ final class CookieTest extends TestCase
      */
     public function testPullCookieNonExistent()
     {
-        $this->assertFalse(Cookie::pull('cookie_name'));
+        $this->assertFalse($this->Cookie->pull('cookie_name'));
     }
 
     /**
@@ -131,9 +131,9 @@ final class CookieTest extends TestCase
      */
     public function testDestroyOneCookie()
     {
-        $_COOKIE[Cookie::$prefix . 'cookie_name'] = 'value';
+        $_COOKIE[$this->Cookie::$prefix . 'cookie_name'] = 'value';
 
-        $this->assertTrue(Cookie::destroy('cookie_name'));
+        $this->assertTrue($this->Cookie->destroy('cookie_name'));
     }
 
     /**
@@ -145,7 +145,7 @@ final class CookieTest extends TestCase
      */
     public function testDestroyOneCookieNonExistent()
     {
-        $this->assertFalse(Cookie::destroy('cookie_name'));
+        $this->assertFalse($this->Cookie->destroy('cookie_name'));
     }
 
     /**
@@ -157,10 +157,10 @@ final class CookieTest extends TestCase
      */
     public function testDestroyAllCookies()
     {
-        $_COOKIE[Cookie::$prefix . 'cookie_name_one'] = 'value';
-        $_COOKIE[Cookie::$prefix . 'cookie_name_two'] = 'value';
+        $_COOKIE[$this->Cookie::$prefix . 'cookie_name_one'] = 'value';
+        $_COOKIE[$this->Cookie::$prefix . 'cookie_name_two'] = 'value';
 
-        $this->assertTrue(Cookie::destroy());
+        $this->assertTrue($this->Cookie->destroy());
     }
 
     /**
@@ -172,6 +172,6 @@ final class CookieTest extends TestCase
      */
     public function testDestroyAllCookiesNonExistents()
     {
-        $this->assertFalse(Cookie::destroy());
+        $this->assertFalse($this->Cookie->destroy());
     }
 }

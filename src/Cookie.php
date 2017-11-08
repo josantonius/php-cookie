@@ -3,12 +3,11 @@
  * PHP library for handling cookies.
  *
  * @author    Josantonius <hello@josantonius.com>
- * @copyright 2016 - 2017 (c) Josantonius - PHP-Assets
+ * @copyright 2016 - 2017 (c) Josantonius - PHP-Cookie
  * @license   https://opensource.org/licenses/MIT - The MIT License (MIT)
  * @link      https://github.com/Josantonius/PHP-Cookie
  * @since     1.0.0
  */
-
 namespace Josantonius\Cookie;
 
 /**
@@ -36,7 +35,7 @@ class Cookie
      * @param string $value → the data to save
      * @param string $time  → expiration time in days
      *
-     * @return boolean
+     * @return bool
      */
     public static function set($key, $value, $time = 365)
     {
@@ -59,7 +58,7 @@ class Cookie
         if (isset($_COOKIE[self::$prefix . $key])) {
             return $_COOKIE[self::$prefix . $key];
         }
-        
+
         return (isset($_COOKIE) && count($_COOKIE)) ? $_COOKIE : false;
     }
 
@@ -76,6 +75,7 @@ class Cookie
     {
         if (isset($_COOKIE[self::$prefix . $key])) {
             setcookie(self::$prefix . $key, '', time() - 3600, '/');
+
             return $_COOKIE[self::$prefix . $key];
         }
 
@@ -89,12 +89,13 @@ class Cookie
      *
      * @param string $key → cookie name to destroy. Not set to delete all
      *
-     * @return boolean
+     * @return bool
      */
     public static function destroy($key = '')
     {
         if (isset($_COOKIE[self::$prefix . $key])) {
             setcookie(self::$prefix . $key, '', time() - 3600, '/');
+
             return true;
         }
 
@@ -102,6 +103,7 @@ class Cookie
             foreach ($_COOKIE as $key => $value) {
                 setcookie($key, '', time() - 3600, '/');
             }
+
             return true;
         }
 

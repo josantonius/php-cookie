@@ -3,12 +3,11 @@
  * PHP library for handling cookies.
  *
  * @author    Josantonius <hello@josantonius.com>
- * @copyright 2016 - 2017 (c) Josantonius - PHP-Assets
+ * @copyright 2016 - 2017 (c) Josantonius - PHP-Cookie
  * @license   https://opensource.org/licenses/MIT - The MIT License (MIT)
  * @link      https://github.com/Josantonius/PHP-Cookie
  * @since     1.0.0
  */
-
 namespace Josantonius\Cookie;
 
 use PHPUnit\Framework\TestCase;
@@ -26,8 +25,6 @@ final class CookieTest extends TestCase
      * @runInSeparateProcess
      *
      * @since 1.1.3
-     *
-     * @return void
      */
     public function testSetCookie()
     {
@@ -40,8 +37,6 @@ final class CookieTest extends TestCase
      * @runInSeparateProcess
      *
      * @since 1.1.3
-     *
-     * @return void
      */
     public function testGetCookie()
     {
@@ -56,8 +51,6 @@ final class CookieTest extends TestCase
      * @runInSeparateProcess
      *
      * @since 1.1.3
-     *
-     * @return void
      */
     public function testGetAllCookies()
     {
@@ -76,8 +69,6 @@ final class CookieTest extends TestCase
      * @runInSeparateProcess
      *
      * @since 1.1.3
-     *
-     * @return void
      */
     public function testGetAllCookiesNonExistents()
     {
@@ -90,8 +81,6 @@ final class CookieTest extends TestCase
      * @runInSeparateProcess
      *
      * @since 1.1.3
-     *
-     * @return void
      */
     public function testPullCookie()
     {
@@ -106,8 +95,6 @@ final class CookieTest extends TestCase
      * @runInSeparateProcess
      *
      * @since 1.1.3
-     *
-     * @return void
      */
     public function testPullCookieNonExistent()
     {
@@ -120,8 +107,6 @@ final class CookieTest extends TestCase
      * @runInSeparateProcess
      *
      * @since 1.1.3
-     *
-     * @return void
      */
     public function testDestroyOneCookie()
     {
@@ -136,8 +121,6 @@ final class CookieTest extends TestCase
      * @runInSeparateProcess
      *
      * @since 1.1.3
-     *
-     * @return void
      */
     public function testDestroyOneCookieNonExistent()
     {
@@ -150,8 +133,6 @@ final class CookieTest extends TestCase
      * @runInSeparateProcess
      *
      * @since 1.1.3
-     *
-     * @return void
      */
     public function testDestroyAllCookies()
     {
@@ -167,8 +148,6 @@ final class CookieTest extends TestCase
      * @runInSeparateProcess
      *
      * @since 1.1.3
-     *
-     * @return void
      */
     public function testDestroyAllCookiesNonExistents()
     {

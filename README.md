@@ -102,6 +102,14 @@ Cookie::destroy($key);
 
 **# Return** (boolean)
 
+### - Get cookie prefix:
+
+```php
+Cookie::getCookiePrefix();
+```
+
+**# Return** (string) → cookie prefix
+
 ## Quick Start
 
 To use this class with **Composer**:
@@ -158,6 +166,12 @@ Cookie::destroy('cookie_name');
 
 ```php
 Cookie::destroy();
+```
+
+### - Get cookie prefix:
+
+```php
+Cookie::getCookiePrefix();
 ```
 
 ## Tests 

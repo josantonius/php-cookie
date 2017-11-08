@@ -8,6 +8,8 @@
 
 * Implemented `PHP Coding Standards Fixer` to organize PHP code automatically according to PSR standards.
 
+* Added `Josantonius\Cookie\Cookie::getCookiePrefix()` method.
+
 ## 1.1.4 - 2017-10-25
 
 * Implemented `PSR-4 autoloader standard` from all library files.

@@ -102,6 +102,14 @@ Cookie::destroy($key);
 
 **# Return** (boolean)
 
+### - Obtener prefijo de cookies:
+
+```php
+Cookie::getCookiePrefix();
+```
+
+**# Return** (string) → prefijo de cookies
+
 ## Cómo empezar
 
 Para utilizar esta clase con `Composer`:
@@ -160,7 +168,13 @@ Cookie::destroy('cookie_name');
 Cookie::destroy();
 ```
 
-## Tests 
+### - Obtener prefijo de cookies:
+
+```php
+Cookie::getCookiePrefix();
+```
+
+## Tests
 
 Para ejecutar las [pruebas](tests) necesitarás [Composer](http://getcomposer.org/download/) y seguir los siguientes pasos:
 

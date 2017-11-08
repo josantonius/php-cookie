@@ -29,6 +29,15 @@ final class CookieTest extends TestCase
     protected $Cookie;
 
     /**
+     * Cookie prefix.
+     *
+     * @since 1.1.5
+     *
+     * @var string
+     */
+    protected $cookiePrefix;
+
+    /**
      * Set up.
      *
      * @since 1.1.5
@@ -38,6 +47,18 @@ final class CookieTest extends TestCase
         parent::setUp();
 
         $this->Cookie = new Cookie;
+        $this->cookiePrefix = $this->Cookie->getCookiePrefix();
+    }
+
+    /**
+     * Check if it is an instance of __Package__.
+     *
+     * @since 1.1.5
+     */
+    public function testIsInstanceOfCookie()
+    {
+        $actual = $this->Cookie;
+        $this->assertInstanceOf('\Josantonius\Cookie\Cookie', $actual);
     }
 
     /**
@@ -61,7 +82,7 @@ final class CookieTest extends TestCase
      */
     public function testGetCookie()
     {
-        $_COOKIE[$this->Cookie::$prefix . 'cookie_name'] = 'value';
+        $_COOKIE[$this->cookiePrefix . 'cookie_name'] = 'value';
 
         $this->assertContains($this->Cookie->get('cookie_name'), 'value');
     }
@@ -75,11 +96,11 @@ final class CookieTest extends TestCase
      */
     public function testGetAllCookies()
     {
-        $_COOKIE[$this->Cookie::$prefix . 'cookie_name_one'] = 'value';
-        $_COOKIE[$this->Cookie::$prefix . 'cookie_name_two'] = 'value';
+        $_COOKIE[$this->cookiePrefix . 'cookie_name_one'] = 'value';
+        $_COOKIE[$this->cookiePrefix . 'cookie_name_two'] = 'value';
 
         $this->assertArrayHasKey(
-            $this->Cookie::$prefix . 'cookie_name_two',
+            $this->cookiePrefix . 'cookie_name_two',
             $this->Cookie->get()
         );
     }
@@ -105,7 +126,7 @@ final class CookieTest extends TestCase
      */
     public function testPullCookie()
     {
-        $_COOKIE[$this->Cookie::$prefix . 'cookie_name'] = 'value';
+        $_COOKIE[$this->cookiePrefix . 'cookie_name'] = 'value';
 
         $this->assertContains($this->Cookie->pull('cookie_name'), 'value');
     }
@@ -131,7 +152,7 @@ final class CookieTest extends TestCase
      */
     public function testDestroyOneCookie()
     {
-        $_COOKIE[$this->Cookie::$prefix . 'cookie_name'] = 'value';
+        $_COOKIE[$this->cookiePrefix . 'cookie_name'] = 'value';
 
         $this->assertTrue($this->Cookie->destroy('cookie_name'));
     }
@@ -157,8 +178,8 @@ final class CookieTest extends TestCase
      */
     public function testDestroyAllCookies()
     {
-        $_COOKIE[$this->Cookie::$prefix . 'cookie_name_one'] = 'value';
-        $_COOKIE[$this->Cookie::$prefix . 'cookie_name_two'] = 'value';
+        $_COOKIE[$this->cookiePrefix . 'cookie_name_one'] = 'value';
+        $_COOKIE[$this->cookiePrefix . 'cookie_name_two'] = 'value';
 
         $this->assertTrue($this->Cookie->destroy());
     }

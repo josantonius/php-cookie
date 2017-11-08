@@ -109,4 +109,16 @@ class Cookie
 
         return false;
     }
+
+    /**
+     * Get cookie prefix.
+     *
+     * @since 1.1.5
+     *
+     * @return string
+     */
+    public static function getCookiePrefix()
+    {
+        return self::$prefix;
+    }
 }

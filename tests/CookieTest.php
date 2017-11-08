@@ -51,7 +51,7 @@ final class CookieTest extends TestCase
     }
 
     /**
-     * Check if it is an instance of __Package__.
+     * Check if it is an instance of Algorithm.
      *
      * @since 1.1.5
      */

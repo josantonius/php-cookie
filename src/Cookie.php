@@ -3,7 +3,7 @@
  * PHP library for handling cookies.
  *
  * @author    Josantonius <hello@josantonius.com>
- * @copyright 2016 - 2017 (c) Josantonius - PHP-Cookie
+ * @copyright 2016 - 2018 (c) Josantonius - PHP-Cookie
  * @license   https://opensource.org/licenses/MIT - The MIT License (MIT)
  * @link      https://github.com/Josantonius/PHP-Cookie
  * @since     1.0.0
@@ -20,16 +20,12 @@ class Cookie
     /**
      * Prefix for cookies.
      *
-     * @since 1.0.0
-     *
      * @var string
      */
     public static $prefix = 'jst_';
 
     /**
      * Set cookie.
-     *
-     * @since 1.0.0
      *
      * @param string $key   → name the data to save
      * @param string $value → the data to save
@@ -47,8 +43,6 @@ class Cookie
     /**
      * Get item from cookie.
      *
-     * @since 1.0.0
-     *
      * @param string $key → item to look for in cookie
      *
      * @return mixed|false → returns cookie value, cookies array or false
@@ -64,8 +58,6 @@ class Cookie
 
     /**
      * Extract item from cookie then delete cookie and return the item.
-     *
-     * @since 1.0.0
      *
      * @param string $key → item to extract
      *
@@ -84,8 +76,6 @@ class Cookie
 
     /**
      * Empties and destroys the cookies.
-     *
-     * @since 1.0.0
      *
      * @param string $key → cookie name to destroy. Not set to delete all
      *

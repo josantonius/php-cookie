@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.1.6 - 2018-01-05
+
+* The tests were fixed.
+
+* Changes in documentation.
+
 ## 1.1.5 - 2017-11-08
 
 * Implemented `PHP Mess Detector` to detect inconsistencies in code styles.

@@ -3,10 +3,10 @@
  * PHP library for handling cookies.
  *
  * @author    Josantonius <hello@josantonius.com>
- * @copyright 2016 - 2017 (c) Josantonius - PHP-Cookie
+ * @copyright 2016 - 2018 (c) Josantonius - PHP-Cookie
  * @license   https://opensource.org/licenses/MIT - The MIT License (MIT)
  * @link      https://github.com/Josantonius/PHP-Cookie
- * @since     1.0.0
+ * @since     1.1.3
  */
 namespace Josantonius\Cookie;
 
@@ -47,61 +47,63 @@ final class CookieTest extends TestCase
         parent::setUp();
 
         $this->Cookie = new Cookie;
-        $this->cookiePrefix = $this->Cookie->getCookiePrefix();
+
+        $Cookie = $this->Cookie;
+
+        $this->cookiePrefix = $Cookie::getCookiePrefix();
     }
 
     /**
-     * Check if it is an instance of Algorithm.
+     * Check if it is an instance of.
      *
      * @since 1.1.5
      */
-    public function testIsInstanceOfCookie()
+    public function testIsInstanceOf()
     {
-        $actual = $this->Cookie;
-        $this->assertInstanceOf('\Josantonius\Cookie\Cookie', $actual);
+        $this->assertInstanceOf('\Josantonius\Cookie\Cookie', $this->Cookie);
     }
 
     /**
      * Set cookie.
      *
      * @runInSeparateProcess
-     *
-     * @since 1.1.3
      */
     public function testSetCookie()
     {
-        $this->assertTrue($this->Cookie->set('cookie_name', 'value', 365));
+        $Cookie = $this->Cookie;
+
+        $this->assertTrue($Cookie::set('cookie_name', 'value', 365));
     }
 
     /**
      * Get item from cookie.
      *
      * @runInSeparateProcess
-     *
-     * @since 1.1.3
      */
     public function testGetCookie()
     {
+        $Cookie = $this->Cookie;
+
         $_COOKIE[$this->cookiePrefix . 'cookie_name'] = 'value';
 
-        $this->assertContains($this->Cookie->get('cookie_name'), 'value');
+        $this->assertContains($Cookie::get('cookie_name'), 'value');
     }
 
     /**
      * Return cookies array.
      *
      * @runInSeparateProcess
-     *
-     * @since 1.1.3
      */
     public function testGetAllCookies()
     {
+        $Cookie = $this->Cookie;
+
         $_COOKIE[$this->cookiePrefix . 'cookie_name_one'] = 'value';
         $_COOKIE[$this->cookiePrefix . 'cookie_name_two'] = 'value';
 
         $this->assertArrayHasKey(
             $this->cookiePrefix . 'cookie_name_two',
-            $this->Cookie->get()
+            $Cookie::get()
         );
     }
 
@@ -109,90 +111,90 @@ final class CookieTest extends TestCase
      * Return cookies array non-existent.
      *
      * @runInSeparateProcess
-     *
-     * @since 1.1.3
      */
     public function testGetAllCookiesNonExistents()
     {
-        $this->assertFalse($this->Cookie->get());
+        $Cookie = $this->Cookie;
+
+        $this->assertFalse($Cookie::get());
     }
 
     /**
      * Extract item from cookie then delete cookie and return the item.
      *
      * @runInSeparateProcess
-     *
-     * @since 1.1.3
      */
     public function testPullCookie()
     {
+        $Cookie = $this->Cookie;
+
         $_COOKIE[$this->cookiePrefix . 'cookie_name'] = 'value';
 
-        $this->assertContains($this->Cookie->pull('cookie_name'), 'value');
+        $this->assertContains($Cookie::pull('cookie_name'), 'value');
     }
 
     /**
      * Extract item from cookie non-existent.
      *
      * @runInSeparateProcess
-     *
-     * @since 1.1.3
      */
     public function testPullCookieNonExistent()
     {
-        $this->assertFalse($this->Cookie->pull('cookie_name'));
+        $Cookie = $this->Cookie;
+
+        $this->assertFalse($Cookie::pull('cookie_name'));
     }
 
     /**
      * Destroy one cookie.
      *
      * @runInSeparateProcess
-     *
-     * @since 1.1.3
      */
     public function testDestroyOneCookie()
     {
+        $Cookie = $this->Cookie;
+
         $_COOKIE[$this->cookiePrefix . 'cookie_name'] = 'value';
 
-        $this->assertTrue($this->Cookie->destroy('cookie_name'));
+        $this->assertTrue($Cookie::destroy('cookie_name'));
     }
 
     /**
      * Destroy one cookie non-existent.
      *
      * @runInSeparateProcess
-     *
-     * @since 1.1.3
      */
     public function testDestroyOneCookieNonExistent()
     {
-        $this->assertFalse($this->Cookie->destroy('cookie_name'));
+        $Cookie = $this->Cookie;
+
+        $this->assertFalse($Cookie::destroy('cookie_name'));
     }
 
     /**
      * Destroy all cookies.
      *
      * @runInSeparateProcess
-     *
-     * @since 1.1.3
      */
     public function testDestroyAllCookies()
     {
+        $Cookie = $this->Cookie;
+
         $_COOKIE[$this->cookiePrefix . 'cookie_name_one'] = 'value';
         $_COOKIE[$this->cookiePrefix . 'cookie_name_two'] = 'value';
 
-        $this->assertTrue($this->Cookie->destroy());
+        $this->assertTrue($Cookie::destroy());
     }
 
     /**
      * Destroy all cookies non-existents.
      *
      * @runInSeparateProcess
-     *
-     * @since 1.1.3
      */
     public function testDestroyAllCookiesNonExistents()
     {
-        $this->assertFalse($this->Cookie->destroy());
+        $Cookie = $this->Cookie;
+
+        $this->assertFalse($Cookie::destroy());
     }
 }

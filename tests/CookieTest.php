@@ -50,7 +50,7 @@ final class CookieTest extends TestCase
 
         $cookie = $this->Cookie;
 
-        $this->cookiePrefix = $Cookie::getCookiePrefix();
+        $this->cookiePrefix = $cookie::getCookiePrefix();
     }
 
     /**
@@ -72,7 +72,7 @@ final class CookieTest extends TestCase
     {
         $cookie = $this->Cookie;
 
-        $this->assertTrue($Cookie::set('cookie_name', 'value', 365));
+        $this->assertTrue($cookie::set('cookie_name', 'value', 365));
     }
 
     /**
@@ -86,7 +86,7 @@ final class CookieTest extends TestCase
 
         $_COOKIE[$this->cookiePrefix . 'cookie_name'] = 'value';
 
-        $this->assertContains($Cookie::get('cookie_name'), 'value');
+        $this->assertContains($cookie::get('cookie_name'), 'value');
     }
 
     /**
@@ -103,7 +103,7 @@ final class CookieTest extends TestCase
 
         $this->assertArrayHasKey(
             $this->cookiePrefix . 'cookie_name_two',
-            $Cookie::get()
+            $cookie::get()
         );
     }
 
@@ -116,7 +116,7 @@ final class CookieTest extends TestCase
     {
         $cookie = $this->Cookie;
 
-        $this->assertFalse($Cookie::get());
+        $this->assertFalse($cookie::get());
     }
 
     /**
@@ -130,7 +130,7 @@ final class CookieTest extends TestCase
 
         $_COOKIE[$this->cookiePrefix . 'cookie_name'] = 'value';
 
-        $this->assertContains($Cookie::pull('cookie_name'), 'value');
+        $this->assertContains($cookie::pull('cookie_name'), 'value');
     }
 
     /**
@@ -142,7 +142,7 @@ final class CookieTest extends TestCase
     {
         $cookie = $this->Cookie;
 
-        $this->assertFalse($Cookie::pull('cookie_name'));
+        $this->assertFalse($cookie::pull('cookie_name'));
     }
 
     /**
@@ -156,7 +156,7 @@ final class CookieTest extends TestCase
 
         $_COOKIE[$this->cookiePrefix . 'cookie_name'] = 'value';
 
-        $this->assertTrue($Cookie::destroy('cookie_name'));
+        $this->assertTrue($cookie::destroy('cookie_name'));
     }
 
     /**
@@ -168,7 +168,7 @@ final class CookieTest extends TestCase
     {
         $cookie = $this->Cookie;
 
-        $this->assertFalse($Cookie::destroy('cookie_name'));
+        $this->assertFalse($cookie::destroy('cookie_name'));
     }
 
     /**
@@ -183,7 +183,7 @@ final class CookieTest extends TestCase
         $_COOKIE[$this->cookiePrefix . 'cookie_name_one'] = 'value';
         $_COOKIE[$this->cookiePrefix . 'cookie_name_two'] = 'value';
 
-        $this->assertTrue($Cookie::destroy());
+        $this->assertTrue($cookie::destroy());
     }
 
     /**
@@ -195,6 +195,6 @@ final class CookieTest extends TestCase
     {
         $cookie = $this->Cookie;
 
-        $this->assertFalse($Cookie::destroy());
+        $this->assertFalse($cookie::destroy());
     }
 }

@@ -202,10 +202,10 @@ Run all previous tests:
 
 ## ☑ TODO
 
-- [ ] Add new feature
-- [ ] Improve tests
-- [ ] Improve documentation
-- [ ] Refactor code for disabled code style rules. See [phpmd.xml](phpmd.xml) and [.php_cs.dist](.php_cs.dist)
+- [ ] Add new feature.
+- [ ] Improve tests.
+- [ ] Improve documentation.
+- [ ] Refactor code for disabled code style rules. See [phpmd.xml](phpmd.xml) and [.php_cs.dist](.php_cs.dist).
 
 ## Contribute
 

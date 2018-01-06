@@ -102,10 +102,22 @@ Cookie::destroy($key);
 
 **# Return** (boolean)
 
+### - Establecer prefijo para cookies:
+
+```php
+Cookie::setPrefix($prefix);
+```
+
+| Atributo | Descripción | Tipo | Requerido | Predeterminado
+| --- | --- | --- | --- | --- |
+| $prefix | Prefijo para las cookies. | string | Sí | |
+
+**# Return** (boolean)
+
 ### - Obtener prefijo de cookies:
 
 ```php
-Cookie::getCookiePrefix();
+Cookie::getPrefix();
 ```
 
 **# Return** (string) → prefijo de cookies
@@ -168,10 +180,16 @@ Cookie::destroy('cookie_name');
 Cookie::destroy();
 ```
 
+### - Establecer prefijo para cookies:
+
+```php
+Cookie::setPrefix('prefix_');
+```
+
 ### - Obtener prefijo de cookies:
 
 ```php
-Cookie::getCookiePrefix();
+Cookie::getPrefix();
 ```
 
 ## Tests

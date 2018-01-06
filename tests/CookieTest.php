@@ -50,7 +50,7 @@ final class CookieTest extends TestCase
 
         $cookie = $this->Cookie;
 
-        $this->cookiePrefix = $cookie::getCookiePrefix();
+        $this->cookiePrefix = $cookie::getPrefix();
     }
 
     /**
@@ -196,5 +196,49 @@ final class CookieTest extends TestCase
         $cookie = $this->Cookie;
 
         $this->assertFalse($cookie::destroy());
+    }
+
+    /**
+     * Get cookie prefix.
+     *
+     * @runInSeparateProcess
+     *
+     * @since 1.1.6
+     */
+    public function testGetCookiePrefix()
+    {
+        $cookie = $this->Cookie;
+
+        $this->assertContains($cookie::getPrefix(), 'jst_');
+    }
+
+    /**
+     * Set cookie prefix.
+     *
+     * @runInSeparateProcess
+     *
+     * @since 1.1.6
+     */
+    public function testSetCookiePrefix()
+    {
+        $cookie = $this->Cookie;
+
+        $this->assertTrue($cookie::setPrefix('prefix_'));
+    }
+
+    /**
+     * Set cookie prefix incorrectly.
+     *
+     * @runInSeparateProcess
+     *
+     * @since 1.1.6
+     */
+    public function testSetCookieIncorrectly()
+    {
+        $cookie = $this->Cookie;
+
+        $this->assertFalse($cookie::setPrefix(''));
+        $this->assertFalse($cookie::setPrefix(5));
+        $this->assertFalse($cookie::setPrefix(true));
     }
 }

@@ -31,7 +31,7 @@ class Cookie
      * @param string $value → the data to save
      * @param string $time  → expiration time in days
      *
-     * @return bool
+     * @return boolean
      */
     public static function set($key, $value, $time = 365)
     {
@@ -79,7 +79,7 @@ class Cookie
      *
      * @param string $key → cookie name to destroy. Not set to delete all
      *
-     * @return bool
+     * @return boolean
      */
     public static function destroy($key = '')
     {
@@ -101,13 +101,32 @@ class Cookie
     }
 
     /**
+     * Set cookie prefix.
+     *
+     * @since 1.1.6
+     *
+     * @param string $prefix → cookie prefix
+     *
+     * @return boolean
+     */
+    public static function setPrefix($prefix)
+    {
+        if (!empty($prefix) && is_string($prefix)) {
+            self::$prefix = $prefix;
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Get cookie prefix.
      *
      * @since 1.1.5
      *
      * @return string
      */
-    public static function getCookiePrefix()
+    public static function getPrefix()
     {
         return self::$prefix;
     }

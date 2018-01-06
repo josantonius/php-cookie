@@ -102,10 +102,22 @@ Cookie::destroy($key);
 
 **# Return** (boolean)
 
+### - Set cookie prefix:
+
+```php
+Cookie::setPrefix($prefix);
+```
+
+| Attribute | Description | Type | Required | Default
+| --- | --- | --- | --- | --- |
+| $prefix | Cookie prefix. | string | Yes | |
+
+**# Return** (boolean)
+
 ### - Get cookie prefix:
 
 ```php
-Cookie::getCookiePrefix();
+Cookie::getPrefix();
 ```
 
 **# Return** (string) → cookie prefix
@@ -168,10 +180,16 @@ Cookie::destroy('cookie_name');
 Cookie::destroy();
 ```
 
+### - Set cookie prefix:
+
+```php
+Cookie::setPrefix('prefix_');
+```
+
 ### - Get cookie prefix:
 
 ```php
-Cookie::getCookiePrefix();
+Cookie::getPrefix();
 ```
 
 ## Tests 

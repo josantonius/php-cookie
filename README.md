@@ -66,6 +66,18 @@ Cookie::set($key, $value, $time);
 
 **# Return** (boolean)
 
+### - Check if cookie exists:
+
+```php
+Cookie::has($key);
+```
+
+| Attribute | Description | Type | Required | Default
+| --- | --- | --- | --- | --- |
+| $key | Cookie name. | string | No | '' |
+
+**# Return** (true|false) → returns true or false
+
 ### - Get item from cookie:
 
 ```php
@@ -192,12 +204,12 @@ Cookie::setPrefix('prefix_');
 Cookie::getPrefix();
 ```
 
-## Tests 
+## Tests
 
 To run [tests](tests) you just need [composer](http://getcomposer.org/download/) and to execute the following:
 
     $ git clone https://github.com/Josantonius/PHP-Cookie.git
-    
+
     $ cd PHP-Cookie
 
     $ composer install

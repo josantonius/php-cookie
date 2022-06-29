@@ -50,7 +50,7 @@ class Cookie
     public static function get($key = false)
     {
         // If no key is set, return the whole cookie
-        if ($key == false)
+        if ($key === false)
         {
             return $_COOKIE;
         }

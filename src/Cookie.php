@@ -47,13 +47,31 @@ class Cookie
      *
      * @return mixed|false → returns cookie value, cookies array or false
      */
-    public static function get($key = '')
+    public static function get($key = false)
     {
-        if (isset($_COOKIE[self::$prefix . $key])) {
+        // If no key is set, return the whole cookie
+        if ($key == false)
+        {
+            return $_COOKIE;
+        }
+
+        // If the key is set and exists, return that
+        if (isset($_COOKIE[self::$prefix . $key])) 
+        {
             return $_COOKIE[self::$prefix . $key];
         }
 
-        return (isset($_COOKIE) && count($_COOKIE)) ? $_COOKIE : false;
+        // Otherwise return false
+        return false;
+    }
+
+    /**
+     * Checks if a cookie exists
+     * @param string $key
+     */
+    public static function has($key)
+    {
+        return isset($_COOKIE[self::$prefix . $key]) ? true : false;
     }
 
     /**
@@ -65,7 +83,8 @@ class Cookie
      */
     public static function pull($key)
     {
-        if (isset($_COOKIE[self::$prefix . $key])) {
+        if (isset($_COOKIE[self::$prefix . $key])) 
+        {
             setcookie(self::$prefix . $key, '', time() - 3600, '/');
 
             return $_COOKIE[self::$prefix . $key];
@@ -83,14 +102,17 @@ class Cookie
      */
     public static function destroy($key = '')
     {
-        if (isset($_COOKIE[self::$prefix . $key])) {
+        if (isset($_COOKIE[self::$prefix . $key])) 
+        {
             setcookie(self::$prefix . $key, '', time() - 3600, '/');
 
             return true;
         }
 
-        if (count($_COOKIE) > 0) {
-            foreach ($_COOKIE as $key => $value) {
+        if (count($_COOKIE) > 0) 
+        {
+            foreach ($_COOKIE as $key => $value) 
+            {
                 setcookie($key, '', time() - 3600, '/');
             }
 
@@ -111,7 +133,8 @@ class Cookie
      */
     public static function setPrefix($prefix)
     {
-        if (!empty($prefix) && is_string($prefix)) {
+        if (!empty($prefix) && is_string($prefix)) 
+        {
             self::$prefix = $prefix;
             return true;
         }

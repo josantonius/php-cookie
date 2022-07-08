@@ -10,3 +10,4 @@ phpcbf-fixed.diff
 .idea
 .DS_STORE
 .php_cs.cache
+index.php

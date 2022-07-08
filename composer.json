@@ -1,5 +1,5 @@
 {
-    "name":        "josantonius/cookie",
+    "name":        "pixxel/cookie",
     "type":        "library",
     "description": "PHP library for handling cookies.",
     "keywords": [
@@ -14,34 +14,39 @@
             "email":    "hello@josantonius.com",
             "homepage": "https://josantonius.com",
             "role":     "Developer"
+        },
+        {
+            "name":     "Pixxelfactory",
+            "email":    "box@pixxelfactory.net",
+            "homepage": "https://www.pixxelfactory.net",
+            "role":     "Web Development Agency"
         }
     ],
     "support": {
-        "issues": "https://github.com/josantonius/php-cookie/issues",
-        "forum":  "http://stackoverflow.com/tags/josantonius/php-cookie",
-        "source": "https://github.com/josantonius/php-cookie"
+        "issues": "https://github.com/pixxelfactory/cookie/issues",
+        "source": "https://github.com/pixxelfactory/cookie"
     },
     "config": {
         "preferred-install": "dist"
     },
     "minimum-stability": "stable",
     "require": {
-        "php": "^5.6 || ^7.0"
+        "php": "^8.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.7 || ^6.0",
+        "phpunit/phpunit": "^9.0",
         "squizlabs/php_codesniffer": "^3.0",
         "friendsofphp/php-cs-fixer": "^2.3 || ^2.8",
         "phpmd/phpmd": "^2.6"
     },
     "autoload": {
         "psr-4": {
-            "Josantonius\\Cookie\\": "src/"
+            "Pixxel\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Josantonius\\Cookie\\": "tests/"
+            "Pixxel\\": "tests/"
         }
     },
     "extra": {

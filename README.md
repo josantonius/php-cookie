@@ -1,10 +1,9 @@
 # PHP Cookie library
 
-[![Latest Stable Version](https://poser.pugx.org/josantonius/Cookie/v/stable)](https://packagist.org/packages/josantonius/Cookie) [![Latest Unstable Version](https://poser.pugx.org/josantonius/Cookie/v/unstable)](https://packagist.org/packages/josantonius/Cookie) [![License](https://poser.pugx.org/josantonius/Cookie/license)](LICENSE) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e51e4c06b0b54ce493454d4f895a3ef3)](https://www.codacy.com/app/Josantonius/PHP-Cookie?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Josantonius/PHP-Cookie&amp;utm_campaign=Badge_Grade) [![Total Downloads](https://poser.pugx.org/josantonius/Cookie/downloads)](https://packagist.org/packages/josantonius/Cookie) [![Travis](https://travis-ci.org/Josantonius/PHP-Cookie.svg)](https://travis-ci.org/Josantonius/PHP-Cookie) [![PSR2](https://img.shields.io/badge/PSR-2-1abc9c.svg)](http://www.php-fig.org/psr/psr-2/) [![PSR4](https://img.shields.io/badge/PSR-4-9b59b6.svg)](http://www.php-fig.org/psr/psr-4/) [![CodeCov](https://codecov.io/gh/Josantonius/PHP-Cookie/branch/master/graph/badge.svg)](https://codecov.io/gh/Josantonius/PHP-Cookie)
+PHP library for handling cookies, based on the excellent library from Josantonius:
+https://github.com/josantonius/PHP-Cookie
 
-[Versión en español](README-ES.md)
-
-PHP library for handling cookies.
+Basically it's a fork with modifications for PHP 8 upwards (union types ecc.), transforming the static methods to normal ones and real-time updates of the $_COOKIE array.
 
 ---
 
@@ -24,7 +23,7 @@ PHP library for handling cookies.
 
 ## Requirements
 
-This library is supported by **PHP versions 5.6** or higher.
+This library is supported by **PHP versions 8.0 ** or higher.
 
 ## Installation
 
@@ -32,22 +31,19 @@ The preferred way to install this extension is through [Composer](http://getcomp
 
 To install **PHP Cookie library**, simply:
 
-    $ composer require Josantonius/Cookie
+$ composer require pixxel/cookie
 
 The previous command will only install the necessary files, if you prefer to **download the entire source code** you can use:
 
-    $ composer require Josantonius/Cookie --prefer-source
-
+$ composer require pixxel/cookie --prefer-source
 You can also **clone the complete repository** with Git:
 
-	$ git clone https://github.com/Josantonius/PHP-Cookie.git
-
+$ git clone https://github.com/pixxelfactory/cookie.git
 Or **install it manually**:
 
-[Download Cookie.php](https://raw.githubusercontent.com/Josantonius/PHP-Cookie/master/src/Cookie.php):
+[Download Cookie.php](https://raw.githubusercontent.com/pixxelfactory/cookie/master/src/Cookie.php):
 
-    $ wget https://raw.githubusercontent.com/Josantonius/PHP-Cookie/master/src/Cookie.php
-
+$ wget https://raw.githubusercontent.com/pixxelfactory/cookie/master/src/Cookie.php
 ## Available Methods
 
 Available methods in this library:
@@ -55,71 +51,70 @@ Available methods in this library:
 ### - Set cookie:
 
 ```php
-Cookie::set($key, $value, $time);
+$cookie->set($key, $value, $time);
 ```
 
-| Attribute | Description | Type | Required | Default
-| --- | --- | --- | --- | --- |
-| $key | Cookie name. | string | Yes | |
-| $value | The data to save. | string | Yes | |
-| $time | Expiration time in days. | string | No | 365 |
+| Attribute | Description              | Type   | Required | Default |
+| ----------- | -------------------------- | -------- | ---------- | --------- |
+| $key      | Cookie name.             | string | Yes      |         |
+| $value    | The data to save.        | string | Yes      |         |
+| $time     | Expiration time in days. | string | No       | 365     |
 
 **# Return** (boolean)
 
 ### - Get item from cookie:
 
 ```php
-Cookie::get($key);
+$cookie->get($key);
 ```
 
-| Attribute | Description | Type | Required | Default
-| --- | --- | --- | --- | --- |
-| $key | Cookie name. | string | No | '' |
+| Attribute | Description  | Type   | Required | Default |
+| ----------- | -------------- | -------- | ---------- | --------- |
+| $key      | Cookie name. | string | No       | ''      |
 
 **# Return** (mixed|false) → returns cookie value, cookies array or false
 
 ### - Extract item from cookie and delete cookie:
 
 ```php
-Cookie::pull($key);
+$cookie->pull($key);
 ```
 
-| Attribute | Description | Type | Required | Default
-| --- | --- | --- | --- | --- |
-| $key | Cookie name. | string | Yes | |
+| Attribute | Description  | Type   | Required | Default |
+| ----------- | -------------- | -------- | ---------- | --------- |
+| $key      | Cookie name. | string | Yes      |         |
 
 **# Return** (string|false) → item or false when key does not exists
 
 ### - Extract item from cookie and delete cookie:
 
 ```php
-Cookie::destroy($key);
+$cookie->destroy($key);
 ```
 
-| Attribute | Description | Type | Required | Default
-| --- | --- | --- | --- | --- |
-| $key | Cookie name to destroy. Not set to delete all. | string | No | '' |
+| Attribute | Description                                    | Type   | Required | Default |
+| ----------- | ------------------------------------------------ | -------- | ---------- | --------- |
+| $key      | Cookie name to destroy. Not set to delete all. | string | No       | ''      |
 
 **# Return** (boolean)
 
 ### - Set cookie prefix:
 
 ```php
-Cookie::setPrefix($prefix);
+$cookie->setPrefix($prefix);
 ```
 
-| Attribute | Description | Type | Required | Default
-| --- | --- | --- | --- | --- |
-| $prefix | Cookie prefix. | string | Yes | |
+| Attribute | Description    | Type   | Required | Default |
+| ----------- | ---------------- | -------- | ---------- | --------- |
+| $prefix   | Cookie prefix. | string | Yes      |         |
 
 **# Return** (boolean)
 
 ### - Get cookie prefix:
 
 ```php
-Cookie::getPrefix();
+$cookie->getPrefix();
 ```
-
 **# Return** (string) → cookie prefix
 
 ## Quick Start
@@ -129,17 +124,15 @@ To use this class with **Composer**:
 ```php
 require __DIR__ . '/vendor/autoload.php';
 
-use Josantonius\Cookie\Cookie;
+use Pixxel\Cookie;
 ```
-
 Or If you installed it **manually**, use it:
 
 ```php
 require_once __DIR__ . '/Cookie.php';
 
-use Josantonius\Cookie\Cookie;
+use Pixxel\Cookie;
 ```
-
 ## Usage
 
 Example of use for this library:
@@ -147,77 +140,64 @@ Example of use for this library:
 ### - Set cookie:
 
 ```php
-Cookie::set('cookie_name', 'value', 365);
+$cookie->set('cookie_name', 'value', 365);
 ```
-
 ### - Get cookie:
 
 ```php
-Cookie::get('cookie_name');
+$cookie->get('cookie_name');
 ```
-
 ### - Get all cookies:
 
 ```php
-Cookie::get();
+$cookie->get();
 ```
-
 ### - Pull cookie:
 
 ```php
-Cookie::pull('cookie_name');
+$cookie->pull('cookie_name');
 ```
-
 ### - Destroy one cookie:
 
 ```php
-Cookie::destroy('cookie_name');
+$cookie->destroy('cookie_name');
 ```
-
 ### - Destroy all cookies:
 
 ```php
-Cookie::destroy();
+$cookie->destroy();
 ```
-
 ### - Set cookie prefix:
 
 ```php
-Cookie::setPrefix('prefix_');
+$cookie->setPrefix('prefix_');
 ```
-
 ### - Get cookie prefix:
 
 ```php
-Cookie::getPrefix();
+$cookie->getPrefix();
 ```
-
-## Tests 
+## Tests
 
 To run [tests](tests) you just need [composer](http://getcomposer.org/download/) and to execute the following:
 
-    $ git clone https://github.com/Josantonius/PHP-Cookie.git
-    
-    $ cd PHP-Cookie
+$ git clone https://github.com/pixxelfactory/cookie.git
 
-    $ composer install
+$ cd PHP-Cookie
 
+$ composer install
 Run unit tests with [PHPUnit](https://phpunit.de/):
 
-    $ composer phpunit
-
+$ composer phpunit
 Run [PSR2](http://www.php-fig.org/psr/psr-2/) code standard tests with [PHPCS](https://github.com/squizlabs/PHP_CodeSniffer):
 
-    $ composer phpcs
-
+$ composer phpcs
 Run [PHP Mess Detector](https://phpmd.org/) tests to detect inconsistencies in code style:
 
-    $ composer phpmd
-
+$ composer phpmd
 Run all previous tests:
 
-    $ composer tests
-
+$ composer tests
 ## ☑ TODO
 
 - [ ] Add new feature.
@@ -225,33 +205,11 @@ Run all previous tests:
 - [ ] Improve documentation.
 - [ ] Refactor code for disabled code style rules. See [phpmd.xml](phpmd.xml) and [.php_cs.dist](.php_cs.dist).
 
-## Contribute
-
-If you would like to help, please take a look at the list of
-[issues](https://github.com/Josantonius/PHP-Cookie/issues) or the [To Do](#-todo) checklist.
-
-**Pull requests**
-
-* [Fork and clone](https://help.github.com/articles/fork-a-repo).
-* Run the command `composer install` to install the dependencies.
-  This will also install the [dev dependencies](https://getcomposer.org/doc/03-cli.md#install).
-* Run the command `composer fix` to excute code standard fixers.
-* Run the [tests](#tests).
-* Create a **branch**, **commit**, **push** and send me a
-  [pull request](https://help.github.com/articles/using-pull-requests).
-
-## Repository
-
-The file structure from this repository was created with [PHP-Skeleton](https://github.com/Josantonius/PHP-Skeleton).
-
 ## License
 
 This project is licensed under **MIT license**. See the [LICENSE](LICENSE) file for more info.
 
 ## Copyright
 
+The original copyright:
 2016 - 2018 Josantonius, [josantonius.com](https://josantonius.com/)
-
-If you find it useful, let me know :wink:
-
-You can contact me on [Twitter](https://twitter.com/Josantonius) or through my [email](mailto:hello@josantonius.com).

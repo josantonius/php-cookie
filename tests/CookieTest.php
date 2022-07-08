@@ -8,7 +8,7 @@
  * @link      https://github.com/Josantonius/PHP-Cookie
  * @since     1.1.3
  */
-namespace Josantonius\Cookie;
+namespace Pixxel;
 
 use PHPUnit\Framework\TestCase;
 
@@ -42,7 +42,7 @@ final class CookieTest extends TestCase
      *
      * @since 1.1.5
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -50,7 +50,7 @@ final class CookieTest extends TestCase
 
         $cookie = $this->Cookie;
 
-        $this->cookiePrefix = $cookie::getPrefix();
+        $this->cookiePrefix = $cookie->getPrefix();
     }
 
     /**
@@ -60,7 +60,7 @@ final class CookieTest extends TestCase
      */
     public function testIsInstanceOf()
     {
-        $this->assertInstanceOf('\Josantonius\Cookie\Cookie', $this->Cookie);
+        $this->assertInstanceOf('\Pixxel\Cookie', $this->Cookie);
     }
 
     /**
@@ -72,7 +72,7 @@ final class CookieTest extends TestCase
     {
         $cookie = $this->Cookie;
 
-        $this->assertTrue($cookie::set('cookie_name', 'value', 365));
+        $this->assertTrue($cookie->set('cookie_name', 'value', 365));
     }
 
     /**
@@ -86,7 +86,7 @@ final class CookieTest extends TestCase
 
         $_COOKIE[$this->cookiePrefix . 'cookie_name'] = 'value';
 
-        $this->assertContains($cookie::get('cookie_name'), 'value');
+        $this->assertEquals($cookie->get('cookie_name'), 'value');
     }
 
     /**
@@ -103,7 +103,7 @@ final class CookieTest extends TestCase
 
         $this->assertArrayHasKey(
             $this->cookiePrefix . 'cookie_name_two',
-            $cookie::get()
+            $cookie->get()
         );
     }
 
@@ -116,7 +116,7 @@ final class CookieTest extends TestCase
     {
         $cookie = $this->Cookie;
 
-        $this->assertFalse($cookie::get());
+        $this->assertFalse($cookie->get('nonexistant'));
     }
 
     /**
@@ -130,7 +130,7 @@ final class CookieTest extends TestCase
 
         $_COOKIE[$this->cookiePrefix . 'cookie_name'] = 'value';
 
-        $this->assertContains($cookie::pull('cookie_name'), 'value');
+        $this->assertEquals($cookie->pull('cookie_name'), 'value');
     }
 
     /**
@@ -142,7 +142,7 @@ final class CookieTest extends TestCase
     {
         $cookie = $this->Cookie;
 
-        $this->assertFalse($cookie::pull('cookie_name'));
+        $this->assertFalse($cookie->pull('cookie_name'));
     }
 
     /**
@@ -156,7 +156,7 @@ final class CookieTest extends TestCase
 
         $_COOKIE[$this->cookiePrefix . 'cookie_name'] = 'value';
 
-        $this->assertTrue($cookie::destroy('cookie_name'));
+        $this->assertTrue($cookie->destroy('cookie_name'));
     }
 
     /**
@@ -168,7 +168,7 @@ final class CookieTest extends TestCase
     {
         $cookie = $this->Cookie;
 
-        $this->assertFalse($cookie::destroy('cookie_name'));
+        $this->assertFalse($cookie->destroy('cookie_name'));
     }
 
     /**
@@ -183,7 +183,7 @@ final class CookieTest extends TestCase
         $_COOKIE[$this->cookiePrefix . 'cookie_name_one'] = 'value';
         $_COOKIE[$this->cookiePrefix . 'cookie_name_two'] = 'value';
 
-        $this->assertTrue($cookie::destroy());
+        $this->assertTrue($cookie->destroy());
     }
 
     /**
@@ -195,7 +195,7 @@ final class CookieTest extends TestCase
     {
         $cookie = $this->Cookie;
 
-        $this->assertFalse($cookie::destroy());
+        $this->assertFalse($cookie->destroy());
     }
 
     /**
@@ -209,7 +209,7 @@ final class CookieTest extends TestCase
     {
         $cookie = $this->Cookie;
 
-        $this->assertContains($cookie::getPrefix(), 'jst_');
+        $this->assertEquals($cookie->getPrefix(), 'pixx_');
     }
 
     /**
@@ -223,7 +223,7 @@ final class CookieTest extends TestCase
     {
         $cookie = $this->Cookie;
 
-        $this->assertTrue($cookie::setPrefix('prefix_'));
+        $this->assertTrue($cookie->setPrefix('prefix_'));
     }
 
     /**
@@ -237,8 +237,8 @@ final class CookieTest extends TestCase
     {
         $cookie = $this->Cookie;
 
-        $this->assertFalse($cookie::setPrefix(''));
-        $this->assertFalse($cookie::setPrefix(5));
-        $this->assertFalse($cookie::setPrefix(true));
+        $this->assertFalse($cookie->setPrefix(''));
+        $this->assertFalse($cookie->setPrefix(5));
+        $this->assertFalse($cookie->setPrefix(true));
     }
 }

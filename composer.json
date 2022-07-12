@@ -55,12 +55,14 @@
         ],
         "htmlCoverage": [
             "@server",
+            "sleep 3",
             "vendor/bin/phpunit --coverage-html coverage"
         ],
         "phpcs": "vendor/bin/phpcs --standard=phpcs.xml $(find . -name '*.php');",
         "phpmd": "vendor/bin/phpmd src,tests text ./phpmd.xml",
         "phpunit": [
             "@server",
+            "sleep 3",
             "vendor/bin/phpunit"
         ],
         "server": "gnome-terminal -e 'php -S localhost:9888 -t tests/Proxy/'",

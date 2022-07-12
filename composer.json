@@ -55,13 +55,11 @@
         ],
         "htmlCoverage": [
             "@server",
-            "clear",
             "vendor/bin/phpunit --coverage-html coverage"
         ],
         "phpcs": "vendor/bin/phpcs --standard=phpcs.xml $(find . -name '*.php');",
         "phpmd": "vendor/bin/phpmd src,tests text ./phpmd.xml",
         "phpunit": [
-            "clear",
             "@server",
             "vendor/bin/phpunit"
         ],

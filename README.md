@@ -1,10 +1,22 @@
 # PHP Cookie library
 
-[![Latest Stable Version](https://poser.pugx.org/josantonius/Cookie/v/stable)](https://packagist.org/packages/josantonius/Cookie) [![Latest Unstable Version](https://poser.pugx.org/josantonius/Cookie/v/unstable)](https://packagist.org/packages/josantonius/Cookie) [![License](https://poser.pugx.org/josantonius/Cookie/license)](LICENSE) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e51e4c06b0b54ce493454d4f895a3ef3)](https://www.codacy.com/app/Josantonius/PHP-Cookie?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Josantonius/PHP-Cookie&amp;utm_campaign=Badge_Grade) [![Total Downloads](https://poser.pugx.org/josantonius/Cookie/downloads)](https://packagist.org/packages/josantonius/Cookie) [![Travis](https://travis-ci.org/Josantonius/PHP-Cookie.svg)](https://travis-ci.org/Josantonius/PHP-Cookie) [![PSR2](https://img.shields.io/badge/PSR-2-1abc9c.svg)](http://www.php-fig.org/psr/psr-2/) [![PSR4](https://img.shields.io/badge/PSR-4-9b59b6.svg)](http://www.php-fig.org/psr/psr-4/) [![CodeCov](https://codecov.io/gh/Josantonius/PHP-Cookie/branch/master/graph/badge.svg)](https://codecov.io/gh/Josantonius/PHP-Cookie)
+[![Latest Stable Version](https://poser.pugx.org/josantonius/cookie/v/stable)](https://packagist.org/packages/josantonius/cookie)
+[![License](https://poser.pugx.org/josantonius/cookie/license)](LICENSE)
+[![Total Downloads](https://poser.pugx.org/josantonius/cookie/downloads)](https://packagist.org/packages/josantonius/cookie)
+[![CI](https://github.com/josantonius/php-cookie/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/josantonius/php-cookie/actions/workflows/ci.yml)
+[![CodeCov](https://codecov.io/gh/josantonius/php-cookie/branch/master/graph/badge.svg)](https://codecov.io/gh/josantonius/php-cookie)
+[![PSR1](https://img.shields.io/badge/PSR-1-f57046.svg)](https://www.php-fig.org/psr/psr-1/)
+[![PSR4](https://img.shields.io/badge/PSR-4-9b59b6.svg)](https://www.php-fig.org/psr/psr-4/)
+[![PSR12](https://img.shields.io/badge/PSR-12-1abc9c.svg)](https://www.php-fig.org/psr/psr-12/)
 
-[Versión en español](README-ES.md)
+**Translations**: [Español](.github/lang/es-ES/README.md)
 
 PHP library for handling cookies.
+
+> Version 1.x is considered as deprecated and unsupported.
+> In this version (2.x) the library was completely restructured.
+> It is recommended to review the documentation for this version and make the necessary changes
+> before starting to use it, as it not be compatible with version 1.x.
 
 ---
 
@@ -13,18 +25,19 @@ PHP library for handling cookies.
 - [Available Methods](#available-methods)
 - [Quick Start](#quick-start)
 - [Usage](#usage)
+- [About Cookie Expires](#about-cookie-expires)
 - [Tests](#tests)
-- [TODO](#-todo)
-- [Contribute](#contribute)
-- [Repository](#repository)
+- [TODO](#todo)
+- [Changelog](#changelog)
+- [Contribution](#contribution)
+- [Sponsor](#Sponsor)
 - [License](#license)
-- [Copyright](#copyright)
 
 ---
 
 ## Requirements
 
-This library is supported by **PHP versions 5.6** or higher.
+This library is compatible with the PHP versions: 8.1.
 
 ## Installation
 
@@ -32,95 +45,26 @@ The preferred way to install this extension is through [Composer](http://getcomp
 
 To install **PHP Cookie library**, simply:
 
-    $ composer require Josantonius/Cookie
+```console
+composer require josantonius/cookie
+```
 
-The previous command will only install the necessary files, if you prefer to **download the entire source code** you can use:
+The previous command will only install the necessary files,
+if you prefer to **download the entire source code** you can use:
 
-    $ composer require Josantonius/Cookie --prefer-source
+```console
+composer require josantonius/cookie --prefer-source
+```
 
 You can also **clone the complete repository** with Git:
 
-	$ git clone https://github.com/Josantonius/PHP-Cookie.git
-
-Or **install it manually**:
-
-[Download Cookie.php](https://raw.githubusercontent.com/Josantonius/PHP-Cookie/master/src/Cookie.php):
-
-    $ wget https://raw.githubusercontent.com/Josantonius/PHP-Cookie/master/src/Cookie.php
+```console
+git clone https://github.com/josantonius/php-cookie.git
+```
 
 ## Available Methods
 
-Available methods in this library:
-
-### - Set cookie:
-
-```php
-Cookie::set($key, $value, $time);
-```
-
-| Attribute | Description | Type | Required | Default
-| --- | --- | --- | --- | --- |
-| $key | Cookie name. | string | Yes | |
-| $value | The data to save. | string | Yes | |
-| $time | Expiration time in days. | string | No | 365 |
-
-**# Return** (boolean)
-
-### - Get item from cookie:
-
-```php
-Cookie::get($key);
-```
-
-| Attribute | Description | Type | Required | Default
-| --- | --- | --- | --- | --- |
-| $key | Cookie name. | string | No | '' |
-
-**# Return** (mixed|false) → returns cookie value, cookies array or false
-
-### - Extract item from cookie and delete cookie:
-
-```php
-Cookie::pull($key);
-```
-
-| Attribute | Description | Type | Required | Default
-| --- | --- | --- | --- | --- |
-| $key | Cookie name. | string | Yes | |
-
-**# Return** (string|false) → item or false when key does not exists
-
-### - Extract item from cookie and delete cookie:
-
-```php
-Cookie::destroy($key);
-```
-
-| Attribute | Description | Type | Required | Default
-| --- | --- | --- | --- | --- |
-| $key | Cookie name to destroy. Not set to delete all. | string | No | '' |
-
-**# Return** (boolean)
-
-### - Set cookie prefix:
-
-```php
-Cookie::setPrefix($prefix);
-```
-
-| Attribute | Description | Type | Required | Default
-| --- | --- | --- | --- | --- |
-| $prefix | Cookie prefix. | string | Yes | |
-
-**# Return** (boolean)
-
-### - Get cookie prefix:
-
-```php
-Cookie::getPrefix();
-```
-
-**# Return** (string) → cookie prefix
+See [documentation](docs/api/packages/Application.html) generated by [phpDocumentor](https://www.phpdoc.org/).
 
 ## Quick Start
 
@@ -128,130 +72,328 @@ To use this class with **Composer**:
 
 ```php
 require __DIR__ . '/vendor/autoload.php';
-
-use Josantonius\Cookie\Cookie;
 ```
 
-Or If you installed it **manually**, use it:
+### Using objects
 
 ```php
-require_once __DIR__ . '/Cookie.php';
-
 use Josantonius\Cookie\Cookie;
+
+$cookie = new Cookie();
+```
+
+### Using the facade
+
+Alternatively you can use a facade to access the methods statically:
+
+```php
+use Josantonius\Cookie\CookieFacade as Cookie;
 ```
 
 ## Usage
 
 Example of use for this library:
 
-### - Set cookie:
+### Sets cookie options
+
+[Using objects](#using-objects):
+
+Without setting options:
 
 ```php
-Cookie::set('cookie_name', 'value', 365);
+/**
+ * Default options:
+ * 
+ * domain:   ''    - Domain for which the cookie is available.
+ * expires:  0     - The time the cookie will expire.
+ * httpOnly: false - If true, the cookie will only be available through the HTTP protocol.
+ * path:     '/'   - Path for which the cookie is available.
+ * raw:      false - If true, the cookie will be sent as a raw string.
+ * sameSite: null  - Enforces the use of a Lax or Strict SameSite policy.
+ * secure:   false - If true, the cookie will only be available through the HTTPS protocol.
+ * 
+ * These settings will be used to create and delete cookies.
+ */
+
+$cookie = new Cookie();
 ```
 
-### - Get cookie:
+Setting options:
 
 ```php
-Cookie::get('cookie_name');
+$cookie = new Cookie(
+    domain: 'example.com',
+    expires: time() + 3600,
+    httpOnly: true,
+    path: '/foo',
+    raw: true,
+    sameSite: 'Strict',
+    secure: true,
+);
 ```
 
-### - Get all cookies:
+[Using the facade](#using-the-facade):
 
 ```php
-Cookie::get();
+Cookie::options(
+    expires: 'now +1 hour',
+    httpOnly: true,
+);
 ```
 
-### - Pull cookie:
+### Sets a cookie by name
+
+[Using objects](#using-objects):
+
+Without modifying the expiration time:
 
 ```php
-Cookie::pull('cookie_name');
+$cookie->set('foo', 'bar');
 ```
 
-### - Destroy one cookie:
+Modifying the expiration time:
 
 ```php
-Cookie::destroy('cookie_name');
+$cookie->set('foo', 'bar', time() + 3600);
 ```
 
-### - Destroy all cookies:
+[Using the facade](#using-the-facade):
 
 ```php
-Cookie::destroy();
+Cookie::set('foo', 'bar', new DateTime('now +1 hour'));
 ```
 
-### - Set cookie prefix:
+### Sets several cookies at once
+
+[Using objects](#using-objects):
+
+Without modifying the expiration time:
 
 ```php
-Cookie::setPrefix('prefix_');
+$cookie->replace(['foo' => 'bar', 'bar' => 'foo']);
 ```
 
-### - Get cookie prefix:
+Modifying the expiration time:
 
 ```php
-Cookie::getPrefix();
+$cookie->replace(['foo' => 'bar', 'bar' => 'foo'], time() + 3600);
 ```
 
-## Tests 
+[Using the facade](#using-the-facade):
 
-To run [tests](tests) you just need [composer](http://getcomposer.org/download/) and to execute the following:
+```php
+Cookie::replace(['foo' => 'bar', 'bar' => 'foo'], time() + 3600);
+```
 
-    $ git clone https://github.com/Josantonius/PHP-Cookie.git
-    
-    $ cd PHP-Cookie
+### Gets a cookie by name
 
-    $ composer install
+[Using objects](#using-objects):
+
+Without default value if cookie does not exist:
+
+```php
+$cookie->get('foo'); // null if cookie does not exist
+```
+
+With default value if cookie does not exist:
+
+```php
+$cookie->get('foo', false); // false if cookie does not exist
+```
+
+[Using the facade](#using-the-facade):
+
+```php
+Cookie::get('foo', false);
+```
+
+### Gets all cookies
+
+[Using objects](#using-objects):
+
+```php
+$cookie->all();
+```
+
+[Using the facade](#using-the-facade):
+
+```php
+Cookie::all();
+```
+
+### Check if a cookie exists
+
+[Using objects](#using-objects):
+
+```php
+$cookie->has('foo');
+```
+
+[Using the facade](#using-the-facade):
+
+```php
+Cookie::has('foo');
+```
+
+### Deletes a cookie by name and returns its value
+
+[Using objects](#using-objects):
+
+Without default value if cookie does not exist:
+
+```php
+$cookie->pull('foo'); // null if attribute does not exist
+```
+
+With default value if cookie does not exist:
+
+```php
+$cookie->pull('foo', false); // false if attribute does not exist
+```
+
+[Using the facade](#using-the-facade):
+
+```php
+Cookie::pull('foo', false);
+```
+
+### Deletes an cookie by name
+
+[Using objects](#using-objects):
+
+```php
+$cookie->remove('foo');
+```
+
+[Using the facade](#using-the-facade):
+
+```php
+Cookie::remove('foo');
+```
+
+## About cookie expires
+
+- The **expires** parameter used in several methods of this library accepts the following types:
+`int|string|DateTime`.
+
+  - `Integers` will be handled as unix time except zero.
+  - `Strings` will be handled as date/time formats.
+  See supported [Date and Time Formats](https://www.php.net/manual/en/datetime.formats.php)
+  for more information.
+
+    ```php
+    $cookie = new Cookie(
+        expires: '2016-12-15 +1 day'
+    );
+    ```
+
+    It would be similar to:
+
+    ```php
+    $cookie = new Cookie(
+        expires: new DateTime('2016-12-15 +1 day')
+    );
+    ```
+
+  - `DateTime` objects will be used to obtain the unix time.
+
+- If the **expires** parameter is used in the `set` or `replace` methods,
+it will be taken instead of the **expires** value set in the cookie options.
+
+    ```php
+    $cookie = new Cookie(
+        expires: 'now +1 minute'
+    );
+
+    $cookie->set('foo', 'bar');                        // This cookie will expire in 1 minute
+
+    $cookie->set('bar', 'foo', 'now +8 minutes');      // This cookie will expire in 8 minutes
+
+    $cookie->replace(['foo' => 'bar']);                // This cookies will expire in 1 minute
+
+    $cookie->replace(['foo' => 'bar'], time() + 3600); // This cookies will expire in 1 hour
+    ```
+
+- If the **expires** parameter passed in the options is a date/time string,
+it is formatted when using the `set` or `replace` method and not when setting the options.
+
+    ```php
+    $cookie = new Cookie(
+        expires: 'now +1 minute', // It will not be formatted as unix time yet
+    );
+
+    $cookie->set('foo', 'bar');   // It is will formatted now
+                                  // and will expire 1 minute after this cookie is created
+    ```
+
+## Tests
+
+To run [tests](tests) you just need [composer](http://getcomposer.org/download/)and to execute the following:
+
+```console
+git clone https://github.com/josantonius/php-cookie.git
+```
+
+```console
+cd php-cookie
+```
+
+```console
+composer install
+```
 
 Run unit tests with [PHPUnit](https://phpunit.de/):
 
-    $ composer phpunit
+```console
+composer phpunit
+```
 
-Run [PSR2](http://www.php-fig.org/psr/psr-2/) code standard tests with [PHPCS](https://github.com/squizlabs/PHP_CodeSniffer):
+Run [PSR2](http://www.php-fig.org/psr/psr-2/) code standard tests with
+[PHPCS](https://github.com/squizlabs/PHP_CodeSniffer):
 
-    $ composer phpcs
+```console
+composer phpcs
+```
 
 Run [PHP Mess Detector](https://phpmd.org/) tests to detect inconsistencies in code style:
 
-    $ composer phpmd
+```console
+composer phpmd
+```
 
 Run all previous tests:
 
-    $ composer tests
+```console
+composer tests
+```
 
-## ☑ TODO
+## TODO
 
-- [ ] Add new feature.
-- [ ] Improve tests.
-- [ ] Improve documentation.
-- [ ] Refactor code for disabled code style rules. See [phpmd.xml](phpmd.xml) and [.php_cs.dist](.php_cs.dist).
+- [ ] Add new feature
+- [ ] Improve tests
+- [ ] Improve documentation
+- [ ] Improve English translation in the README file
+- [ ] Refactor code for disabled code style rules. See [phpmd.xml](phpmd.xml) and [phpcs.xml](phpcs.xml)
 
-## Contribute
+## Changelog
 
-If you would like to help, please take a look at the list of
-[issues](https://github.com/Josantonius/PHP-Cookie/issues) or the [To Do](#-todo) checklist.
+Detailed changes for each release are documented in the
+[release notes](https://github.com/josantonius/php-cookie/releases).
 
-**Pull requests**
+## Contribution
 
-* [Fork and clone](https://help.github.com/articles/fork-a-repo).
-* Run the command `composer install` to install the dependencies.
-  This will also install the [dev dependencies](https://getcomposer.org/doc/03-cli.md#install).
-* Run the command `composer fix` to excute code standard fixers.
-* Run the [tests](#tests).
-* Create a **branch**, **commit**, **push** and send me a
-  [pull request](https://help.github.com/articles/using-pull-requests).
+Please make sure to read the [Contributing Guide](.github/CONTRIBUTING.md), before making a pull
+request, start a discussion or report a issue.
 
-## Repository
+Thanks to all [contributors](https://github.com/josantonius/php-cookie/graphs/contributors)! :heart:
 
-The file structure from this repository was created with [PHP-Skeleton](https://github.com/Josantonius/PHP-Skeleton).
+## Sponsor
+
+If this project helps you to reduce your development time,
+[you can sponsor me](https://github.com/josantonius#sponsor) to support my open source work :blush:
 
 ## License
 
-This project is licensed under **MIT license**. See the [LICENSE](LICENSE) file for more info.
+This repository is licensed under the [MIT License](LICENSE).
 
-## Copyright
-
-2016 - 2018 Josantonius, [josantonius.com](https://josantonius.com/)
-
-If you find it useful, let me know :wink:
-
-You can contact me on [Twitter](https://twitter.com/Josantonius) or through my [email](mailto:hello@josantonius.com).
+Copyright © 2016-present, [Josantonius](https://github.com/josantonius#contact)

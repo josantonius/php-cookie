@@ -54,14 +54,16 @@ jobs:
         uses: 'shivammathur/setup-php@v2'
         with:
           php-version: '${{ matrix.php }}'
-          extensions: curl
           coverage: 'none'
-          tools: phpunit:9.5
+          tools: 'composer:v2'
+
+      - name: 'Install dependencies'
+        run: |
+          composer install --no-interaction --no-progress --ansi
       
       - name: 'Run unit tests'
         run: |
-          php -S localhost:9888 -t tests/Proxy/
-          phpunit
+          composer phpunit
           
   code-coverage:
     runs-on: 'ubuntu-latest'
@@ -74,7 +76,6 @@ jobs:
         uses: 'shivammathur/setup-php@v2'
         with:
           php-version: '8.1'
-          extensions: curl
           tools: 'composer:v2'
 
       - name: 'Install dependencies'

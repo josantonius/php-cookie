@@ -49,23 +49,12 @@
         }
     },
     "scripts": {
-        "coverage": [
-            "@server",
-            "vendor/bin/phpunit --coverage-clover=coverage.xml"
-        ],
-        "fix": [
-            "vendor/bin/phpcbf src tests"
-        ],
-        "htmlCoverage": [
-            "@server",
-            "vendor/bin/phpunit --coverage-html coverage"
-        ],
+        "coverage": "vendor/bin/phpunit --coverage-clover=coverage.xml",
+        "fix": "vendor/bin/phpcbf src tests",
+        "htmlCoverage": "vendor/bin/phpunit --coverage-html coverage",
         "phpcs": "vendor/bin/phpcs --standard=phpcs.xml $(find . -name '*.php');",
         "phpmd": "vendor/bin/phpmd src,tests text ./phpmd.xml",
-        "phpunit": [
-            "@server",
-            "vendor/bin/phpunit"
-        ],
+        "phpunit": "vendor/bin/phpunit",
         "server": "php -S localhost:9888 -t tests/Proxy/ &",
         "tests": [
             "clear",

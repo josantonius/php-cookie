@@ -13,7 +13,7 @@ require '../../vendor/autoload.php';
 
 use Josantonius\Cookie\Cookie;
 
-if (($unserialize = unserialize($_GET['expires'])) !== false) {
+if ((@$unserialize = unserialize($_GET['expires'])) !== false) {
     $_GET['expires'] = $unserialize;
 }
 

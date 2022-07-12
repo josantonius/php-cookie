@@ -56,15 +56,12 @@ jobs:
           php-version: '${{ matrix.php }}'
           extensions: curl
           coverage: 'none'
-          tools: 'composer:v2'
-
-      - name: 'Install dependencies'
-        run: |
-          composer install --no-interaction --no-progress --ansi
+          tools: phpunit:9.5
       
       - name: 'Run unit tests'
         run: |
-          composer phpunit
+          php -S localhost:9888 -t tests/Proxy/
+          phpunit
           
   code-coverage:
     runs-on: 'ubuntu-latest'

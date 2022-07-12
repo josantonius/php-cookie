@@ -61,9 +61,12 @@ jobs:
         run: |
           composer install --no-interaction --no-progress --ansi
       
+      - name: 'Run php server'
+        run: |
+          composer server
       - name: 'Run unit tests'
-        - run: composer server
-        - run: composer phpunit
+        run: |
+          composer phpunit
           
   code-coverage:
     runs-on: 'ubuntu-latest'

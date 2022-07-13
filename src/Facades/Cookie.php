@@ -11,14 +11,14 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Josantonius\Cookie;
+namespace Josantonius\Cookie\Facades;
 
 use Josantonius\Cookie\Cookie as CookieInstance;
 
 /**
  * Cookie handler with static methods.
  */
-class CookieFacade
+class Cookie
 {
     private static ?CookieInstance $cookie = null;
 
@@ -43,7 +43,7 @@ class CookieFacade
      * @param bool                $httpOnly Access to cookie only through the HTTP protocol.
      * @param string              $path     Path where the cookie will be available.
      * @param bool                $raw      If cookie value should be sent without url encoding.
-     * @param string              $sameSite Enforces the use of a Lax or Strict SameSite policy.
+     * @param null|string         $sameSite Enforces the use of a Lax or Strict SameSite policy.
      *                                      Available values: None|Lax|Strict.
      * @param bool                $secure   Transmit cookie only over a secure HTTPS connection.
      *
@@ -54,11 +54,11 @@ class CookieFacade
      */
     public static function options(
         string $domain = '',
-        int|DateTime $expires = 0,
+        int|string|DateTime $expires = 0,
         bool $httpOnly = false,
         string $path = '/',
         bool $raw = false,
-        ?string $sameSite = null,
+        null|string $sameSite = null,
         bool $secure = false,
     ): void {
         self::$cookie = new CookieInstance(
@@ -91,7 +91,7 @@ class CookieFacade
     /**
      * Gets a cookie by name.
      *
-     * Optionally defines a default value when the attribute does not exist.
+     * Optionally defines a default value when the cookie does not exist.
      */
     public function get(string $name, mixed $default = null): mixed
     {
@@ -136,7 +136,7 @@ class CookieFacade
     /**
      * Deletes a cookie by name and returns its value.
      *
-     * Optionally defines a default value when the attribute does not exist.
+     * Optionally defines a default value when the cookie does not exist.
      *
      * @throws CookieException if headers already sent.
      */

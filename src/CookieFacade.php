@@ -13,17 +13,26 @@ declare(strict_types=1);
 
 namespace Josantonius\Cookie;
 
-use DateTime;
-use Josantonius\Cookie\Exceptions\CookieException;
-use Throwable;
+use Josantonius\Cookie\Cookie as CookieInstance;
 
 /**
- * Cookie handler.
+ * Cookie handler with static methods.
  */
-class Cookie
+class CookieFacade
 {
+    private static ?CookieInstance $cookie = null;
+
+    private static function getInstance()
+    {
+        if (!self::$cookie) {
+            self::options();
+        }
+
+        return self::$cookie;
+    }
+
     /**
-     * Generates instance with a particular cookie settings configuration.
+     * Set cookie options.
      *
      * These settings will be used to create and delete cookies.
      *
@@ -43,31 +52,32 @@ class Cookie
      *
      * @throws CookieException if $sameSite value is wrong.
      */
-    public function __construct(
-        private string $domain = '',
-        private int|string|DateTime $expires = 0,
-        private bool $httpOnly = false,
-        private string $path = '/',
-        private bool $raw = false,
-        private ?string $sameSite = null,
-        private bool $secure = false,
-    ) {
-        $this->failIfSameSiteValueIsWrong();
-
-        set_error_handler(
-            fn (int $severity, string $message, string $file) =>
-            $file === __FILE__ && throw new CookieException($message)
+    public static function options(
+        string $domain = '',
+        int|DateTime $expires = 0,
+        bool $httpOnly = false,
+        string $path = '/',
+        bool $raw = false,
+        ?string $sameSite = null,
+        bool $secure = false,
+    ): void {
+        self::$cookie = new CookieInstance(
+            domain: $domain,
+            expires: $expires,
+            httpOnly: $httpOnly,
+            path: $path,
+            raw: $raw,
+            sameSite: $sameSite,
+            secure: $secure,
         );
     }
 
     /**
      * Gets all cookies.
-     *
-     * @return array<string, mixed>
      */
     public function all(): array
     {
-        return $_COOKIE ?? [];
+        return self::getInstance()->all();
     }
 
     /**
@@ -75,7 +85,7 @@ class Cookie
      */
     public function has(string $name): bool
     {
-        return isset($_COOKIE[$name]);
+        return self::getInstance()->has($name);
     }
 
     /**
@@ -85,7 +95,7 @@ class Cookie
      */
     public function get(string $name, mixed $default = null): mixed
     {
-        return $_COOKIE[$name] ?? $default;
+        return self::getInstance()->get($name, $default);
     }
 
     /**
@@ -98,13 +108,10 @@ class Cookie
      * @see https://www.php.net/manual/en/datetime.formats.php
      *
      * @throws CookieException if headers already sent.
-     * @throws CookieException if failure in date/time string analysis.
      */
-    public function set(string $name, mixed $value, null|int|string|DateTime $expires = null): void
+    public function set(string $name, mixed $value, null|int|DateTime $expires = null): void
     {
-        $params = [$name, $value, $this->getOptions($expires === null ? $this->expires : $expires)];
-
-        $this->raw ? setrawcookie(...$params) : setcookie(...$params);
+        self::getInstance()->set($name, $value, $expires);
     }
 
     /**
@@ -121,11 +128,9 @@ class Cookie
      *
      * @throws CookieException if headers already sent.
      */
-    public function replace(array $data, null|int|string|DateTime $expires = null): void
+    public function replace(array $data, null|int|DateTime $expires = null): void
     {
-        foreach ($data as $name => $value) {
-            $this->set($name, $value, $expires);
-        }
+        self::getInstance()->replace($data, $expires);
     }
 
     /**
@@ -137,24 +142,17 @@ class Cookie
      */
     public function pull(string $name, mixed $default = null): mixed
     {
-        $value = $_COOKIE[$name] ?? $default;
-
-        $this->remove($name);
-
-        return $value;
+        return self::getInstance()->pull($name, $default);
     }
 
     /**
      * Deletes a cookie by name.
      *
      * @throws CookieException if headers already sent.
-     * @throws CookieException if failure in date/time string analysis.
      */
     public function remove(string $name): void
     {
-        $params = [$name, '', $this->getOptions(1, false)];
-
-        $this->raw ? setrawcookie(...$params) : setcookie(...$params);
+        self::getInstance()->remove($name);
     }
 
     /**
@@ -164,70 +162,6 @@ class Cookie
      */
     public function clear(): void
     {
-        foreach ($_COOKIE ?? [] as $name) {
-            $this->remove($name);
-        }
-    }
-
-    /**
-     * Gets cookie options.
-     *
-     * @throws CookieException if failure in date/time string analysis.
-     */
-    private function getOptions(null|int|string|DateTime $expires, bool $formatTime = true): array
-    {
-        if ($formatTime) {
-            $expires = $this->formatExpirationTime($expires);
-        }
-
-        $options = [
-            'domain' => $this->domain,
-            'expires' => $expires,
-            'httponly' => $this->httpOnly,
-            'path' => $this->path,
-            'secure' => $this->secure,
-        ];
-
-        if ($this->sameSite !== null) {
-            $options['samesite'] = $this->sameSite;
-        }
-
-        return $options;
-    }
-
-    /**
-     * Format the expiration time.
-     *
-     * @throws CookieException if failure in date/time string analysis.
-     */
-    private function formatExpirationTime(int|string|DateTime $expires): int
-    {
-        if ($expires instanceof DateTime) {
-            return (int) $expires->format('U');
-        } elseif (is_int($expires)) {
-            return $expires;
-        } elseif (is_string($expires)) {
-            try {
-                return (int) (new DateTime($expires))->format('U');
-            } catch (Throwable $exception) {
-                throw new CookieException($exception->getMessage(), $exception);
-            }
-        }
-    }
-
-    /**
-     * Throw exception if $sameSite value is wrong.
-     *
-     * @throws CookieException if $sameSite value is wrong.
-     */
-    private function failIfSameSiteValueIsWrong(): void
-    {
-        $values = ['none', 'lax', 'strict'];
-
-        if ($this->sameSite && !in_array(strtolower($this->sameSite), $values)) {
-            throw new CookieException(
-                'Invalid value for the sameSite param. Available values: ' . implode('|', $values)
-            );
-        }
+        self::getInstance()->clear();
     }
 }

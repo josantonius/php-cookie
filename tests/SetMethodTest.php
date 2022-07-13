@@ -16,7 +16,7 @@ use Josantonius\Cookie\Cookie;
 use PHPUnit\Framework\TestCase;
 use Josantonius\Cookie\Tests\Proxy\CookieProxy;
 use Josantonius\Cookie\Exceptions\CookieException;
-use Josantonius\Cookie\CookieFacade;
+use Josantonius\Cookie\Facades\Cookie as CookieFacade;
 
 class SetMethodTest extends TestCase
 {

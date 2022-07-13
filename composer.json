@@ -4,8 +4,8 @@
     "license": "MIT",
     "type": "library",
     "keywords": [
-        "Cookies",
-        "PHP"
+        "cookies",
+        "php"
     ],
     "authors": [
         {
@@ -21,7 +21,7 @@
         "discussions": "https://github.com/josantonius/php-cookie/discussions"
     },
     "require": {
-        "php": "^8.0"
+        "php": "^8.1"
     },
     "require-dev": {
         "guzzlehttp/guzzle": "^7.4",

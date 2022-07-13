@@ -68,15 +68,15 @@ git clone https://github.com/josantonius/php-cookie.git
 
 ```php
 /**
- * Opciones por defecto:
+ * Opciones:
  * 
- * domain:   ''    - Dominio para el que estará disponible la cookie.
- * expires:  0     - Cuándo expirará la cookie.
- * httpOnly: false - Si la cookie sólo estará disponible a través del protocolo HTTP.
- * path:     '/'   - Ruta para la que estará disponible la cookie.
- * raw:      false - Si la cookie se enviará como una cadena sin procesar.
- * sameSite: null  - Impone el uso de una política samesite laxa o estricta.
- * secure:   false - Si la cookie sólo estará disponible a través del protocolo HTTPS.
+ * domain:   Dominio para el que estará disponible la cookie.
+ * expires:  Cuándo expirará la cookie.
+ * httpOnly: Si la cookie sólo estará disponible a través del protocolo HTTP.
+ * path:     Ruta para la que estará disponible la cookie.
+ * raw:      Si la cookie se enviará como una cadena sin procesar.
+ * sameSite: Impone el uso de una política samesite laxa o estricta.
+ * secure:   Si la cookie sólo estará disponible a través del protocolo HTTPS.
  * 
  * Estos ajustes se utilizarán para crear y eliminar cookies.
  */
@@ -100,7 +100,11 @@ para conocer los formatos de fecha y hora admitidos.
 ### Establece una cookie por nombre
 
 ```php
-$cookie->set(string $name, mixed $value, null|int|string|DateTime $expires = null): void;
+$cookie->set(
+    string $name,
+    mixed $value,
+    null|int|string|DateTime $expires = null
+): void
 ```
 
 **@throws** `CookieException` si las cabeceras ya han sido enviadas.
@@ -112,7 +116,10 @@ $cookie->set(string $name, mixed $value, null|int|string|DateTime $expires = nul
 Si las cookies existen se sustituyen, si no existen se crean.
 
 ```php
-$cookie->replace(array $data, null|int|string|DateTime $expires = null): void
+$cookie->replace(
+    array $data,
+    null|int|string|DateTime $expires = null
+): void
 ```
 
 **@throws** `CookieException` si las cabeceras ya han sido enviadas.
@@ -382,16 +389,13 @@ se utilizará este en lugar del valor de **_expires_** establecido en las opcion
         expires: 'now +1 minute'
     );
 
-    $cookie->set('foo', 'bar');                // Esta cookie expirará en 1 minuto
+    $cookie->set('foo', 'bar');                        // Caduca en 1 minuto
 
-    $cookie->set('bar', 'foo', 'now +8 days'); // Esta cookie expirará en 8 días
+    $cookie->set('bar', 'foo', 'now +8 days');         // Caduca en 8 días
 
-    $cookie->replace(['foo' => 'bar']);        // Estas cookies expirarán en 1 minuto
+    $cookie->replace(['foo' => 'bar']);                // Caduca en 1 minuto
 
-    $cookie->replace(                          // Estas cookies expirarán en 1 hora
-        ['foo' => 'bar'],
-        time() + 3600
-    );
+    $cookie->replace(['foo' => 'bar'], time() + 3600); // Caduca en 1 hora
     ```
 
 - Si el parámetro **expires** pasado en las opciones es una cadena de fecha/hora,
@@ -402,8 +406,7 @@ se formateará cuando se utiliza el método `set` o `replace` y no cuando se est
         expires: 'now +1 minute', // Todavía no se formateará como tiempo unix
     );
 
-    $cookie->set('foo', 'bar');   // Se formateará en este momento
-                                  // y expirará 1 minuto después de la creación de esta cookie
+    $cookie->set('foo', 'bar');   // Se formateará ahora y expirará en 1 minuto
     ```
 
 ## Tests

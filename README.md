@@ -70,15 +70,15 @@ Available methods in this library:
 
 ```php
 /**
- * Default options:
+ * Cookie options:
  * 
- * domain:   ''    - Domain for which the cookie is available.
- * expires:  0     - The time the cookie will expire.
- * httpOnly: false - If cookie will only be available through the HTTP protocol.
- * path:     '/'   - Path for which the cookie is available.
- * raw:      false - If cookie will be sent as a raw string.
- * sameSite: null  - Enforces the use of a Lax or Strict SameSite policy.
- * secure:   false - If cookie will only be available through the HTTPS protocol.
+ * domain:   Domain for which the cookie is available.
+ * expires:  The time the cookie will expire.
+ * httpOnly: If cookie will only be available through the HTTP protocol.
+ * path:     Path for which the cookie is available.
+ * raw:      If cookie will be sent as a raw string.
+ * sameSite: Enforces the use of a Lax or Strict SameSite policy.
+ * secure:   If cookie will only be available through the HTTPS protocol.
  * 
  * These settings will be used to create and delete cookies.
  */
@@ -102,7 +102,11 @@ for supported date and time formats.
 ### Sets a cookie by name
 
 ```php
-$cookie->set(string $name, mixed $value, null|int|string|DateTime $expires = null): void;
+$cookie->set(
+    string $name,
+    mixed $value,
+    null|int|string|DateTime $expires = null
+): void
 ```
 
 **@throws** `CookieException` if headers already sent.
@@ -114,7 +118,10 @@ $cookie->set(string $name, mixed $value, null|int|string|DateTime $expires = nul
 If cookies exist they are replaced, if they do not exist they are created.
 
 ```php
-$cookie->replace(array $data, null|int|string|DateTime $expires = null): void
+$cookie->replace(
+    array $data,
+    null|int|string|DateTime $expires = null
+): void
 ```
 
 **@throws** `CookieException` if headers already sent.
@@ -249,19 +256,28 @@ Cookie::set('foo', 'bar', new DateTime('now +1 hour'));
 Without modifying the expiration time:
 
 ```php
-$cookie->replace(['foo' => 'bar', 'bar' => 'foo']);
+$cookie->replace([
+    'foo' => 'bar',
+    'bar' => 'foo'
+]);
 ```
 
 Modifying the expiration time:
 
 ```php
-$cookie->replace(['foo' => 'bar', 'bar' => 'foo'], time() + 3600);
+$cookie->replace([
+    'foo' => 'bar',
+    'bar' => 'foo'
+], time() + 3600);
 ```
 
 [Using the facade](#using-the-facade):
 
 ```php
-Cookie::replace(['foo' => 'bar', 'bar' => 'foo'], time() + 3600);
+Cookie::replace([
+    'foo' => 'bar',
+    'bar' => 'foo'
+], time() + 3600);
 ```
 
 ### - Gets a cookie by name
@@ -384,16 +400,13 @@ it will be taken instead of the **expires** value set in the cookie options.
         expires: 'now +1 minute'
     );
 
-    $cookie->set('foo', 'bar');                // This cookie will expire in 1 minute
+    $cookie->set('foo', 'bar');                        // Expires in 1 minute
 
-    $cookie->set('bar', 'foo', 'now +8 days'); // This cookie will expire in 8 days
+    $cookie->set('bar', 'foo', 'now +8 days');         // Expires in 8 days
 
-    $cookie->replace(['foo' => 'bar']);        // This cookies will expire in 1 minute
+    $cookie->replace(['foo' => 'bar']);                // Expires in 1 minute
 
-    $cookie->replace(                          // This cookies will expire in 1 hour
-        ['foo' => 'bar'],
-        time() + 3600
-    ); 
+    $cookie->replace(['foo' => 'bar'], time() + 3600); // Expires in 1 hour
     ```
 
 - If the **expires** parameter passed in the options is a date/time string,
@@ -404,8 +417,7 @@ it is formatted when using the `set` or `replace` method and not when setting th
         expires: 'now +1 minute', // It will not be formatted as unix time yet
     );
 
-    $cookie->set('foo', 'bar');   // It is will formatted now
-                                  // and will expire 1 minute after this cookie is created
+    $cookie->set('foo', 'bar');   // It is will formatted now and expires in 1 minute
     ```
 
 ## Tests
@@ -456,7 +468,7 @@ composer tests
 - [ ] Improve tests
 - [ ] Improve documentation
 - [ ] Improve English translation in the README file
-- [ ] Refactor code for disabled code style rules. See [phpmd.xml](phpmd.xml) and [phpcs.xml](phpcs.xml)
+- [ ] Refactor code for disabled code style rules (see phpmd.xml and phpcs.xml)
 
 ## Changelog
 

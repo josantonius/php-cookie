@@ -13,7 +13,7 @@ namespace Josantonius\Cookie\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Josantonius\Cookie\Tests\Proxy\CookieProxy;
-use Josantonius\Cookie\CookieFacade;
+use Josantonius\Cookie\Facades\Cookie as CookieFacade;
 
 class ClearMethodTest extends TestCase
 {

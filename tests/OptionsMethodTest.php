@@ -12,7 +12,7 @@
 namespace Josantonius\Cookie\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Josantonius\Cookie\CookieFacade;
+use Josantonius\Cookie\Facades\Cookie as CookieFacade;
 
 class OptionsMethodTest extends TestCase
 {

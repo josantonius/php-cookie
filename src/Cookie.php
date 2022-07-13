@@ -34,7 +34,7 @@ class Cookie
      * @param bool                $httpOnly Access to cookie only through the HTTP protocol.
      * @param string              $path     Path where the cookie will be available.
      * @param bool                $raw      If cookie value should be sent without url encoding.
-     * @param string              $sameSite Enforces the use of a Lax or Strict SameSite policy.
+     * @param null|string         $sameSite Enforces the use of a Lax or Strict SameSite policy.
      *                                      Available values: None|Lax|Strict.
      * @param bool                $secure   Transmit cookie only over a secure HTTPS connection.
      *
@@ -49,7 +49,7 @@ class Cookie
         private bool $httpOnly = false,
         private string $path = '/',
         private bool $raw = false,
-        private ?string $sameSite = null,
+        private null|string $sameSite = null,
         private bool $secure = false,
     ) {
         $this->failIfSameSiteValueIsWrong();
@@ -81,7 +81,7 @@ class Cookie
     /**
      * Gets a cookie by name.
      *
-     * Optionally defines a default value when the attribute does not exist.
+     * Optionally defines a default value when the cookie does not exist.
      */
     public function get(string $name, mixed $default = null): mixed
     {
@@ -131,7 +131,7 @@ class Cookie
     /**
      * Deletes a cookie by name and returns its value.
      *
-     * Optionally defines a default value when the attribute does not exist.
+     * Optionally defines a default value when the cookie does not exist.
      *
      * @throws CookieException if headers already sent.
      */

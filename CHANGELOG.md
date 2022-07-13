@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [2.0.2](https://github.com/josantonius/php-cookie/releases/tag/2.0.2) (2022-07-13)
+
+* Fixed required PHP version.
+
+* Improved documentation.
+
 ## [2.0.1](https://github.com/josantonius/php-cookie/releases/tag/2.0.1) (2022-07-13)
 
 * Removed `phpDocumentor` for generate documentation.

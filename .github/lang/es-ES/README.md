@@ -64,7 +64,98 @@ git clone https://github.com/josantonius/php-cookie.git
 
 ## Métodos disponibles
 
-Ver [documentación](/docs/api/packages/Application.html) generada por [phpDocumentor](https://www.phpdoc.org/).
+### Establece las opciones de las cookies
+
+```php
+/**
+ * Opciones por defecto:
+ * 
+ * domain:   ''    - Dominio para el que estará disponible la cookie.
+ * expires:  0     - Cuándo expirará la cookie.
+ * httpOnly: false - Si la cookie sólo estará disponible a través del protocolo HTTP.
+ * path:     '/'   - Ruta para la que estará disponible la cookie.
+ * raw:      false - Si la cookie se enviará como una cadena sin procesar.
+ * sameSite: null  - Impone el uso de una política samesite laxa o estricta.
+ * secure:   false - Si la cookie sólo estará disponible a través del protocolo HTTPS.
+ * 
+ * Estos ajustes se utilizarán para crear y eliminar cookies.
+ */
+
+$cookie = new Cookie(
+    string              $domain   = '',
+    int|string|DateTime $expires  = 0,
+    bool                $httpOnly = false,
+    string              $path     = '/',
+    bool                $raw      = false,
+    null|string         $sameSite = null,
+    bool                $secure   = false
+);
+```
+
+**@see** <https://www.php.net/manual/en/datetime.formats.php>
+para conocer los formatos de fecha y hora admitidos.
+
+**@throws** `CookieException` si el valor de $sameSite es incorrecto.
+
+### Establece una cookie por nombre
+
+```php
+$cookie->set(string $name, mixed $value, null|int|string|DateTime $expires = null): void;
+```
+
+**@throws** `CookieException` si las cabeceras ya han sido enviadas.
+
+**@throws** `CookieException` si falla el análisis de la cadena de fecha/hora.
+
+### Establece varias cookies a la vez
+
+Si las cookies existen se sustituyen, si no existen se crean.
+
+```php
+$cookie->replace(array $data, null|int|string|DateTime $expires = null): void
+```
+
+**@throws** `CookieException` si las cabeceras ya han sido enviadas.
+
+### Obtiene una cookie por su nombre
+
+Opcionalmente define un valor por defecto cuando la cookie no existe.
+
+```php
+$cookie->get(string $name, mixed $default = null): mixed
+```
+
+### Obtiene todas las cookies
+
+```php
+$cookie->all(): array
+```
+
+### Comprueba si existe una cookie
+
+```php
+$cookie->has(string $name): bool
+```
+
+### Elimina una cookie por su nombre y devuelve su valor
+
+Opcionalmente define un valor por defecto cuando la cookie no existe.
+
+```php
+$cookie->pull(string $name, mixed $default = null): mixed
+```
+
+**@throws** `CookieException` si las cabeceras ya han sido enviadas.
+
+### Borra una cookie por su nombre
+
+```php
+$cookie->remove(string $name): void
+```
+
+**@throws** `CookieException` si las cabeceras ya han sido enviadas.
+
+**@throws** `CookieException` si falla el análisis de la cadena de fecha/hora.
 
 ## Cómo empezar
 
@@ -87,34 +178,20 @@ $cookie = new Cookie();
 Alternativamente puedes utilizar una fachada para acceder a los métodos estáticamente:
 
 ```php
-use Josantonius\Cookie\CookieFacade as Cookie;
+use Josantonius\Cookie\Facades\Cookie;
 ```
 
 ## Usage
 
 Ejemplos de uso de esta biblioteca:
 
-### Establece las opciones de las cookies
+### - Establece las opciones de las cookies
 
 [Utilizando objetos](#using-objects):
 
 Con opciones por defecto:
 
 ```php
-/**
- * Opciones por defecto:
- * 
- * domain:   ''    - Dominio para el que estará disponible la cookie.
- * expires:  0     - Cuándo expirará la cookie.
- * httpOnly: false - Si es verdadero, la cookie sólo estará disponible a través del protocolo HTTP.
- * path:     '/'   - Ruta para la que estará disponible la cookie.
- * raw:      false - Si es verdadero, la cookie se enviará como una cadena sin procesar.
- * sameSite: null  - Impone el uso de una política samesite laxa o estricta.
- * secure:   false - Si es verdadero, la cookie sólo estará disponible a través del protocolo HTTPS.
- * 
- * Estos ajustes se utilizarán para crear y eliminar cookies.
- */
-
 $cookie = new Cookie();
 ```
 
@@ -141,7 +218,7 @@ Cookie::options(
 );
 ```
 
-### Establece una cookie por nombre
+### - Establece una cookie por nombre
 
 [Utilizando objetos](#using-objects):
 
@@ -163,7 +240,7 @@ $cookie->set('foo', 'bar', time() + 3600);
 Cookie::set('foo', 'bar', new DateTime('now +1 hour'));
 ```
 
-### Establece varias cookies a la vez
+### - Establece varias cookies a la vez
 
 [Utilizando objetos](#using-objects):
 
@@ -185,7 +262,7 @@ $cookie->replace(['foo' => 'bar', 'bar' => 'foo'], time() + 3600);
 Cookie::replace(['foo' => 'bar', 'bar' => 'foo'], time() + 3600);
 ```
 
-### Obtiene una cookie por su nombre
+### - Obtiene una cookie por su nombre
 
 [Utilizando objetos](#using-objects):
 
@@ -207,7 +284,7 @@ $cookie->get('foo', false); // false si la cookie no existe
 Cookie::get('foo', false);
 ```
 
-### Obtiene todas las cookies
+### - Obtiene todas las cookies
 
 [Utilizando objetos](#using-objects):
 
@@ -221,7 +298,7 @@ $cookie->all();
 Cookie::all();
 ```
 
-### Comprueba si existe una cookie
+### - Comprueba si existe una cookie
 
 [Utilizando objetos](#using-objects):
 
@@ -235,7 +312,7 @@ $cookie->has('foo');
 Cookie::has('foo');
 ```
 
-### Elimina una cookie por su nombre y devuelve su valor
+### - Elimina una cookie por su nombre y devuelve su valor
 
 [Utilizando objetos](#using-objects):
 
@@ -257,7 +334,7 @@ $cookie->pull('foo', false); // false si el atributo no existe
 Cookie::pull('foo', false);
 ```
 
-### Borra una cookie por su nombre
+### - Borra una cookie por su nombre
 
 [Utilizando objetos](#using-objects):
 
@@ -305,13 +382,16 @@ se utilizará este en lugar del valor de **_expires_** establecido en las opcion
         expires: 'now +1 minute'
     );
 
-    $cookie->set('foo', 'bar');                        // Esta cookie expirará en 1 minuto
+    $cookie->set('foo', 'bar');                // Esta cookie expirará en 1 minuto
 
-    $cookie->set('bar', 'foo', 'now +8 minutes');      // Esta cookie expirará en 8 minutos
+    $cookie->set('bar', 'foo', 'now +8 days'); // Esta cookie expirará en 8 días
 
-    $cookie->replace(['foo' => 'bar']);                // Estas cookies expirarán en 1 minuto
+    $cookie->replace(['foo' => 'bar']);        // Estas cookies expirarán en 1 minuto
 
-    $cookie->replace(['foo' => 'bar'], time() + 3600); // Estas cookies expirarán en 1 hora
+    $cookie->replace(                          // Estas cookies expirarán en 1 hora
+        ['foo' => 'bar'],
+        time() + 3600
+    );
     ```
 
 - Si el parámetro **expires** pasado en las opciones es una cadena de fecha/hora,
@@ -328,7 +408,8 @@ se formateará cuando se utiliza el método `set` o `replace` y no cuando se est
 
 ## Tests
 
-Para ejecutar las [pruebas](tests) necesitarás [Composer](http://getcomposer.org/download/) y seguir los siguientes pasos:
+Para ejecutar las [pruebas](tests) necesitarás [Composer](http://getcomposer.org/download/)
+y seguir los siguientes pasos:
 
 ```console
 git clone https://github.com/josantonius/php-cookie.git

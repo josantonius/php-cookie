@@ -62,12 +62,11 @@ jobs:
           composer install --no-interaction --no-progress --ansi
       
       - name: 'Run php server'
-        run: |
-          composer server
-      - name: 'Run unit tests'
-        run: |
-          composer phpunit
+        run: php -S localhost:9888 -t tests/Proxy/ &
           
+      - name: 'Run unit tests'
+        run: vendor/bin/phpunit
+
   code-coverage:
     runs-on: 'ubuntu-latest'
     name: 'Code Coverage'
@@ -85,9 +84,12 @@ jobs:
         run: |
           composer install --no-interaction --no-progress --ansi
       
+      - name: 'Run php server'
+        run: php -S localhost:9888 -t tests/Proxy/ &
+
       - name: 'Run code coverage'
         run: |
-          composer coverage
+          vendor/bin/phpunit --coverage-html coverage
 
       - name: Send code coverage report to Codecov.io
         uses: codecov/codecov-action@v2

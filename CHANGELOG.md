@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [2.0.1](https://github.com/josantonius/php-cookie/releases/tag/2.0.1) (2022-07-13)
+
+* Removed `phpDocumentor` for generate documentation.
+
+* Added documentation for available methods.
+
+* Renamed the facade from `Josantonius\Cookie\CookieFacade` to `Josantonius\Cookie\Facades\Cookie`.
+
 ## [2.0.0](https://github.com/josantonius/php-cookie/releases/tag/2.0.0) (2022-07-12)
 
 **IMPORTANT:**

@@ -4,7 +4,7 @@
 [![License](https://poser.pugx.org/josantonius/cookie/license)](LICENSE)
 [![Total Downloads](https://poser.pugx.org/josantonius/cookie/downloads)](https://packagist.org/packages/josantonius/cookie)
 [![CI](https://github.com/josantonius/php-cookie/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/josantonius/php-cookie/actions/workflows/ci.yml)
-[![CodeCov](https://codecov.io/gh/josantonius/php-cookie/branch/master/graph/badge.svg)](https://codecov.io/gh/josantonius/php-cookie)
+[![CodeCov](https://codecov.io/gh/josantonius/php-cookie/branch/main/graph/badge.svg)](https://codecov.io/gh/josantonius/php-cookie)
 [![PSR1](https://img.shields.io/badge/PSR-1-f57046.svg)](https://www.php-fig.org/psr/psr-1/)
 [![PSR4](https://img.shields.io/badge/PSR-4-9b59b6.svg)](https://www.php-fig.org/psr/psr-4/)
 [![PSR12](https://img.shields.io/badge/PSR-12-1abc9c.svg)](https://www.php-fig.org/psr/psr-12/)
@@ -12,11 +12,6 @@
 **Traducciones**: [English](/README.md)
 
 Biblioteca PHP para el manejo de cookies.
-
-> La versión 1.x se considera obsoleta y sin soporte.
-> En esta versión (2.x) la biblioteca fue completamente reestructurada.
-> Se recomienda revisar la documentación de esta versión y hacer los cambios necesarios
-> antes de empezar a utilizarla, ya que no es compatible con la versión 1.x.
 
 ---
 
@@ -432,8 +427,7 @@ Ejecutar pruebas unitarias con [PHPUnit](https://phpunit.de/):
 composer phpunit
 ```
 
-Ejecutar pruebas de estándares de código [PSR2](http://www.php-fig.org/psr/psr-2/) con
-[PHPCS](https://github.com/squizlabs/PHP_CodeSniffer):
+Ejecutar pruebas de estándares de código con [PHPCS](https://github.com/squizlabs/PHP_CodeSniffer):
 
 ```console
 composer phpcs

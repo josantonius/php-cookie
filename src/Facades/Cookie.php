@@ -50,7 +50,7 @@ class Cookie
      * @see https://www.php.net/manual/en/datetime.formats.php
      * @see https://www.php.net/manual/en/function.setcookie.php
      *
-     * @throws CookieException if $sameSite value is wrong.
+     * @throws CookieException if $sameSite value is wrong
      */
     public static function options(
         string $domain = '',
@@ -107,7 +107,7 @@ class Cookie
      *
      * @see https://www.php.net/manual/en/datetime.formats.php
      *
-     * @throws CookieException if headers already sent.
+     * @throws CookieException if headers already sent
      */
     public function set(string $name, mixed $value, null|int|DateTime $expires = null): void
     {
@@ -126,7 +126,7 @@ class Cookie
      *
      * @see https://www.php.net/manual/en/datetime.formats.php
      *
-     * @throws CookieException if headers already sent.
+     * @throws CookieException if headers already sent
      */
     public function replace(array $data, null|int|DateTime $expires = null): void
     {
@@ -138,7 +138,7 @@ class Cookie
      *
      * Optionally defines a default value when the cookie does not exist.
      *
-     * @throws CookieException if headers already sent.
+     * @throws CookieException if headers already sent
      */
     public function pull(string $name, mixed $default = null): mixed
     {
@@ -148,7 +148,7 @@ class Cookie
     /**
      * Deletes a cookie by name.
      *
-     * @throws CookieException if headers already sent.
+     * @throws CookieException if headers already sent
      */
     public function remove(string $name): void
     {
@@ -158,7 +158,7 @@ class Cookie
     /**
      * Deletes all cookies.
      *
-     * @throws CookieException if headers already sent.
+     * @throws CookieException if headers already sent
      */
     public function clear(): void
     {

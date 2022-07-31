@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Josantonius\Cookie;
 
 use DateTime;
-use Josantonius\Cookie\Exceptions\CookieException;
 use Throwable;
+use Josantonius\Cookie\Exceptions\CookieException;
 
 /**
  * Cookie handler.
@@ -41,7 +41,7 @@ class Cookie
      * @see https://www.php.net/manual/en/datetime.formats.php
      * @see https://www.php.net/manual/en/function.setcookie.php
      *
-     * @throws CookieException if $sameSite value is wrong.
+     * @throws CookieException if $sameSite value is wrong
      */
     public function __construct(
         private string $domain = '',
@@ -97,8 +97,8 @@ class Cookie
      *
      * @see https://www.php.net/manual/en/datetime.formats.php
      *
-     * @throws CookieException if headers already sent.
-     * @throws CookieException if failure in date/time string analysis.
+     * @throws CookieException if headers already sent
+     * @throws CookieException if failure in date/time string analysis
      */
     public function set(string $name, mixed $value, null|int|string|DateTime $expires = null): void
     {
@@ -119,7 +119,7 @@ class Cookie
      *
      * @see https://www.php.net/manual/en/datetime.formats.php
      *
-     * @throws CookieException if headers already sent.
+     * @throws CookieException if headers already sent
      */
     public function replace(array $data, null|int|string|DateTime $expires = null): void
     {
@@ -133,7 +133,7 @@ class Cookie
      *
      * Optionally defines a default value when the cookie does not exist.
      *
-     * @throws CookieException if headers already sent.
+     * @throws CookieException if headers already sent
      */
     public function pull(string $name, mixed $default = null): mixed
     {
@@ -147,8 +147,8 @@ class Cookie
     /**
      * Deletes a cookie by name.
      *
-     * @throws CookieException if headers already sent.
-     * @throws CookieException if failure in date/time string analysis.
+     * @throws CookieException if headers already sent
+     * @throws CookieException if failure in date/time string analysis
      */
     public function remove(string $name): void
     {
@@ -160,7 +160,7 @@ class Cookie
     /**
      * Deletes all cookies.
      *
-     * @throws CookieException if headers already sent.
+     * @throws CookieException if headers already sent
      */
     public function clear(): void
     {
@@ -172,7 +172,7 @@ class Cookie
     /**
      * Gets cookie options.
      *
-     * @throws CookieException if failure in date/time string analysis.
+     * @throws CookieException if failure in date/time string analysis
      */
     private function getOptions(null|int|string|DateTime $expires, bool $formatTime = true): array
     {
@@ -198,7 +198,7 @@ class Cookie
     /**
      * Format the expiration time.
      *
-     * @throws CookieException if failure in date/time string analysis.
+     * @throws CookieException if failure in date/time string analysis
      */
     private function formatExpirationTime(int|string|DateTime $expires): int
     {
@@ -218,7 +218,7 @@ class Cookie
     /**
      * Throw exception if $sameSite value is wrong.
      *
-     * @throws CookieException if $sameSite value is wrong.
+     * @throws CookieException if $sameSite value is wrong
      */
     private function failIfSameSiteValueIsWrong(): void
     {

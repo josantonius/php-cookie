@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [2.0.3](https://github.com/josantonius/php-cookie/releases/tag/2.0.3) (2022-07-31)
+
+Removed the warning about version 1.x in the README.md files.
+
+The namespaces sorted.
+
+Changed the PHPUnit version from 9.0 to 9.5.
+
+Fixed blank line at the beginning of the file in FUNDING.yml.
+
 ## [2.0.2](https://github.com/josantonius/php-cookie/releases/tag/2.0.2) (2022-07-13)
 
 * Fixed required PHP version.

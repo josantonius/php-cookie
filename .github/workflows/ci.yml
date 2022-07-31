@@ -80,7 +80,7 @@ jobs:
           php-version: '8.1'
           tools: 'composer:v2'
 
-      - name: 'Install dependencies'
+      - name: 'Install the dependencies'
         run: |
           composer install --no-interaction --no-progress --ansi
       

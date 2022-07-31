@@ -89,8 +89,7 @@ $cookie = new Cookie(
 );
 ```
 
-**@see** <https://www.php.net/manual/en/datetime.formats.php>
-for supported date and time formats.
+**@see** <https://www.php.net/manual/en/datetime.formats.php> for supported date and time formats.
 
 **@throws** `CookieException` if $sameSite value is wrong.
 
@@ -282,7 +281,7 @@ Cookie::replace([
 Without default value if cookie does not exist:
 
 ```php
-$cookie->get('foo'); // null if cookie does not exist
+$cookie->get('foo'); // null if the cookie does not exist
 ```
 
 With default value if cookie does not exist:

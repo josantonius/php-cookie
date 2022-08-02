@@ -58,7 +58,6 @@ Fixed blank line at the beginning of the file in FUNDING.yml.
 * `Travis` is discontinued for continuous integration. `GitHub Actions` will be used from now on.
 
 * Added `phpDocumentor` for generate documentation.
-
 * Added `.github/CODE_OF_CONDUCT.md` file.
 * Added `.github/CONTRIBUTING.md` file.
 * Added `.github/FUNDING.yml` file.

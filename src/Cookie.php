@@ -41,7 +41,7 @@ class Cookie
      * @see https://www.php.net/manual/en/datetime.formats.php
      * @see https://www.php.net/manual/en/function.setcookie.php
      *
-     * @throws CookieException if $sameSite value is wrong
+     * @throws CookieException if $sameSite value is wrong.
      */
     public function __construct(
         private string $domain = '',
@@ -52,12 +52,7 @@ class Cookie
         private null|string $sameSite = null,
         private bool $secure = false,
     ) {
-        $this->failIfSameSiteValueIsWrong();
-
-        set_error_handler(
-            fn (int $severity, string $message, string $file) =>
-            $file === __FILE__ && throw new CookieException($message)
-        );
+        $this->throwExceptionIfSameSiteValueIsWrong();
     }
 
     /**
@@ -97,11 +92,13 @@ class Cookie
      *
      * @see https://www.php.net/manual/en/datetime.formats.php
      *
-     * @throws CookieException if headers already sent
-     * @throws CookieException if failure in date/time string analysis
+     * @throws CookieException if headers already sent.
+     * @throws CookieException if failure in date/time string analysis.
      */
     public function set(string $name, mixed $value, null|int|string|DateTime $expires = null): void
     {
+        $this->throwExceptionIfHeadersWereSent();
+
         $params = [$name, $value, $this->getOptions($expires === null ? $this->expires : $expires)];
 
         $this->raw ? setrawcookie(...$params) : setcookie(...$params);
@@ -119,10 +116,12 @@ class Cookie
      *
      * @see https://www.php.net/manual/en/datetime.formats.php
      *
-     * @throws CookieException if headers already sent
+     * @throws CookieException if headers already sent.
      */
     public function replace(array $data, null|int|string|DateTime $expires = null): void
     {
+        $this->throwExceptionIfHeadersWereSent();
+
         foreach ($data as $name => $value) {
             $this->set($name, $value, $expires);
         }
@@ -133,10 +132,12 @@ class Cookie
      *
      * Optionally defines a default value when the cookie does not exist.
      *
-     * @throws CookieException if headers already sent
+     * @throws CookieException if headers already sent.
      */
     public function pull(string $name, mixed $default = null): mixed
     {
+        $this->throwExceptionIfHeadersWereSent();
+
         $value = $_COOKIE[$name] ?? $default;
 
         $this->remove($name);
@@ -147,11 +148,13 @@ class Cookie
     /**
      * Deletes a cookie by name.
      *
-     * @throws CookieException if headers already sent
-     * @throws CookieException if failure in date/time string analysis
+     * @throws CookieException if headers already sent.
+     * @throws CookieException if failure in date/time string analysis.
      */
     public function remove(string $name): void
     {
+        $this->throwExceptionIfHeadersWereSent();
+
         $params = [$name, '', $this->getOptions(1, false)];
 
         $this->raw ? setrawcookie(...$params) : setcookie(...$params);
@@ -160,10 +163,12 @@ class Cookie
     /**
      * Deletes all cookies.
      *
-     * @throws CookieException if headers already sent
+     * @throws CookieException if headers already sent.
      */
     public function clear(): void
     {
+        $this->throwExceptionIfHeadersWereSent();
+
         foreach ($_COOKIE ?? [] as $name) {
             $this->remove($name);
         }
@@ -172,7 +177,7 @@ class Cookie
     /**
      * Gets cookie options.
      *
-     * @throws CookieException if failure in date/time string analysis
+     * @throws CookieException if failure in date/time string analysis.
      */
     private function getOptions(null|int|string|DateTime $expires, bool $formatTime = true): array
     {
@@ -198,7 +203,7 @@ class Cookie
     /**
      * Format the expiration time.
      *
-     * @throws CookieException if failure in date/time string analysis
+     * @throws CookieException if failure in date/time string analysis.
      */
     private function formatExpirationTime(int|string|DateTime $expires): int
     {
@@ -216,11 +221,25 @@ class Cookie
     }
 
     /**
+     * Throw exception if headers have already been sent.
+     *
+     * @throws CookieException if headers already sent.
+     */
+    private function throwExceptionIfHeadersWereSent(): void
+    {
+        headers_sent($file, $line) && throw new CookieException(sprintf(
+            'The headers have already been sent in "%s" at line %d.',
+            $file,
+            $line
+        ));
+    }
+
+    /**
      * Throw exception if $sameSite value is wrong.
      *
-     * @throws CookieException if $sameSite value is wrong
+     * @throws CookieException if $sameSite value is wrong.
      */
-    private function failIfSameSiteValueIsWrong(): void
+    private function throwExceptionIfSameSiteValueIsWrong(): void
     {
         $values = ['none', 'lax', 'strict'];
 

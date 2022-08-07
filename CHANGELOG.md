@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [2.0.4](https://github.com/josantonius/php-cookie/releases/tag/2.0.4) (2022-08-08)
+
+* The error handler was removed as it could override a previously created error handler or be
+easily overridden by another error handler.
+
+* Functions were added to perform what was done from the error handler.
+
 ## [2.0.3](https://github.com/josantonius/php-cookie/releases/tag/2.0.3) (2022-07-31)
 
 Removed the warning about version 1.x in the README.md files.

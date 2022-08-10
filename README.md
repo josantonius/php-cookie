@@ -333,6 +333,8 @@ Cookie::options(
 ```php
 use Josantonius\Cookie\Cookie;
 
+$cookie = new Cookie();
+
 $cookie->set('foo', 'bar');
 ```
 
@@ -347,6 +349,8 @@ Cookie::set('foo', 'bar');
 ```php
 use Josantonius\Cookie\Cookie;
 
+$cookie = new Cookie();
+
 $cookie->set('foo', 'bar', time() + 3600);
 ```
 
@@ -360,6 +364,8 @@ Cookie::set('foo', 'bar', new DateTime('now +1 hour'));
 
 ```php
 use Josantonius\Cookie\Cookie;
+
+$cookie = new Cookie();
 
 $cookie->replace([
     'foo' => 'bar',
@@ -381,6 +387,8 @@ Cookie::replace([
 ```php
 use Josantonius\Cookie\Cookie;
 
+$cookie = new Cookie();
+
 $cookie->replace([
     'foo' => 'bar',
     'bar' => 'foo'
@@ -401,6 +409,8 @@ Cookie::replace([
 ```php
 use Josantonius\Cookie\Cookie;
 
+$cookie = new Cookie();
+
 $cookie->get('foo'); // null if the cookie does not exist
 ```
 
@@ -414,6 +424,8 @@ Cookie::get('foo'); // null if the cookie does not exist
 
 ```php
 use Josantonius\Cookie\Cookie;
+
+$cookie = new Cookie();
 
 $cookie->get('foo', false); // false if cookie does not exist
 ```
@@ -429,6 +441,8 @@ Cookie::get('foo', false); // false if cookie does not exist
 ```php
 use Josantonius\Cookie\Cookie;
 
+$cookie = new Cookie();
+
 $cookie->all();
 ```
 
@@ -442,6 +456,8 @@ Cookie::all();
 
 ```php
 use Josantonius\Cookie\Cookie;
+
+$cookie = new Cookie();
 
 $cookie->has('foo');
 ```
@@ -457,6 +473,8 @@ Cookie::has('foo');
 ```php
 use Josantonius\Cookie\Cookie;
 
+$cookie = new Cookie();
+
 $cookie->pull('foo'); // null if attribute does not exist
 ```
 
@@ -471,6 +489,8 @@ Cookie::pull('foo'); // null if attribute does not exist
 ```php
 use Josantonius\Cookie\Cookie;
 
+$cookie = new Cookie();
+
 $cookie->pull('foo', false); // false if attribute does not exist
 ```
 
@@ -484,6 +504,8 @@ Cookie::pull('foo', false); // false if attribute does not exist
 
 ```php
 use Josantonius\Cookie\Cookie;
+
+$cookie = new Cookie();
 
 $cookie->remove('foo');
 ```

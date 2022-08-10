@@ -17,8 +17,10 @@ Biblioteca PHP para el manejo de cookies.
 
 - [Requisitos](#requisitos)
 - [Instalación](#instalación)
-- [Métodos disponibles](#métodos-disponibles)
-- [Cómo empezar](#cómo-empezar)
+- [Clases disponibles](#clases-disponibles)
+  - [Clase Cookie](#clase-cookie)
+  - [Fachada Cookie](#fachada-cookie)
+- [Excepciones utilizadas](#excepciones-utilizadas)
 - [Uso](#uso)
 - [Sobre la caducidad de las cookies](#sobre-la-caducidad-de-las-cookies)
 - [Tests](#tests)
@@ -57,9 +59,15 @@ También puedes **clonar el repositorio** completo con Git:
 git clone https://github.com/josantonius/php-cookie.git
 ```
 
-## Métodos disponibles
+## Clases disponibles
 
-### Establece las opciones de las cookies
+### Clase Cookie
+
+```php
+use Josantonius\Cookie\Cookie;
+```
+
+Establece las opciones de las cookies:
 
 ```php
 /**
@@ -74,6 +82,11 @@ git clone https://github.com/josantonius/php-cookie.git
  * secure:   Si la cookie sólo estará disponible a través del protocolo HTTPS.
  * 
  * Estos ajustes se utilizarán para crear y eliminar cookies.
+ * 
+ * @throws CookieException if $sameSite value is wrong.
+ *
+ * @see https://www.php.net/manual/en/datetime.formats.php for date formats.
+ * @see https://www.php.net/manual/en/function.setcookie.php for more information.
  */
 
 $cookie = new Cookie(
@@ -87,14 +100,13 @@ $cookie = new Cookie(
 );
 ```
 
-**@see** <https://www.php.net/manual/en/datetime.formats.php>
-para conocer los formatos de fecha y hora admitidos.
-
-**@throws** `CookieException` si el valor de $sameSite es incorrecto.
-
-### Establece una cookie por nombre
+Establece una cookie por nombre:
 
 ```php
+/**
+ * @throws CookieException si las cabeceras ya han sido enviadas.
+ * @throws CookieException si falla el análisis de la cadena de fecha/hora.
+ */
 $cookie->set(
     string $name,
     mixed $value,
@@ -102,72 +114,182 @@ $cookie->set(
 ): void
 ```
 
-**@throws** `CookieException` si las cabeceras ya han sido enviadas.
-
-**@throws** `CookieException` si falla el análisis de la cadena de fecha/hora.
-
-### Establece varias cookies a la vez
-
-Si las cookies existen se sustituyen, si no existen se crean.
+Establece varias cookies a la vez:
 
 ```php
+/**
+ * Si las cookies existen se sustituyen, si no existen se crean.
+ *
+ * @throws CookieException si las cabeceras ya han sido enviadas.
+ */
 $cookie->replace(
     array $data,
     null|int|string|DateTime $expires = null
 ): void
 ```
 
-**@throws** `CookieException` si las cabeceras ya han sido enviadas.
-
-### Obtiene una cookie por su nombre
-
-Opcionalmente define un valor por defecto cuando la cookie no existe.
+Obtiene una cookie por su nombre:
 
 ```php
+/**
+ * Opcionalmente define un valor por defecto cuando la cookie no existe.
+ */
 $cookie->get(string $name, mixed $default = null): mixed
 ```
 
-### Obtiene todas las cookies
+Obtiene todas las cookies:
 
 ```php
 $cookie->all(): array
 ```
 
-### Comprueba si existe una cookie
+Comprueba si existe una cookie:
 
 ```php
 $cookie->has(string $name): bool
 ```
 
-### Elimina una cookie por su nombre y devuelve su valor
-
-Opcionalmente define un valor por defecto cuando la cookie no existe.
+Elimina una cookie por su nombre y devuelve su valor:
 
 ```php
+/**
+ * Opcionalmente define un valor por defecto cuando la cookie no existe.
+ * 
+ * @throws CookieException si las cabeceras ya han sido enviadas.
+ */
 $cookie->pull(string $name, mixed $default = null): mixed
 ```
 
-**@throws** `CookieException` si las cabeceras ya han sido enviadas.
-
-### Borra una cookie por su nombre
+Borra una cookie por su nombre:
 
 ```php
+/**
+ * @throws CookieException si las cabeceras ya han sido enviadas.
+ * @throws CookieException si falla el análisis de la cadena de fecha/hora.
+ */
 $cookie->remove(string $name): void
 ```
 
-**@throws** `CookieException` si las cabeceras ya han sido enviadas.
-
-**@throws** `CookieException` si falla el análisis de la cadena de fecha/hora.
-
-## Cómo empezar
-
-Para utilizar esta clase con `Composer`:
+### Fachada Cookie
 
 ```php
-require __DIR__ . '/vendor/autoload.php';
+use Josantonius\Cookie\Facades\Cookie;
 ```
 
-### Utilizando objetos
+Establece las opciones de las cookies:
+
+```php
+/**
+ * Opciones:
+ * 
+ * domain:   Dominio para el que estará disponible la cookie.
+ * expires:  Cuándo expirará la cookie.
+ * httpOnly: Si la cookie sólo estará disponible a través del protocolo HTTP.
+ * path:     Ruta para la que estará disponible la cookie.
+ * raw:      Si la cookie se enviará como una cadena sin procesar.
+ * sameSite: Impone el uso de una política samesite laxa o estricta.
+ * secure:   Si la cookie sólo estará disponible a través del protocolo HTTPS.
+ * 
+ * Estos ajustes se utilizarán para crear y eliminar cookies.
+ * 
+ * @throws CookieException if $sameSite value is wrong.
+ *
+ * @see https://www.php.net/manual/en/datetime.formats.php for date formats.
+ * @see https://www.php.net/manual/en/function.setcookie.php for more information.
+ */
+
+Cookie::options(
+    string              $domain   = '',
+    int|string|DateTime $expires  = 0,
+    bool                $httpOnly = false,
+    string              $path     = '/',
+    bool                $raw      = false,
+    null|string         $sameSite = null,
+    bool                $secure   = false
+);
+```
+
+Establece una cookie por nombre:
+
+```php
+/**
+ * @throws CookieException si las cabeceras ya han sido enviadas.
+ * @throws CookieException si falla el análisis de la cadena de fecha/hora.
+ */
+Cookie::set(
+    string $name,
+    mixed $value,
+    null|int|string|DateTime $expires = null
+): void
+```
+
+Establece varias cookies a la vez:
+
+```php
+/**
+ * Si las cookies existen se sustituyen, si no existen se crean.
+ *
+ * @throws CookieException si las cabeceras ya han sido enviadas.
+ */
+Cookie::replace(
+    array $data,
+    null|int|string|DateTime $expires = null
+): void
+```
+
+Obtiene una cookie por su nombre:
+
+```php
+/**
+ * Opcionalmente define un valor por defecto cuando la cookie no existe.
+ */
+Cookie::get(string $name, mixed $default = null): mixed
+```
+
+Obtiene todas las cookies:
+
+```php
+Cookie::all(): array
+```
+
+Comprueba si existe una cookie:
+
+```php
+Cookie::has(string $name): bool
+```
+
+Elimina una cookie por su nombre y devuelve su valor:
+
+```php
+/**
+ * Opcionalmente define un valor por defecto cuando la cookie no existe.
+ * 
+ * @throws CookieException si las cabeceras ya han sido enviadas.
+ */
+Cookie::pull(string $name, mixed $default = null): mixed
+```
+
+Borra una cookie por su nombre:
+
+```php
+/**
+ * @throws CookieException si las cabeceras ya han sido enviadas.
+ * @throws CookieException si falla el análisis de la cadena de fecha/hora.
+ */
+Cookie::remove(string $name): void
+```
+
+## Excepciones utilizadas
+
+```php
+use Josantonius\Cookie\Exceptions\CookieException;
+```
+
+## Usage
+
+Ejemplos de uso de esta biblioteca:
+
+### Crear una instancia de Cookie con opciones por defecto
 
 ```php
 use Josantonius\Cookie\Cookie;
@@ -175,31 +297,17 @@ use Josantonius\Cookie\Cookie;
 $cookie = new Cookie();
 ```
 
-### Utilizando la fachada
-
-Alternativamente puedes utilizar una fachada para acceder a los métodos estáticamente:
-
 ```php
 use Josantonius\Cookie\Facades\Cookie;
+
+Cookie::options();
 ```
 
-## Usage
-
-Ejemplos de uso de esta biblioteca:
-
-### - Establece las opciones de las cookies
-
-[Utilizando objetos](#using-objects):
-
-Con opciones por defecto:
+### Crear una instancia de Cookie con opciones personalizadas
 
 ```php
-$cookie = new Cookie();
-```
+use Josantonius\Cookie\Cookie;
 
-Con opciones personalizadas:
-
-```php
 $cookie = new Cookie(
     domain: 'example.com',
     expires: time() + 3600,
@@ -211,142 +319,178 @@ $cookie = new Cookie(
 );
 ```
 
-[Utilizando la fachada](#using-the-facade):
-
 ```php
+use Josantonius\Cookie\Facades\Cookie;
+
 Cookie::options(
     expires: 'now +1 hour',
     httpOnly: true,
 );
 ```
 
-### - Establece una cookie por nombre
-
-[Utilizando objetos](#using-objects):
-
-Sin modificar el tiempo de expiración:
+### Establece una cookie por nombre
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->set('foo', 'bar');
 ```
 
-Modificando el tiempo de expiración:
+```php
+use Josantonius\Cookie\Facades\Cookie;
+
+Cookie::set('foo', 'bar');
+```
+
+### Establece una cookie por nombre modificando el tiempo de caducidad
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->set('foo', 'bar', time() + 3600);
 ```
 
-[Utilizando la fachada](#using-the-facade):
-
 ```php
+use Josantonius\Cookie\Facades\Cookie;
+
 Cookie::set('foo', 'bar', new DateTime('now +1 hour'));
 ```
 
-### - Establece varias cookies a la vez
-
-[Utilizando objetos](#using-objects):
-
-Sin modificar el tiempo de expiración:
+### Establece varias cookies a la vez
 
 ```php
-$cookie->replace(['foo' => 'bar', 'bar' => 'foo']);
+use Josantonius\Cookie\Cookie;
+
+$cookie->replace([
+    'foo' => 'bar',
+    'bar' => 'foo'
+]);
 ```
 
-Modificando el tiempo de expiración:
-
 ```php
-$cookie->replace(['foo' => 'bar', 'bar' => 'foo'], time() + 3600);
+use Josantonius\Cookie\Facades\Cookie;
+
+Cookie::replace([
+    'foo' => 'bar',
+    'bar' => 'foo'
+], time() + 3600);
 ```
 
-[Utilizando la fachada](#using-the-facade):
+### Establece varias cookies a la vez modificando el tiempo de caducidad
 
 ```php
-Cookie::replace(['foo' => 'bar', 'bar' => 'foo'], time() + 3600);
+use Josantonius\Cookie\Cookie;
+
+$cookie->replace([
+    'foo' => 'bar',
+    'bar' => 'foo'
+], time() + 3600);
 ```
 
-### - Obtiene una cookie por su nombre
+```php
+use Josantonius\Cookie\Facades\Cookie;
 
-[Utilizando objetos](#using-objects):
+Cookie::replace([
+    'foo' => 'bar',
+    'bar' => 'foo'
+], time() + 3600);
+```
 
-Sin valor por defecto si la cookie no existe:
+### Obtiene una cookie por su nombre
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->get('foo'); // null si la cookie no existe
 ```
 
-Con valor por defecto si la cookie no existe:
+```php
+use Josantonius\Cookie\Facades\Cookie;
+
+Cookie::get('foo'); // null si la cookie no existe
+```
+
+### Obtiene una cookie por su nombre con valor por defecto si la cookie no existe
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->get('foo', false); // false si la cookie no existe
 ```
 
-[Utilizando la fachada](#using-the-facade):
-
 ```php
-Cookie::get('foo', false);
+use Josantonius\Cookie\Facades\Cookie;
+
+Cookie::get('foo', false); // false si la cookie no existe
 ```
 
-### - Obtiene todas las cookies
-
-[Utilizando objetos](#using-objects):
+### Obtiene todas las cookies
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->all();
 ```
 
-[Utilizando la fachada](#using-the-facade):
-
 ```php
+use Josantonius\Cookie\Facades\Cookie;
+
 Cookie::all();
 ```
 
-### - Comprueba si existe una cookie
-
-[Utilizando objetos](#using-objects):
+### Comprueba si existe una cookie
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->has('foo');
 ```
 
-[Utilizando la fachada](#using-the-facade):
-
 ```php
+use Josantonius\Cookie\Facades\Cookie;
+
 Cookie::has('foo');
 ```
 
-### - Elimina una cookie por su nombre y devuelve su valor
-
-[Utilizando objetos](#using-objects):
-
-Sin valor por defecto si la cookie no existe:
+### Elimina una cookie por su nombre y devuelve su valor
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->pull('foo'); // null si el atributo no existe
 ```
 
-Con valor por defecto si la cookie no existe:
+```php
+use Josantonius\Cookie\Facades\Cookie;
+
+Cookie::pull('foo'); // null si el atributo no existe
+```
+
+### Elimina una cookie y devuelve su valor o el valor por defecto no existe
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->pull('foo', false); // false si el atributo no existe
 ```
 
-[Utilizando la fachada](#using-the-facade):
-
 ```php
-Cookie::pull('foo', false);
+use Josantonius\Cookie\Facades\Cookie;
+
+Cookie::pull('foo', false); // false si el atributo no existe
 ```
 
-### - Borra una cookie por su nombre
-
-[Utilizando objetos](#using-objects):
+### Borra una cookie por su nombre
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->remove('foo');
 ```
 
-[Utilizando la fachada](#using-the-facade):
-
 ```php
+use Josantonius\Cookie\Facades\Cookie;
+
 Cookie::remove('foo');
 ```
 

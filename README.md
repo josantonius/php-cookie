@@ -17,8 +17,10 @@ PHP library for handling cookies.
 
 - [Requirements](#requirements)
 - [Installation](#installation)
-- [Available Methods](#available-methods)
-- [Quick Start](#quick-start)
+- [Available Classes](#available-classes)
+  - [Cookie Class](#cookie-class)
+  - [Cookie Facade](#cookie-facade)
+- [Exceptions Used](#exceptions-used)
 - [Usage](#usage)
 - [About Cookie Expires](#about-cookie-expires)
 - [Tests](#tests)
@@ -57,11 +59,15 @@ You can also **clone the complete repository** with Git:
 git clone https://github.com/josantonius/php-cookie.git
 ```
 
-## Available Methods
+## Available Classes
 
-Available methods in this library:
+### Cookie Class
 
-### Sets cookie options
+```php
+use Josantonius\Cookie\Cookie;
+```
+
+Sets cookie options:
 
 ```php
 /**
@@ -76,6 +82,11 @@ Available methods in this library:
  * secure:   If cookie will only be available through the HTTPS protocol.
  * 
  * These settings will be used to create and delete cookies.
+ * 
+ * @throws CookieException if $sameSite value is wrong.
+ *
+ * @see https://www.php.net/manual/en/datetime.formats.php for date formats.
+ * @see https://www.php.net/manual/en/function.setcookie.php for more information.
  */
 
 $cookie = new Cookie(
@@ -89,13 +100,13 @@ $cookie = new Cookie(
 );
 ```
 
-**@see** <https://www.php.net/manual/en/datetime.formats.php> for supported date and time formats.
-
-**@throws** `CookieException` if $sameSite value is wrong.
-
-### Sets a cookie by name
+Sets a cookie by name:
 
 ```php
+/**
+ * @throws CookieException if headers already sent.
+ * @throws CookieException if failure in date/time string analysis.
+ */
 $cookie->set(
     string $name,
     mixed $value,
@@ -103,72 +114,182 @@ $cookie->set(
 ): void
 ```
 
-**@throws** `CookieException` if headers already sent.
-
-**@throws** `CookieException` if failure in date/time string analysis.
-
-### Sets several cookies at once
-
-If cookies exist they are replaced, if they do not exist they are created.
+Sets several cookies at once:
 
 ```php
+/**
+ * If cookies exist they are replaced, if they do not exist they are created.
+ *
+ * @throws CookieException if headers already sent.
+ */
 $cookie->replace(
     array $data,
     null|int|string|DateTime $expires = null
 ): void
 ```
 
-**@throws** `CookieException` if headers already sent.
-
-### Gets a cookie by name
-
-Optionally defines a default value when the cookie does not exist.
+Gets a cookie by name:
 
 ```php
+/**
+ * Optionally defines a default value when the cookie does not exist.
+ */
 $cookie->get(string $name, mixed $default = null): mixed
 ```
 
-### Gets all cookies
+Gets all cookies:
 
 ```php
 $cookie->all(): array
 ```
 
-### Check if a cookie exists
+Check if a cookie exists:
 
 ```php
 $cookie->has(string $name): bool
 ```
 
-### Deletes a cookie by name and returns its value
-
-Optionally defines a default value when the cookie does not exist.
+Deletes a cookie by name and returns its value:
 
 ```php
+/**
+ * Optionally defines a default value when the cookie does not exist.
+ * 
+ * @throws CookieException if headers already sent.
+ */
 $cookie->pull(string $name, mixed $default = null): mixed
 ```
 
-**@throws** `CookieException` if headers already sent.
-
-### Deletes an cookie by name
+Deletes an cookie by name:
 
 ```php
+/**
+ * @throws CookieException if headers already sent.
+ * @throws CookieException if failure in date/time string analysis.
+ */
 $cookie->remove(string $name): void
 ```
 
-**@throws** `CookieException` if headers already sent.
-
-**@throws** `CookieException` if failure in date/time string analysis.
-
-## Quick Start
-
-To use this class with **Composer**:
+### Cookie Facade
 
 ```php
-require __DIR__ . '/vendor/autoload.php';
+use Josantonius\Cookie\Facades\Cookie;
 ```
 
-### Using objects
+Sets cookie options:
+
+```php
+/**
+ * Cookie options:
+ * 
+ * domain:   Domain for which the cookie is available.
+ * expires:  The time the cookie will expire.
+ * httpOnly: If cookie will only be available through the HTTP protocol.
+ * path:     Path for which the cookie is available.
+ * raw:      If cookie will be sent as a raw string.
+ * sameSite: Enforces the use of a Lax or Strict SameSite policy.
+ * secure:   If cookie will only be available through the HTTPS protocol.
+ * 
+ * These settings will be used to create and delete cookies.
+ * 
+ * @throws CookieException if $sameSite value is wrong.
+ *
+ * @see https://www.php.net/manual/en/datetime.formats.php for date formats.
+ * @see https://www.php.net/manual/en/function.setcookie.php for more information.
+ */
+
+Cookie::options(
+    string              $domain   = '',
+    int|string|DateTime $expires  = 0,
+    bool                $httpOnly = false,
+    string              $path     = '/',
+    bool                $raw      = false,
+    null|string         $sameSite = null,
+    bool                $secure   = false
+);
+```
+
+Sets a cookie by name:
+
+```php
+/**
+ * @throws CookieException if headers already sent.
+ * @throws CookieException if failure in date/time string analysis.
+ */
+Cookie::set(
+    string $name,
+    mixed $value,
+    null|int|string|DateTime $expires = null
+): void
+```
+
+Sets several cookies at once:
+
+```php
+/**
+ * If cookies exist they are replaced, if they do not exist they are created.
+ *
+ * @throws CookieException if headers already sent.
+ */
+Cookie::replace(
+    array $data,
+    null|int|string|DateTime $expires = null
+): void
+```
+
+Gets a cookie by name:
+
+```php
+/**
+ * Optionally defines a default value when the cookie does not exist.
+ */
+Cookie::get(string $name, mixed $default = null): mixed
+```
+
+Gets all cookies:
+
+```php
+Cookie::all(): array
+```
+
+Check if a cookie exists:
+
+```php
+Cookie::has(string $name): bool
+```
+
+Deletes a cookie by name and returns its value:
+
+```php
+/**
+ * Optionally defines a default value when the cookie does not exist.
+ * 
+ * @throws CookieException if headers already sent.
+ */
+Cookie::pull(string $name, mixed $default = null): mixed
+```
+
+Deletes an cookie by name:
+
+```php
+/**
+ * @throws CookieException if headers already sent.
+ * @throws CookieException if failure in date/time string analysis.
+ */
+Cookie::remove(string $name): void
+```
+
+## Exceptions Used
+
+```php
+use Josantonius\Cookie\Exceptions\CookieException;
+```
+
+## Usage
+
+Example of use for this library:
+
+### Create Cookie instance with default options
 
 ```php
 use Josantonius\Cookie\Cookie;
@@ -176,31 +297,17 @@ use Josantonius\Cookie\Cookie;
 $cookie = new Cookie();
 ```
 
-### Using the facade
-
-Alternatively you can use a facade to access the methods statically:
-
 ```php
 use Josantonius\Cookie\Facades\Cookie;
+
+Cookie::options();
 ```
 
-## Usage
-
-Example of use for this library:
-
-### - Sets cookie options
-
-[Using objects](#using-objects):
-
-Without setting options:
+### Create Cookie instance with custom options
 
 ```php
-$cookie = new Cookie();
-```
+use Josantonius\Cookie\Cookie;
 
-Setting options:
-
-```php
 $cookie = new Cookie(
     domain: 'example.com',
     expires: time() + 3600,
@@ -212,151 +319,178 @@ $cookie = new Cookie(
 );
 ```
 
-[Using the facade](#using-the-facade):
-
 ```php
+use Josantonius\Cookie\Facades\Cookie;
+
 Cookie::options(
     expires: 'now +1 hour',
     httpOnly: true,
 );
 ```
 
-### - Sets a cookie by name
-
-[Using objects](#using-objects):
-
-Without modifying the expiration time:
+### Sets a cookie by name
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->set('foo', 'bar');
 ```
 
-Modifying the expiration time:
+```php
+use Josantonius\Cookie\Facades\Cookie;
+
+Cookie::set('foo', 'bar');
+```
+
+### Sets a cookie by name modifying the expiration time
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->set('foo', 'bar', time() + 3600);
 ```
 
-[Using the facade](#using-the-facade):
-
 ```php
+use Josantonius\Cookie\Facades\Cookie;
+
 Cookie::set('foo', 'bar', new DateTime('now +1 hour'));
 ```
 
-### - Sets several cookies at once
-
-[Using objects](#using-objects):
-
-Without modifying the expiration time:
+### Sets several cookies at once
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->replace([
     'foo' => 'bar',
     'bar' => 'foo'
 ]);
 ```
 
-Modifying the expiration time:
-
 ```php
-$cookie->replace([
-    'foo' => 'bar',
-    'bar' => 'foo'
-], time() + 3600);
-```
+use Josantonius\Cookie\Facades\Cookie;
 
-[Using the facade](#using-the-facade):
-
-```php
 Cookie::replace([
     'foo' => 'bar',
     'bar' => 'foo'
 ], time() + 3600);
 ```
 
-### - Gets a cookie by name
-
-[Using objects](#using-objects):
-
-Without default value if cookie does not exist:
+### Sets several cookies at once modifying the expiration time
 
 ```php
+use Josantonius\Cookie\Cookie;
+
+$cookie->replace([
+    'foo' => 'bar',
+    'bar' => 'foo'
+], time() + 3600);
+```
+
+```php
+use Josantonius\Cookie\Facades\Cookie;
+
+Cookie::replace([
+    'foo' => 'bar',
+    'bar' => 'foo'
+], time() + 3600);
+```
+
+### Gets a cookie by name
+
+```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->get('foo'); // null if the cookie does not exist
 ```
 
-With default value if cookie does not exist:
+```php
+use Josantonius\Cookie\Facades\Cookie;
+
+Cookie::get('foo'); // null if the cookie does not exist
+```
+
+### Gets a cookie by name with default value if cookie does not exist
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->get('foo', false); // false if cookie does not exist
 ```
 
-[Using the facade](#using-the-facade):
-
 ```php
-Cookie::get('foo', false);
+use Josantonius\Cookie\Facades\Cookie;
+
+Cookie::get('foo', false); // false if cookie does not exist
 ```
 
-### - Gets all cookies
-
-[Using objects](#using-objects):
+### Gets all cookies
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->all();
 ```
 
-[Using the facade](#using-the-facade):
-
 ```php
+use Josantonius\Cookie\Facades\Cookie;
+
 Cookie::all();
 ```
 
-### - Check if a cookie exists
-
-[Using objects](#using-objects):
+### Check if a cookie exists
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->has('foo');
 ```
 
-[Using the facade](#using-the-facade):
-
 ```php
+use Josantonius\Cookie\Facades\Cookie;
+
 Cookie::has('foo');
 ```
 
-### - Deletes a cookie by name and returns its value
-
-[Using objects](#using-objects):
-
-Without default value if cookie does not exist:
+### Deletes a cookie by name and returns its value
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->pull('foo'); // null if attribute does not exist
 ```
 
-With default value if cookie does not exist:
+```php
+use Josantonius\Cookie\Facades\Cookie;
+
+Cookie::pull('foo'); // null if attribute does not exist
+```
+
+### Deletes a cookie and returns its value or default value if does not exist
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->pull('foo', false); // false if attribute does not exist
 ```
 
-[Using the facade](#using-the-facade):
-
 ```php
-Cookie::pull('foo', false);
+use Josantonius\Cookie\Facades\Cookie;
+
+Cookie::pull('foo', false); // false if attribute does not exist
 ```
 
-### - Deletes an cookie by name
-
-[Using objects](#using-objects):
+### Deletes an cookie by name
 
 ```php
+use Josantonius\Cookie\Cookie;
+
 $cookie->remove('foo');
 ```
 
-[Using the facade](#using-the-facade):
-
 ```php
+use Josantonius\Cookie\Facades\Cookie;
+
 Cookie::remove('foo');
 ```
 

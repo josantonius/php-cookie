@@ -89,14 +89,14 @@ Establece las opciones de las cookies:
  * @see https://www.php.net/manual/en/function.setcookie.php for more information.
  */
 
-$cookie = new Cookie(
-    string              $domain   = '',
-    int|string|DateTime $expires  = 0,
-    bool                $httpOnly = false,
-    string              $path     = '/',
-    bool                $raw      = false,
-    null|string         $sameSite = null,
-    bool                $secure   = false
+public function __construct(
+    private string              $domain   = '',
+    private int|string|DateTime $expires  = 0,
+    private bool                $httpOnly = false,
+    private string              $path     = '/',
+    private bool                $raw      = false,
+    private null|string         $sameSite = null,
+    private bool                $secure   = false
 );
 ```
 
@@ -107,7 +107,7 @@ Establece una cookie por nombre:
  * @throws CookieException si las cabeceras ya han sido enviadas.
  * @throws CookieException si falla el análisis de la cadena de fecha/hora.
  */
-$cookie->set(
+public function set(
     string $name,
     mixed $value,
     null|int|string|DateTime $expires = null
@@ -122,7 +122,7 @@ Establece varias cookies a la vez:
  *
  * @throws CookieException si las cabeceras ya han sido enviadas.
  */
-$cookie->replace(
+public function replace(
     array $data,
     null|int|string|DateTime $expires = null
 ): void;
@@ -134,19 +134,19 @@ Obtiene una cookie por su nombre:
 /**
  * Opcionalmente define un valor por defecto cuando la cookie no existe.
  */
-$cookie->get(string $name, mixed $default = null): mixed;
+public function get(string $name, mixed $default = null): mixed;
 ```
 
 Obtiene todas las cookies:
 
 ```php
-$cookie->all(): array;
+public function all(): array;
 ```
 
 Comprueba si existe una cookie:
 
 ```php
-$cookie->has(string $name): bool;
+public function has(string $name): bool;
 ```
 
 Elimina una cookie por su nombre y devuelve su valor:
@@ -157,7 +157,7 @@ Elimina una cookie por su nombre y devuelve su valor:
  * 
  * @throws CookieException si las cabeceras ya han sido enviadas.
  */
-$cookie->pull(string $name, mixed $default = null): mixed;
+public function pull(string $name, mixed $default = null): mixed;
 ```
 
 Borra una cookie por su nombre:
@@ -167,7 +167,7 @@ Borra una cookie por su nombre:
  * @throws CookieException si las cabeceras ya han sido enviadas.
  * @throws CookieException si falla el análisis de la cadena de fecha/hora.
  */
-$cookie->remove(string $name): void;
+public function remove(string $name): void;
 ```
 
 ### Fachada Cookie
@@ -198,7 +198,7 @@ Establece las opciones de las cookies:
  * @see https://www.php.net/manual/en/function.setcookie.php for more information.
  */
 
-Cookie::options(
+public static function options(
     string              $domain   = '',
     int|string|DateTime $expires  = 0,
     bool                $httpOnly = false,
@@ -206,7 +206,7 @@ Cookie::options(
     bool                $raw      = false,
     null|string         $sameSite = null,
     bool                $secure   = false
-);
+): void;
 ```
 
 Establece una cookie por nombre:
@@ -216,7 +216,7 @@ Establece una cookie por nombre:
  * @throws CookieException si las cabeceras ya han sido enviadas.
  * @throws CookieException si falla el análisis de la cadena de fecha/hora.
  */
-Cookie::set(
+public static function set(
     string $name,
     mixed $value,
     null|int|string|DateTime $expires = null
@@ -231,7 +231,7 @@ Establece varias cookies a la vez:
  *
  * @throws CookieException si las cabeceras ya han sido enviadas.
  */
-Cookie::replace(
+public static function replace(
     array $data,
     null|int|string|DateTime $expires = null
 ): void;
@@ -243,19 +243,19 @@ Obtiene una cookie por su nombre:
 /**
  * Opcionalmente define un valor por defecto cuando la cookie no existe.
  */
-Cookie::get(string $name, mixed $default = null): mixed;
+public static function get(string $name, mixed $default = null): mixed;
 ```
 
 Obtiene todas las cookies:
 
 ```php
-Cookie::all(): array;
+public static function all(): array;
 ```
 
 Comprueba si existe una cookie:
 
 ```php
-Cookie::has(string $name): bool;
+public static function has(string $name): bool;
 ```
 
 Elimina una cookie por su nombre y devuelve su valor:
@@ -266,7 +266,7 @@ Elimina una cookie por su nombre y devuelve su valor:
  * 
  * @throws CookieException si las cabeceras ya han sido enviadas.
  */
-Cookie::pull(string $name, mixed $default = null): mixed;
+public static function pull(string $name, mixed $default = null): mixed;
 ```
 
 Borra una cookie por su nombre:
@@ -276,7 +276,7 @@ Borra una cookie por su nombre:
  * @throws CookieException si las cabeceras ya han sido enviadas.
  * @throws CookieException si falla el análisis de la cadena de fecha/hora.
  */
-Cookie::remove(string $name): void;
+public static function remove(string $name): void;
 ```
 
 ## Excepciones utilizadas

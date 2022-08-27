@@ -7,6 +7,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * @phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
  */
 
 namespace Josantonius\Cookie\Tests;
@@ -19,7 +21,7 @@ class OptionsMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldBehaveSameAsConstructorWithDefaultValues(): void
+    public function test_should_behave_same_as_constructor_with_default_values(): void
     {
         $facade = new CookieFacade();
 
@@ -31,7 +33,7 @@ class OptionsMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldBehaveSameAsConstructorWithCustomValues(): void
+    public function test_should_behave_same_as_constructor_with_custom_values(): void
     {
         $facade = new CookieFacade();
 

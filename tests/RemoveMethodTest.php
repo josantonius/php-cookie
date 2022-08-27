@@ -7,6 +7,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * @phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
  */
 
 namespace Josantonius\Cookie\Tests;
@@ -30,7 +32,7 @@ class RemoveMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldRemoveCookieIfExist(): void
+    public function test_should_remove_cookie_if_exist(): void
     {
         $this->cookie->set('foo', 'bar');
 
@@ -42,14 +44,14 @@ class RemoveMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldRemoveCookieEvenIfNotExist(): void
+    public function test_should_remove_cookie_even_if_not_exist(): void
     {
         $this->cookie->remove('foo');
 
         $this->assertEquals([], $this->cookie->all());
     }
 
-    public function testShouldFailWhenHeadersSent(): void
+    public function test_should_fail_when_headers_sent(): void
     {
         $this->expectException(CookieException::class);
 
@@ -59,7 +61,7 @@ class RemoveMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldBeAvailableFromTheFacade(): void
+    public function test_should_be_available_from_the_facade(): void
     {
         $facade = new CookieFacade();
 

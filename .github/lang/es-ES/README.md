@@ -111,7 +111,7 @@ $cookie->set(
     string $name,
     mixed $value,
     null|int|string|DateTime $expires = null
-): void
+): void;
 ```
 
 Establece varias cookies a la vez:
@@ -125,7 +125,7 @@ Establece varias cookies a la vez:
 $cookie->replace(
     array $data,
     null|int|string|DateTime $expires = null
-): void
+): void;
 ```
 
 Obtiene una cookie por su nombre:
@@ -134,19 +134,19 @@ Obtiene una cookie por su nombre:
 /**
  * Opcionalmente define un valor por defecto cuando la cookie no existe.
  */
-$cookie->get(string $name, mixed $default = null): mixed
+$cookie->get(string $name, mixed $default = null): mixed;
 ```
 
 Obtiene todas las cookies:
 
 ```php
-$cookie->all(): array
+$cookie->all(): array;
 ```
 
 Comprueba si existe una cookie:
 
 ```php
-$cookie->has(string $name): bool
+$cookie->has(string $name): bool;
 ```
 
 Elimina una cookie por su nombre y devuelve su valor:
@@ -157,7 +157,7 @@ Elimina una cookie por su nombre y devuelve su valor:
  * 
  * @throws CookieException si las cabeceras ya han sido enviadas.
  */
-$cookie->pull(string $name, mixed $default = null): mixed
+$cookie->pull(string $name, mixed $default = null): mixed;
 ```
 
 Borra una cookie por su nombre:
@@ -167,7 +167,7 @@ Borra una cookie por su nombre:
  * @throws CookieException si las cabeceras ya han sido enviadas.
  * @throws CookieException si falla el análisis de la cadena de fecha/hora.
  */
-$cookie->remove(string $name): void
+$cookie->remove(string $name): void;
 ```
 
 ### Fachada Cookie
@@ -220,7 +220,7 @@ Cookie::set(
     string $name,
     mixed $value,
     null|int|string|DateTime $expires = null
-): void
+): void;
 ```
 
 Establece varias cookies a la vez:
@@ -234,7 +234,7 @@ Establece varias cookies a la vez:
 Cookie::replace(
     array $data,
     null|int|string|DateTime $expires = null
-): void
+): void;
 ```
 
 Obtiene una cookie por su nombre:
@@ -243,19 +243,19 @@ Obtiene una cookie por su nombre:
 /**
  * Opcionalmente define un valor por defecto cuando la cookie no existe.
  */
-Cookie::get(string $name, mixed $default = null): mixed
+Cookie::get(string $name, mixed $default = null): mixed;
 ```
 
 Obtiene todas las cookies:
 
 ```php
-Cookie::all(): array
+Cookie::all(): array;
 ```
 
 Comprueba si existe una cookie:
 
 ```php
-Cookie::has(string $name): bool
+Cookie::has(string $name): bool;
 ```
 
 Elimina una cookie por su nombre y devuelve su valor:
@@ -266,7 +266,7 @@ Elimina una cookie por su nombre y devuelve su valor:
  * 
  * @throws CookieException si las cabeceras ya han sido enviadas.
  */
-Cookie::pull(string $name, mixed $default = null): mixed
+Cookie::pull(string $name, mixed $default = null): mixed;
 ```
 
 Borra una cookie por su nombre:
@@ -276,7 +276,7 @@ Borra una cookie por su nombre:
  * @throws CookieException si las cabeceras ya han sido enviadas.
  * @throws CookieException si falla el análisis de la cadena de fecha/hora.
  */
-Cookie::remove(string $name): void
+Cookie::remove(string $name): void;
 ```
 
 ## Excepciones utilizadas

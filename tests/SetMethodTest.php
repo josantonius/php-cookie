@@ -7,6 +7,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * @phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
  */
 
 namespace Josantonius\Cookie\Tests;
@@ -32,7 +34,7 @@ class SetMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldSetCookieWithDefaultOptions(): void
+    public function test_should_set_with_default_options(): void
     {
         $this->cookie->set('foo', 'bar');
 
@@ -53,7 +55,7 @@ class SetMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldSetCookieWithCustomOptions(): void
+    public function test_should_set_with_custom_options(): void
     {
         $this->cookie = new CookieProxy(
             domain: 'localhost',
@@ -82,7 +84,7 @@ class SetMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldSetCookieWithCustomOptionsFormattingExpiresFromInteger(): void
+    public function test_should_set_with_custom_options_formatting_expires_from_integer(): void
     {
         $this->cookie = new CookieProxy(expires: time() + 8);
 
@@ -96,7 +98,7 @@ class SetMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldSetCookieWithCustomOptionsFormattingExpiresFromString(): void
+    public function test_should_set_with_custom_options_formatting_expires_from_string(): void
     {
         $this->cookie = new CookieProxy(expires: 'now +8 seconds');
 
@@ -110,7 +112,7 @@ class SetMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldSetCookieWithCustomOptionsFormattingExpiresFromDateTime(): void
+    public function test_should_set_with_custom_options_formatting_expires_from_date_time(): void
     {
         $this->cookie = new CookieProxy(expires: new DateTime('now +8 seconds'));
 
@@ -124,7 +126,7 @@ class SetMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldSetCookieWithExpirationTime(): void
+    public function test_should_set_with_expiration_time(): void
     {
         $this->cookie->set('foo', 'bar', time() + 8);
 
@@ -138,7 +140,7 @@ class SetMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldSetCookieReplacingGlobalExpirationValueWhenNewOneIsPassed(): void
+    public function test_should_set_replacing_global_expiration_value(): void
     {
         $this->cookie = new CookieProxy(expires: 'now +8 seconds');
 
@@ -154,7 +156,7 @@ class SetMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldSetCookieFormattingExpirationFromStringDateTime(): void
+    public function test_should_set_formatting_expiration_from_string_date_time(): void
     {
         $this->cookie->set('foo', 'bar', 'now + 8 seconds');
 
@@ -166,7 +168,7 @@ class SetMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldSetCookieFormattingExpirationFromInteger(): void
+    public function test_should_set_formatting_expiration_from_integer(): void
     {
         $this->cookie->set('foo', 'bar', time() + 8);
 
@@ -178,7 +180,7 @@ class SetMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldSetCookieFormattingExpirationFromDateTimeObject(): void
+    public function test_should_set_formatting_expiration_from_date_time_object(): void
     {
         $this->cookie->set('foo', 'bar', new DateTime('now +8 seconds'));
 
@@ -187,7 +189,7 @@ class SetMethodTest extends TestCase
         $this->assertEquals(time() + 8, $details['expires']);
     }
 
-    public function testShouldFailWhenParseWrongTimeString(): void
+    public function test_should_fail_when_parse_wrong_time_string(): void
     {
         $this->expectException(CookieException::class);
 
@@ -196,7 +198,7 @@ class SetMethodTest extends TestCase
         $this->cookie->set('foo', 'bar', 'foo');
     }
 
-    public function testShouldFailWhenHeadersSent(): void
+    public function test_should_fail_when_headers_sent(): void
     {
         $this->expectException(CookieException::class);
 
@@ -206,7 +208,7 @@ class SetMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldBeAvailableFromTheFacade(): void
+    public function test_should_be_available_from_the_facade(): void
     {
         $facade = new CookieFacade();
 

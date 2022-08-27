@@ -7,6 +7,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * @phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
  */
 
 namespace Josantonius\Cookie\Tests;
@@ -29,7 +31,7 @@ class ClearMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldClearAllCookies(): void
+    public function test_should_clear_all_cookies(): void
     {
         $this->cookie->set('foo', 'bar');
         $this->cookie->set('bar', 'foo');
@@ -42,7 +44,7 @@ class ClearMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldBeAvailableFromTheFacade(): void
+    public function test_should_be_available_from_the_facade(): void
     {
         $facade = new CookieFacade();
 

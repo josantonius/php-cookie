@@ -63,9 +63,7 @@ git clone https://github.com/josantonius/php-cookie.git
 
 ### Clase Cookie
 
-```php
-use Josantonius\Cookie\Cookie;
-```
+`Josantonius\Cookie\Cookie`
 
 Establece las opciones de las cookies:
 
@@ -88,7 +86,6 @@ Establece las opciones de las cookies:
  * @see https://www.php.net/manual/en/datetime.formats.php for date formats.
  * @see https://www.php.net/manual/en/function.setcookie.php for more information.
  */
-
 public function __construct(
     private string              $domain   = '',
     private int|string|DateTime $expires  = 0,
@@ -172,9 +169,7 @@ public function remove(string $name): void;
 
 ### Fachada Cookie
 
-```php
-use Josantonius\Cookie\Facades\Cookie;
-```
+`Josantonius\Cookie\Facades\Cookie`
 
 Establece las opciones de las cookies:
 
@@ -197,7 +192,6 @@ Establece las opciones de las cookies:
  * @see https://www.php.net/manual/en/datetime.formats.php for date formats.
  * @see https://www.php.net/manual/en/function.setcookie.php for more information.
  */
-
 public static function options(
     string              $domain   = '',
     int|string|DateTime $expires  = 0,
@@ -285,7 +279,7 @@ public static function remove(string $name): void;
 use Josantonius\Cookie\Exceptions\CookieException;
 ```
 
-## Usage
+## Uso
 
 Ejemplos de uso de esta biblioteca:
 

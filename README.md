@@ -27,7 +27,7 @@ PHP library for handling cookies.
 - [TODO](#todo)
 - [Changelog](#changelog)
 - [Contribution](#contribution)
-- [Sponsor](#Sponsor)
+- [Sponsor](#sponsor)
 - [License](#license)
 
 ---
@@ -63,9 +63,7 @@ git clone https://github.com/josantonius/php-cookie.git
 
 ### Cookie Class
 
-```php
-use Josantonius\Cookie\Cookie;
-```
+`Josantonius\Cookie\Cookie`
 
 Sets cookie options:
 
@@ -88,7 +86,6 @@ Sets cookie options:
  * @see https://www.php.net/manual/en/datetime.formats.php for date formats.
  * @see https://www.php.net/manual/en/function.setcookie.php for more information.
  */
-
 public function __construct(
     private string              $domain   = '',
     private int|string|DateTime $expires  = 0,
@@ -172,9 +169,7 @@ public function remove(string $name): void;
 
 ### Cookie Facade
 
-```php
-use Josantonius\Cookie\Facades\Cookie;
-```
+`Josantonius\Cookie\Facades\Cookie`
 
 Sets cookie options:
 
@@ -197,7 +192,6 @@ Sets cookie options:
  * @see https://www.php.net/manual/en/datetime.formats.php for date formats.
  * @see https://www.php.net/manual/en/function.setcookie.php for more information.
  */
-
 public static function options(
     string              $domain   = '',
     int|string|DateTime $expires  = 0,

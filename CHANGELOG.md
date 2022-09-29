@@ -10,8 +10,6 @@
 
 * The alignment of the asterisks in the comments has been fixed.
 
-* Tests for Windows have been added.
-
 * Tests for PHP 8.2 have been added.
 
 ## [2.0.5](https://github.com/josantonius/php-cookie/releases/tag/2.0.5) (2022-08-11)

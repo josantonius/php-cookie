@@ -7,6 +7,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * @phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
  */
 
 namespace Josantonius\Cookie\Tests;
@@ -31,7 +33,7 @@ class ReplaceMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldAddCookiesIfNotExist(): void
+    public function test_should_add_cookies_if_not_exist(): void
     {
         $this->cookie->replace(['foo' => 'bar']);
 
@@ -43,7 +45,7 @@ class ReplaceMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldReplaceCookiesIfExist(): void
+    public function test_should_replace_cookies_if_exist(): void
     {
         $this->cookie->set('foo', 'bar');
         $this->cookie->set('bar', 'foo');
@@ -59,7 +61,7 @@ class ReplaceMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldReplaceCookiesWithExpirationTime(): void
+    public function test_should_replace_cookies_with_expiration_time(): void
     {
         $this->cookie->replace(['foo' => 'bar'], time() + 8);
         $this->cookie->replace(['bar' => 'foo'], 'now +8 seconds');
@@ -72,7 +74,7 @@ class ReplaceMethodTest extends TestCase
         ], $this->cookie->all());
     }
 
-    public function testShouldFailWhenHeadersSent(): void
+    public function test_should_fail_when_headers_sent(): void
     {
         $this->expectException(CookieException::class);
 
@@ -82,7 +84,7 @@ class ReplaceMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldBeAvailableFromTheFacade(): void
+    public function test_should_be_available_from_the_facade(): void
     {
         $facade = new CookieFacade();
 

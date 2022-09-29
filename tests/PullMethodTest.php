@@ -7,6 +7,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * @phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
  */
 
 namespace Josantonius\Cookie\Tests;
@@ -30,7 +32,7 @@ class PullMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldPullCookieAndReturnTheValueIfExists(): void
+    public function test_should_pull_cookie_and_return_the_value_if_exists(): void
     {
         $this->cookie->set('foo', 'bar');
         $this->cookie->set('bar', 'foo');
@@ -46,7 +48,7 @@ class PullMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldReturnDefaultValueIfCookieNotExists(): void
+    public function test_should_return_default_value_if_cookie_not_exists(): void
     {
         $this->assertNull($this->cookie->pull('foo'));
     }
@@ -54,7 +56,7 @@ class PullMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldReturnCustomDefaultValueIfCookieNotExists(): void
+    public function test_should_return_custom_default_value_if_cookie_not_exists(): void
     {
         $this->assertEquals('bar', $this->cookie->pull('foo', 'bar'));
     }
@@ -62,7 +64,7 @@ class PullMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldSetAnExpirationTimeInPast(): void
+    public function test_should_set_an_expiration_time_in_past(): void
     {
         $this->cookie->pull('foo', 'bar');
 
@@ -71,7 +73,7 @@ class PullMethodTest extends TestCase
         $this->assertEquals(1, $expires);
     }
 
-    public function testShouldFailWhenHeadersSent(): void
+    public function test_should_fail_when_headers_sent(): void
     {
         $this->expectException(CookieException::class);
 
@@ -81,7 +83,7 @@ class PullMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldBeAvailableFromTheFacade(): void
+    public function test_should_be_available_from_the_facade(): void
     {
         $facade = new CookieFacade();
 

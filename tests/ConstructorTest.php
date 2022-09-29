@@ -7,6 +7,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * @phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
  */
 
 namespace Josantonius\Cookie\Tests;
@@ -28,7 +30,7 @@ class ConstructorTest extends TestCase
         $this->cookie = new Cookie();
     }
 
-    public function testShouldCreateInstanceWithDefaultValues(): void
+    public function test_should_create_instance_with_default_values(): void
     {
         $cookie = new Cookie();
 
@@ -43,7 +45,7 @@ class ConstructorTest extends TestCase
         $this->assertEquals($this->getPrivateProperty($cookie, 'secure'), false);
     }
 
-    public function testShouldCreateInstanceWithCustomValues(): void
+    public function test_should_create_instance_with_custom_values(): void
     {
         $cookie = new Cookie(
             domain: 'example.com',
@@ -66,7 +68,7 @@ class ConstructorTest extends TestCase
         $this->assertEquals($this->getPrivateProperty($cookie, 'secure'), true);
     }
 
-    public function testShouldFailIfSameSiteValueIsWrong(): void
+    public function test_should_fail_if_same_site_value_is_wrong(): void
     {
         $this->expectException(CookieException::class);
 

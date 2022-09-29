@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## [v2.0.6](https://github.com/josantonius/php-cookie/releases/tag/v2.0.6) (2022-09-29)
+
+* The notation type in the test function names has been changed from camel to snake case for readability.
+
+* Functions were added to document the methods and avoid confusion.
+
+* Disabled the ´CamelCaseMethodName´ rule in ´phpmd.xml´ to avoid warnings about function names in tests.
+
+* The alignment of the asterisks in the comments has been fixed.
+
+* Tests for Windows have been added.
+
+* Tests for PHP 8.2 have been added.
+
 ## [2.0.5](https://github.com/josantonius/php-cookie/releases/tag/2.0.5) (2022-08-11)
 
 * Improved documentation.

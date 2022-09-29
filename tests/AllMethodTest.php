@@ -7,6 +7,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * @phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
  */
 
 namespace Josantonius\Cookie\Tests;
@@ -29,7 +31,7 @@ class AllMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldReturnEmptyArrayWhenThereAreNoCookies(): void
+    public function test_should_return_empty_array_when_there_are_no_cookies(): void
     {
         $this->assertEmpty($this->cookie->all());
     }
@@ -37,7 +39,7 @@ class AllMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldGetAllCookies(): void
+    public function test_should_get_all_cookies(): void
     {
         $this->cookie->set('foo', 'bar');
         $this->cookie->set('bar', 'foo');
@@ -51,7 +53,7 @@ class AllMethodTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testShouldBeAvailableFromTheFacade(): void
+    public function test_should_be_available_from_the_facade(): void
     {
         $facade = new CookieFacade();
 

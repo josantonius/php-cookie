@@ -34,7 +34,7 @@ PHP library for handling cookies.
 
 ## Requirements
 
-- Operating System: Linux | Windows.
+- Operating System: Linux.
 
 - PHP versions: 8.1 | 8.2.
 

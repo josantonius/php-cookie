@@ -34,7 +34,7 @@ Biblioteca PHP para el manejo de cookies.
 
 ## Requisitos
 
-- Sistema operativo: Linux | Windows.
+- Sistema operativo: Linux.
 
 - Versiones de PHP: 8.1 | 8.2.
 

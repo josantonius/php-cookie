@@ -217,6 +217,18 @@ class SetMethodTest extends TestCase
         );
     }
 
+    /**
+     * @runInSeparateProcess
+     */
+    public function test_should_fail_when_expires_is_wrong(): void
+    {
+        $this->expectException(CookieException::class);
+
+        $cookie = new Cookie();
+
+        $cookie->set('foo', 'bar', 'foo');
+    }
+
     private function getCookieDetails(string $name): array
     {
         $cookies = $this->cookie->getCookieDetails();

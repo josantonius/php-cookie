@@ -76,7 +76,7 @@ class Cookie
     /**
      * Gets all cookies.
      */
-    public function all(): array
+    public static function all(): array
     {
         return self::getInstance()->all();
     }
@@ -84,7 +84,7 @@ class Cookie
     /**
      * Checks if a cookie exists.
      */
-    public function has(string $name): bool
+    public static  function has(string $name): bool
     {
         return self::getInstance()->has($name);
     }
@@ -94,7 +94,7 @@ class Cookie
      *
      * Optionally defines a default value when the cookie does not exist.
      */
-    public function get(string $name, mixed $default = null): mixed
+    public static  function get(string $name, mixed $default = null): mixed
     {
         return self::getInstance()->get($name, $default);
     }
@@ -110,7 +110,7 @@ class Cookie
      *
      * @throws CookieException if headers already sent.
      */
-    public function set(string $name, mixed $value, null|int|DateTime $expires = null): void
+    public static  function set(string $name, mixed $value, null|int|DateTime $expires = null): void
     {
         self::getInstance()->set($name, $value, $expires);
     }
@@ -129,7 +129,7 @@ class Cookie
      *
      * @throws CookieException if headers already sent.
      */
-    public function replace(array $data, null|int|DateTime $expires = null): void
+    public static  function replace(array $data, null|int|DateTime $expires = null): void
     {
         self::getInstance()->replace($data, $expires);
     }
@@ -141,7 +141,7 @@ class Cookie
      *
      * @throws CookieException if headers already sent.
      */
-    public function pull(string $name, mixed $default = null): mixed
+    public static  function pull(string $name, mixed $default = null): mixed
     {
         return self::getInstance()->pull($name, $default);
     }
@@ -151,7 +151,7 @@ class Cookie
      *
      * @throws CookieException if headers already sent.
      */
-    public function remove(string $name): void
+    public static  function remove(string $name): void
     {
         self::getInstance()->remove($name);
     }
@@ -161,7 +161,7 @@ class Cookie
      *
      * @throws CookieException if headers already sent.
      */
-    public function clear(): void
+    public static  function clear(): void
     {
         self::getInstance()->clear();
     }

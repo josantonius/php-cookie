@@ -36,7 +36,7 @@ Biblioteca PHP para el manejo de cookies.
 
 - Sistema operativo: Linux.
 
-- Versiones de PHP: 8.1 | 8.2.
+- Versiones de PHP: 8.1 | 8.2 | 8.3.
 
 ## Instalación
 

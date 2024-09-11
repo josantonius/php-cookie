@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [v2.0.7](https://github.com/josantonius/php-cookie/releases/tag/v2.0.7) (2024-09-11)
+
+* Support for PHP version 8.3.
+
+* Fixed facade methods to be static by [@escannord](https://github.com/escannord)
+in <https://github.com/josantonius/php-cookie/pull/13>
+
 ## [v2.0.6](https://github.com/josantonius/php-cookie/releases/tag/v2.0.6) (2022-09-29)
 
 * The notation type in the test function names has been changed from camel to snake case for readability.
